@@ -1,0 +1,25 @@
+## Webstorm
+# Cover JetBrains IDEs
+*.iml
+# Directory-based project format
+.idea
+
+## Node
+# Logs
+*.log
+npm-debug.log*
+# Dependency directory
+node_modules
+
+## OSX
+.DS_Store
+.AppleDouble
+.LSOverride
+
+## Windows
+Thumbs.db
+ehthumbs.db
+
+## Project build
+
+build
