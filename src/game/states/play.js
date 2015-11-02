@@ -1,17 +1,37 @@
 'use strict';
+var Block = require('../modules/Block');
 
 function Play() {
 }
 
 Play.prototype = {
     preload: function () {
-        console.log('PLAY!!');
         this.map = this.add.tilemap('map');
         this.map.addTilesetImage('tiles', 'tiles');
         this.layer = this.map.createLayer('Tile Layer 1');
 
     },
     create: function () {
+        //Block1
+        var blockInfo = {
+            x: 0,
+            y: 0,
+            name: 'block1',
+            game: this.game
+        }
+
+        this.b1 = new Block(blockInfo);
+        //Block2
+
+        var blockInfo2 = {
+            x: 32,
+            y: 32,
+            name: 'block2',
+            game: this.game
+        }
+
+        this.b2 = new Block(blockInfo2);
+
 
     },
     update: function () {
