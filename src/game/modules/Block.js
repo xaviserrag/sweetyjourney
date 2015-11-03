@@ -3,13 +3,18 @@ var Block = function Block(params) {
     Phaser.Sprite.call(this, params.game, params.x, params.y, params.name);
     this.game.add.existing(this);
     this.inputEnabled = true;
-    this.input.enableDrag();
+
 
     if (params.name === 'block1'){
+        var floor = new Phaser.Rectangle(0, 0, 64, 32);
+        this.input.enableDrag(false,false,false,255,floor);
         this.input.allowVerticalDrag = false;
     }else{
         this.input.allowHorizontalDrag = false;
+        this.input.enableDrag();
     }
+
+
 
 };
 
