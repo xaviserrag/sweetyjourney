@@ -5,43 +5,37 @@ var Menu = function Menu(params) {
     Phaser.Group.call(this, params.game, params.x, params.y, params.name);
     var self = this;
     var init = function init() {
-
+        self.buttonStarter = params.buttonStarter;
         self.menuBg = self.game.add.sprite(0,0,'bgPopup');
         self.menuBg.inputEnabled = true;
         self.add(self.menuBg);
-        self.soundButton = self.game.add.sprite(30, 1200, 'gameButtons', 'sound_enabled_off');
-        self.soundButton.inputEnabled = true;
-        self.soundButton.events.onInputDown.add(function () {
+        self.soundButton = self.game.add.button(30, 1150, 'gameButtons', function () {
             self.game.mute = false;
             self.soundButton.visible = false;
             self.muteButton.visible = true;
-        });
+        }, this, 'sound_enabled_off', 'sound_enabled_off', 'sound_enabled_on', 'sound_enabled_off');//'sound_enabled_off')
         self.add(self.soundButton);
 
-        self.buttonInfo = self.game.add.sprite(30, 1700, 'gameButtons', 'pause_off');
-        self.buttonInfo.inputEnabled = true;
-        self.buttonInfo.events.onInputDown.add(function () {
+        self.buttonInfo = self.game.add.button(30, 1650, 'gameButtons', function(){
             self.visible = false;
-            params.buttonStarter.visible = true;
-        }, self);
+            self.buttonInfo.visible = false
+            self.buttonInfo.inputEnabled = false
+            self.buttonStarter.visible = true;
+            self.buttonStarter.inputEnabled = true;
+        }, this, 'pause_off', 'pause_off', 'pause_on')//'pause_off'
         self.add(self.buttonInfo);
 
-        self.levelButton = self.game.add.sprite(30, 1450, 'gameButtons', 'levels_off');
-        self.levelButton.inputEnabled = true;
-        self.levelButton.events.onInputDown.add(function () {
+        self.levelButton = self.game.add.button(30, 1400, 'gameButtons', function () {
             self.visible = false;
             self.game.state.start('levelSelection');
-        });
+        }, this, 'levels_off', 'levels_off', 'levels_on', 'levels_off');
         self.add(self.levelButton);
 
-
-        self.muteButton = self.game.add.sprite(30, 1200, 'gameButtons', 'sound_disabled_off');
-        self.muteButton.inputEnabled = true;
-        self.muteButton.events.onInputDown.add(function () {
-            self.game.mute = true;
+        self.muteButton = self.game.add.button(30, 1150, 'gameButtons', function () {
+            self.game.mute = false;
             self.soundButton.visible = true;
             self.muteButton.visible = false;
-        }, this);
+        }, this, 'sound_disabled_off', 'sound_disabled_off', 'sound_disabled_on', 'sound_disabled_off');//'gameButtons', 'sound_disabled_off'
         self.add(self.muteButton);
 
         if (self.game.mute) {
@@ -50,6 +44,9 @@ var Menu = function Menu(params) {
             self.soundButton.visible = false;
 
         }
+
+        self.button1animationOut = self.game.add.tween(self.levelButton);
+        self.button2animationOut = self.game.add.tween(self.soundButton);
     };
 
     init();

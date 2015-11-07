@@ -22,6 +22,9 @@ Preload.prototype = {
         this.load.image('character', 'assets/images/pj.png');
         this.load.image('bgPopup', 'assets/images/bg_popup.png');
         this.load.image('backgroundMenu', 'assets/images/menu_background.jpg');
+        this.load.audio('angrySound', 'assets/sound/angrysound.mp3');
+        this.load.audio('happySound2', 'assets/sound/happysound2.mp3');
+        this.load.audio('happySound3', 'assets/sound/happysound3.mp3');
         this.load.image('backgroundGameOver', 'assets/images/bg_lose.jpg');
         this.load.image('angryFlan', 'assets/images/flan_lose.png');
         this.load.atlasJSONHash('pageButtons', 'assets/images/selector_pages.png', 'assets/images/selector_pages.json');

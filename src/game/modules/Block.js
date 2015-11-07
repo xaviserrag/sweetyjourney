@@ -18,6 +18,7 @@ var Block = function Block(params) {
     var VERTICAL_BLOCK = 'vertical';
 
 
+    var angrySound = params.game.add.audio('angrySound', 0.6);
     //public
     this.orientation = type;
     this.col = params.col;
@@ -34,10 +35,16 @@ var Block = function Block(params) {
             self.inputEnabled = true;
             self.input.allowVerticalDrag = false;
             self.events.onDragStop.add(onDragStop, this);
+            self.events.onDragStart.add(function() {
+                angrySound.play();
+            }, this);
         } else if (type === VERTICAL_BLOCK) {
             self.inputEnabled = true;
             self.input.allowHorizontalDrag = false;
             self.events.onDragStop.add(onDragStop, this);
+            self.events.onDragStart.add(function() {
+                angrySound.play();
+            }, this);
         }
     };
 
@@ -67,6 +74,7 @@ var Block = function Block(params) {
     var onDragStop = function onDragStop(box) {
         var distance,
             fixedPos;
+
         if (type === HORIZONTAL_BLOCK) {
             fixedPos = getFixedPosition(box.x);
             distance = fixedPos - currentX;
