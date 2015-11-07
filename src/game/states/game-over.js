@@ -12,7 +12,18 @@ GameOver.prototype = {
         this.initBackground();
         this.initAngryFlan();
         this.initLoseText();
+        this.initButtons();
 
+    },
+
+    initButtons:  function initButtons(){
+        var replayButton = this.game.add.button(570, 1400, 'endButtons', function () {
+            this.game.state.start('play');
+        }, this, 'replay_off', 'replay_off', 'replay_on');
+
+        var levelButton = this.game.add.button(295, 1400, 'endButtons', function () {
+            this.game.state.start('levelSelection');
+        }, this, 'levels_off', 'levels_off', 'levels_on');
     },
 
     initBackground: function initBackground(){
