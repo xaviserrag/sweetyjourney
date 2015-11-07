@@ -63,11 +63,18 @@ var Block = function Block(params) {
     this.updateBoundReferences = function updateBoundReferences(bounds){
         console.log('bounds', bounds);
         if (type === HORIZONTAL_BLOCK){
-            var floor = new Phaser.Rectangle(bounds.x, bounds.y, range, bounds.width);
+            console.log('h');
+            //var floor = new Phaser.Rectangle(bounds.initPos, params.y, bounds.range, 0);
+
+            var floor = new Phaser.Rectangle(params.x, params.y, 0, 500);
             self.input.enableDrag(false,false,false,255,floor);
+            self.input.allowVerticalDrag = false;
         }else if (type === VERTICAL_BLOCK){
-            var floor = new Phaser.Rectangle(bounds.x, bounds.y, bounds.height, range);
-            self.input.enableDrag(false,false,false,255,floor);
+            console.log('v');
+            //var floor = new Phaser.Rectangle(params.x, bounds.initPos, 0, bounds.range);
+           // var floor = new Phaser.Rectangle(bounds.initPos, params.y, bounds.range, 0);
+            //self.input.enableDrag(false,false,false,255,floor);
+            //self.input.allowVerticalDrag = true;
         }
 
     };

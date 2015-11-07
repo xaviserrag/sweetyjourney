@@ -121,9 +121,11 @@ var Grid = function Grid(params) {
     };
 
     var updateGrid = function updateGrid() {
-        var movement, block = self.theoreticalGrid[i][j];
+        console.log('updategrid');
+        var movement, block;
         for (var i = 0; i < 9; i++) {
             for(var j = 0; j < 5; j++) {
+                block = self.theoreticalGrid[i][j];
                 if(block && block.orientation !== 'blocked') {
                     movement = calculateMovement(block);
                     block.updateBoundReferences({
