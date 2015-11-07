@@ -14,9 +14,10 @@ Preload.prototype = {
         this.load.image('block2', 'assets/images/block2.png');
         this.load.image('block_hor', 'assets/images/block_hor.png');
         this.load.image('bloc_dev', 'assets/images/block_ver.png');
+        //Menu
         this.load.image('playButton', 'assets/images/play_button.png');
-        console.log('estoy en el estado preload');
-
+        this.load.image('muteButton', 'assets/images/mute_button.png');
+        this.load.image('backgroundMenu', 'assets/images/menu_background.jpg');
     },
     create: function () {
         this.game.state.start('play');
