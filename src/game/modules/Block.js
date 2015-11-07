@@ -1,7 +1,5 @@
 'use strict';
 var Block = function Block(params) {
-    params.x += 90;
-    params.y += 90;
     //VARS
     var self = this,
         type = params.type,

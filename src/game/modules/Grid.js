@@ -27,16 +27,17 @@ var Grid = function Grid(params) {
             return null;
         } else if (type === 'character') {
             return new Character({
-                x: 180 * col,
-                y: 180 * row,
+                x: (180 * col) + 90,
+                y: (180 * row) + 90,
                 game: self.game,
+                parent: self,
                 name: 'character'
 
             });
         } else {
             var blockInfo = {
-                x: 180 * col,
-                y: 180 * row,
+                x: (180 * col) + 90,
+                y: (180 * row) + 90,
                 type: type,
                 row: row,
                 col: col,
