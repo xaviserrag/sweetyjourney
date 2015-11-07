@@ -38,7 +38,7 @@ Menu.prototype = {
     },
 
     start: function () {
-        this.game.state.start('selectLevel');
+        this.game.state.start('levelSelection');
     }
 };
 
