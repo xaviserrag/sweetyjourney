@@ -1,4 +1,5 @@
 'use strict';
+var gameData = require('../gameData/gameData');
 var Block = function Block(params) {
     //VARS
     var self = this,
@@ -79,6 +80,8 @@ var Block = function Block(params) {
             box.y = fixedPos - yOffset;
             callback(self, distance);
         }
+
+        gameData.steps++;
     };
 
     var updateRangeArray = function updateRangeArray(firstPos, range) {

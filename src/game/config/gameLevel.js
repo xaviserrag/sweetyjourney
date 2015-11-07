@@ -12,6 +12,8 @@ module.exports = [
             [0,0,0,0,1]
         ],
         stars: '0',
+        minStepsTo2: 5,
+        minStepsTo3: 3,
         blocked: false,
         level: '1'
     },
@@ -28,7 +30,9 @@ module.exports = [
             [5,0,1,4,0]
         ],
         stars: '0',
-        blocked: false,
+        minStepsTo2: 3,
+        minStepsTo3: 5,
+        blocked: true,
         level: '2'
     },
     {
@@ -44,7 +48,9 @@ module.exports = [
             [0,0,0,0,0]
         ],
         stars: '0',
-        blocked: false,
+        minStepsTo2: 3,
+        minStepsTo3: 5,
+        blocked: true,
         level: '3'
     },
     {
@@ -60,7 +66,9 @@ module.exports = [
             [0,0,0,0,0]
         ],
         stars: '0',
-        blocked: false,
+        minStepsTo2: 3,
+        minStepsTo3: 5,
+        blocked: true,
         level: '4'
     },
     {
@@ -76,7 +84,9 @@ module.exports = [
             [3,0,0,0,3]
         ],
         stars: '0',
-        blocked: false,
+        minStepsTo2: 3,
+        minStepsTo3: 5,
+        blocked: true,
         level: '5'
     },
     {
@@ -92,7 +102,9 @@ module.exports = [
             [0,0,1,1,1]
         ],
         stars: '0',
-        blocked: false,
+        minStepsTo2: 3,
+        minStepsTo3: 5,
+        blocked: true,
         level: '6'
     },
     {
@@ -108,7 +120,9 @@ module.exports = [
             [0,0,1,1,0]
         ],
         stars: '0',
-        blocked: false,
+        minStepsTo2: 3,
+        minStepsTo3: 5,
+        blocked: true,
         level: '7'
     },
     {
@@ -124,7 +138,9 @@ module.exports = [
             [0,0,2,0,1]
         ],
         stars: '0',
-        blocked: false,
+        minStepsTo2: 3,
+        minStepsTo3: 5,
+        blocked: true,
         level: '8'
     },
     {
@@ -140,6 +156,8 @@ module.exports = [
             [0,0,2,0,1]
         ],
         stars: '0',
+        minStepsTo2: 3,
+        minStepsTo3: 5,
         blocked: true,
         level: '9'
     }

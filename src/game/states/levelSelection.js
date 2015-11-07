@@ -19,11 +19,24 @@ SelectLevel.prototype = {
     initBackgroud: function initBackgroun() {
         this.background = this.game.add.sprite(0, 0, 'bgLevelsSelector');
     },
-    initHeader: function initHeader() {
-        this.homeButton = this.game.add.button(0, 0, 'homeButton', this.goHome, this, 'home_off', 'home_off', 'home_on', 'home_off');
-        var style = {font: "32px Arial", fill: "#ff0044", wordWrap: true};
 
-        //this.stars = this.game.add.text(positions.x + textConfig.x, positions.y + textConfig.y, levelConfig.level, style);
+    calculatePuntuation: function calculatePuntuation(){
+        var puntuation = gameData.levelSelection.reduce(function(previous, current){
+            console.log(previous.stars, current);
+            return previous + parseInt(current.stars);
+        }, 0);
+        var globalPuntuation = gameData.levelSelection.length * 3;
+
+        return {global: globalPuntuation, puntuation: puntuation};
+    },
+
+    initHeader: function initHeader() {
+        this.homeButton = this.game.add.button(10, 4, 'homeButton', this.goHome, this, 'home_off', 'home_off', 'home_on', 'home_off');
+        var style = {font: "120px creamreg", fill: "#ffffff", wordWrap: true};
+        var myPuntuationData = this.calculatePuntuation();
+        this.stars = this.game.add.text(880, 30, myPuntuationData.puntuation + '/' + myPuntuationData.global, style);
+        this.stars.setShadow(3, 3, 'rgba(0,0,0,1)', 5);
+        this.stars.anchor.x = 1;
     },
 
     goHome: function goHome() {
@@ -32,8 +45,8 @@ SelectLevel.prototype = {
 
     initPageManager: function () {
         this.pageManager = this.game.add.group();
-        this.leftButton = this.game.add.button(180, 1638, 'pageButtons', this.goBackPage, this, 'left_off', 'left_off', 'left_on', 'left_off');
-        this.rightButton = this.game.add.button(650, 1638, 'pageButtons', this.goNextPage, this, 'right_off', 'right_off', 'right_on', 'right_off');
+        this.leftButton = this.game.add.button(180, 1658, 'pageButtons', this.goBackPage, this, 'left_off', 'left_off', 'left_on', 'left_off');
+        this.rightButton = this.game.add.button(650, 1658, 'pageButtons', this.goNextPage, this, 'right_off', 'right_off', 'right_on', 'right_off');
         if (this.totalPages === 1) {
             this.rightButton.alpha = 0.5;
         }
@@ -135,7 +148,7 @@ SelectLevel.prototype = {
             frameName = 'level_buttons_blocked';
         }
         var buttonSprite = this.game.add.button(positions.x, positions.y, 'levelButtons', callback, this, null, frameName);//+ levelConfig.stars
-        var style = {font: "122px creamreg", fill: "#ff0044", wordWrap: true};
+        var style = {font: "122px creamreg", fill: "#7B441A", wordWrap: true};
 
         var buttonText = this.game.add.text(positions.x + textConfig.x, positions.y + textConfig.y, levelConfig.level, style);
         buttonText.anchor.set(textConfig.anchorX, textConfig.anchorY);
