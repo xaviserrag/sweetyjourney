@@ -125,7 +125,7 @@ SelectLevel.prototype = {
         var textConfig = config.levelSelection.buttons.text;
         var callback = function () {
             console.log('Level selected', levelConfig.level);
-            gameData.currentLevel = levelConfig.level;
+            gameData.currentLevel = (parseInt(levelConfig.level)-1);
             this.game.state.start('play');
         };
         var frameName;
@@ -135,11 +135,10 @@ SelectLevel.prototype = {
             frameName = 'level_buttons_blocked';
         }
         var buttonSprite = this.game.add.button(positions.x, positions.y, 'levelButtons', callback, this, null, frameName);//+ levelConfig.stars
-        console.log(buttonSprite);
-        var style = {font: "32px Arial", fill: "#ff0044", wordWrap: true};
+        var style = {font: "122px creamreg", fill: "#ff0044", wordWrap: true};
 
         var buttonText = this.game.add.text(positions.x + textConfig.x, positions.y + textConfig.y, levelConfig.level, style);
-
+        buttonText.anchor.set(textConfig.anchorX, textConfig.anchorY);
         buttonGp.add(buttonSprite);
         buttonGp.add(buttonText);
 

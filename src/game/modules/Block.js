@@ -12,9 +12,9 @@ var Block = function Block(params) {
         callback = params.callback,
         rangeArray = [];
     //CONST
-    const BLOCKED = 'blocked';
-    const HORIZONTAL_BLOCK = 'horizontal';
-    const VERTICAL_BLOCK = 'vertical';
+    var BLOCKED = 'blocked';
+    var HORIZONTAL_BLOCK = 'horizontal';
+    var VERTICAL_BLOCK = 'vertical';
 
 
     //public
