@@ -23,7 +23,7 @@ var Menu = function Menu(params) {
         self.levelButton = self.game.add.button(30, 1400, 'gameButtons', function () {
             self.visible = false;
             self.game.state.start('levelSelection');
-        }, this, 'levels_off', 'levels_off', 'levels_on', 'levels_off');'levels_off'
+        }, this, 'levels_off', 'levels_off', 'levels_on', 'levels_off');
         self.add(self.levelButton);
 
 
