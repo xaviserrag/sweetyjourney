@@ -17,7 +17,6 @@ var Block = function Block(params) {
     const VERTICAL_BLOCK = 3;
     console.log('type', type);
 
-
     var init = function init(){
         self.game.add.existing(self);
         self.inputEnabled = true;

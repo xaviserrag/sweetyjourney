@@ -16,25 +16,41 @@ var Grid = function Grid(params) {
     };
 
 
-    this.theoricalGrid = [];
+    this.theoreticalGrid = [];
 
     var createBlock = function createBlock(col, row, cellPosition) {
-        var type = types[config.level[0].grid[col][row]];
+        var type = types[config.level[0].grid[row][col]];
 
         if (type === 'empty') {
-            return;
+            return null;
+        } else {
+            var blockInfo = {
+                x: 180 * col,
+                y: 180 * row,
+                type: type,
+                row: row,
+                col: col,
+                game: self.game
+            };
+            return new Block(blockInfo);
         }
 
-        var blockInfo = {
-            x: 180 * col,
-            y: 180 * row,
-            type: type,
-            game: self.game
-        };
+    };
 
+    var calculateMovement = function calculateMovement(block) {
+        var iterationNum = block.orientation === 'vertical' ? config.cols : config.rows,
+            leftMovement = 0,
+            rightMovement = 0;
 
-        return new Block(blockInfo);
+        for (var i = 0; i < iterationNum; i++) {
+            if(self.theoreticalGrid[block.row][i] === null) {
+                leftMovement++;
+            } else {
+                leftMovement = 0;
+            }
+        }
 
+        console.log(self.theoreticalGrid);
     };
 
     var createGrid = function createGrid() {
@@ -50,10 +66,10 @@ var Grid = function Grid(params) {
                 count++;
             }
 
-            self.theoricalGrid.push(row);
+            self.theoreticalGrid.push(row);
         }
 
-        console.log(self.theoricalGrid);
+        console.log(self.theoreticalGrid);
     };
 
     var init = function init() {
