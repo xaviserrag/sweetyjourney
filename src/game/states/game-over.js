@@ -9,17 +9,16 @@ GameOver.prototype = {
 
     },
     create: function () {
-        /*this.initBackground();
-        this.initPlay();
+        this.initBackground();
+        /*this.initPlay();
         this.initSound();*/
     },
 
-    /*initBackground: function initBackground(){
-        var background = this.game.add.sprite(0,0, 'backgroundMenu');
-        background.scale.set(5, 5);
+    initBackground: function initBackground(){
+        var background = this.game.add.sprite(0,0, 'backgroundGameOver');
     },
 
-    initPlay: function initPlay() {
+    /*initPlay: function initPlay() {
         this.playButton = this.game.add.button(this.game.width /2, this.game.height / 2, config.menu.buttons.play.spriteSheet, this.start, this);
         this.playButton.anchor.set(config.menu.buttons.play.anchorX, config.menu.buttons.play.anchorY);
         this.playButton.scale.x = 1.5;

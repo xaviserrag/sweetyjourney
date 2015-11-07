@@ -21,6 +21,7 @@ Preload.prototype = {
         this.load.image('levelSelection', 'assets/images/level_selection.png');
         this.load.image('character', 'assets/images/pj.png');
         this.load.image('backgroundMenu', 'assets/images/menu_background.jpg');
+        this.load.image('backgroundGameOver', 'assets/images/bg_lose.jpg');
         this.load.atlasJSONHash('pageButtons', 'assets/images/selector_pages.png', 'assets/images/selector_pages.json');
         this.load.atlasJSONHash('levelButtons', 'assets/images/level_buttons.png', 'assets/images/level_buttons.json');
         this.load.atlasJSONHash('gameButtons', 'assets/images/game_buttons.png', 'assets/images/game_buttons.json');

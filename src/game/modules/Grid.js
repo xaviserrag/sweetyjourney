@@ -350,7 +350,8 @@ var Grid = function Grid(params) {
     var resetGame = function resetGame() {
         console.log('FAIL');
         haveBeenFail = true;
-        self.game.state.start('play');
+        self.game.state.start('gameOver');
+        //self.game.state.start('play');
     };
 
 
