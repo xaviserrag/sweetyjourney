@@ -19,22 +19,21 @@ var Grid = function Grid(params) {
     this.theoreticalGrid = [];
 
     var createBlock = function createBlock(col, row, cellPosition) {
-        var type = types[config.level[0].grid[col][row]];
+        var type = types[config.level[0].grid[row][col]];
 
         if (type === 'empty') {
             return null;
+        } else {
+            var blockInfo = {
+                x: 180 * col,
+                y: 180 * row,
+                type: type,
+                row: row,
+                col: col,
+                game: self.game
+            };
+            return new Block(blockInfo);
         }
-
-        var blockInfo = {
-            x: 180 * col,
-            y: 180 * row,
-            type: type,
-            row: row,
-            col: col,
-            game: self.game
-        };
-
-        return new Block(blockInfo);
 
     };
 

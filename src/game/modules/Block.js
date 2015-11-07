@@ -11,7 +11,6 @@ var Block = function Block(params) {
     const HORIZONTAL_BLOCK = 'block1';
     const VERTICAL_BLOCK = 'block2';
 
-
     var init = function init(){
         self.game.add.existing(self);
         self.inputEnabled = true;
