@@ -177,7 +177,7 @@ var Grid = function Grid(params) {
                     upDeath = false;
                     upWin = true;
                     block.hasWin = true;
-                } else {
+                } else if (self.theoreticalGrid[j][block.col].orientation !== 'character'){
                     upDeath = false;
                     block.hasWin = false;
                     upMovement = 0;
@@ -211,7 +211,7 @@ var Grid = function Grid(params) {
                     leftDeath = false;
                     block.hasWin = true;
                     leftWin = true;
-                } else {
+                } else if (self.theoreticalGrid[block.row][i].orientation !== 'character'){
                     block.hasWin = false;
                     leftDeath = false;
                     leftMovement = 0;

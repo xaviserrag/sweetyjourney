@@ -10,6 +10,11 @@ var Character = function Character(params) {
 
     var possibleMovements;
 
+    var happySound2 = params.game.add.audio('happySound2', 0.6);
+    var happySound3 = params.game.add.audio('happySound3', 0.6);
+
+    var sounds = [happySound2, happySound3];
+
     Phaser.Sprite.call(this, params.game, params.x, params.y - yOffset, params.name);
 
     var init = function init() {
@@ -25,6 +30,9 @@ var Character = function Character(params) {
             deathOffset = 10,
             posTo = 0,
             distance = 0;
+
+        var random = self.game.rnd.integerInRange(0, 1);
+        sounds[random].play();
 
         if (direction === 'up') {
             posTo = self.y - (possibleMovements.up * 180);
@@ -118,9 +126,11 @@ var Character = function Character(params) {
                     direction = 'up';
                 }
 
+
+                startPoint.x = 0;
+                startPoint.y = 0;
+
                 if (direction) {
-                    startPoint.x = 0;
-                    startPoint.y = 0;
                     callback(direction);
                 }
             }
