@@ -79,7 +79,6 @@ var Character = function Character(params) {
 
     this.updatePosition = function updatePosition(params) {
         possibleMovements = params;
-        console.log('update pos', possibleMovements)
     };
 
     var listenSwipe = function listenSwipe(callback) {
