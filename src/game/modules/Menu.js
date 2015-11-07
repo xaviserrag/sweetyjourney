@@ -5,7 +5,7 @@ var Menu = function Menu(params) {
     Phaser.Group.call(this, params.game, params.x, params.y, params.name);
     var self = this;
     var init = function init() {
-
+        self.buttonStarter = params.buttonStarter;
         self.menuBg = self.game.add.sprite(0,0,'bgPopup');
         self.menuBg.inputEnabled = true;
         self.add(self.menuBg);
@@ -17,15 +17,19 @@ var Menu = function Menu(params) {
         self.add(self.soundButton);
 
         self.buttonInfo = self.game.add.button(30, 1650, 'gameButtons', function(){
-            self.visible = !self.visible;
+            self.visible = false;
+            self.buttonInfo.visible = false
+            self.buttonInfo.inputEnabled = false
+            self.buttonStarter.visible = true;
+            self.buttonStarter.inputEnabled = true;
         }, this, 'pause_off', 'pause_off', 'pause_on')//'pause_off'
+        self.add(self.buttonInfo);
 
         self.levelButton = self.game.add.button(30, 1400, 'gameButtons', function () {
             self.visible = false;
             self.game.state.start('levelSelection');
         }, this, 'levels_off', 'levels_off', 'levels_on', 'levels_off');
         self.add(self.levelButton);
-
 
         self.muteButton = self.game.add.button(30, 1150, 'gameButtons', function () {
             self.game.mute = false;
@@ -40,6 +44,9 @@ var Menu = function Menu(params) {
             self.soundButton.visible = false;
 
         }
+
+        self.button1animationOut = self.game.add.tween(self.levelButton);
+        self.button2animationOut = self.game.add.tween(self.soundButton);
     };
 
     init();
