@@ -19,7 +19,7 @@ module.exports = {
     levels: [
         {
             stars: '0',
-            blocked: true,
+            blocked: false,
             level: '1'
         },
 
