@@ -17,33 +17,31 @@ var Character = function Character(params) {
 
     var move = function move(direction) {
         var tween;
-        console.log(direction, possibleMovements);
         var speed = 2,
             posTo = 0,
             distance = 0;
 
         if (direction === 'up') {
-            posTo = self.y - (possibleMovements.rangeVertical - possibleMovements.initPosVertical);
+            posTo = self.y - (possibleMovements.up * 180);
             distance = posTo - self.y;
             tween = self.game.add.tween(self).to({y: posTo}, Math.abs(distance/speed), Phaser.Easing.Linear.None);
         } else if (direction === 'down') {
-            posTo = self.y + possibleMovements.rangeVertical - possibleMovements.initPosVertical - 180;
+            posTo = self.y + possibleMovements.down * 180;
             distance = posTo - self.y;
             tween = self.game.add.tween(self).to({y: posTo}, Math.abs(distance/speed), Phaser.Easing.Linear.None);
 
         } else if (direction === 'left') {
-            posTo = self.x - (possibleMovements.rangeHorizontal - possibleMovements.initPosHorizontal);
+            posTo = self.x - (possibleMovements.left * 180);
             distance = posTo - self.x;
             tween = self.game.add.tween(self).to({x: posTo}, Math.abs(distance/speed), Phaser.Easing.Linear.None);
 
         } else if (direction === 'right') {
-            posTo = self.x + possibleMovements.rangeHorizontal - possibleMovements.initPosHorizontal - 180;
+            posTo = self.x + possibleMovements.right * 180;
             distance = posTo - self.x;
             tween = self.game.add.tween(self).to({x: posTo}, Math.abs(distance/speed), Phaser.Easing.Linear.None);
-
         }
 
-        if(distance > 0) {
+        if(Math.abs(distance) > 0) {
             tween.onComplete.add(function() {
                 params.callback(self, distance, direction);
             });
