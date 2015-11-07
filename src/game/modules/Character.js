@@ -1,5 +1,5 @@
 'use strict';
-
+var gameData = require('../gameData/gameData');
 var Character = function Character(params) {
 
     var self = this,
@@ -50,7 +50,7 @@ var Character = function Character(params) {
             });
             tween.start();
         }
-
+        gameData.steps++;
     };
 
     this.updatePosition = function updatePosition(params) {

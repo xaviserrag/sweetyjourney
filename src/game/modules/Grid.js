@@ -257,8 +257,18 @@ var Grid = function Grid(params) {
     };
 
     var winGame = function winGame() {
+        console.log('Steps ', gameData.steps, 'Stars', gameData.levelSelection[gameData.currentLevel].stars);
+        if(gameData.steps <= gameData.levelSelection[gameData.currentLevel].minStepsTo3 && gameData.levelSelection[gameData.currentLevel].stars < 3){
+            gameData.levelSelection[gameData.currentLevel].stars = '3';
+        }else if(gameData.steps <= gameData.levelSelection[gameData.currentLevel].minStepsTo2 && gameData.levelSelection[gameData.currentLevel].stars < 2){
+            gameData.levelSelection[gameData.currentLevel].stars = '2';
+        }else if(gameData.levelSelection[gameData.currentLevel].stars < 1){
+            gameData.levelSelection[gameData.currentLevel].stars = '1';
+        }
+        gameData.levelSelection[gameData.currentLevel+1].blocked = false;
+        gameData.steps = 0;
         gameData.currentLevel++;
-        self.game.state.start('play');
+        self.game.state.start('menu');
     };
 
     var init = function init() {
