@@ -1,24 +1,11 @@
 var menuConfig = require('./menu');
 var levelSelectionConfig = require('./levelSelection');
+var gameLevel = require('./gameLevel');
 module.exports = {
     startLevel: 0,
     rows: 9,
     cols: 5,
-    level: {
-        '0': {
-            grid: [
-                [0,0,1,0,2],
-                [0,0,0,0,0],
-                [0,0,0,0,0],
-                [0,0,0,0,0],
-                [0,0,0,4,0],
-                [0,0,0,0,0],
-                [0,0,0,3,0],
-                [0,0,0,0,0],
-                [0,0,0,0,1]
-            ]
-        }
-    },
+    level: gameLevel,
     menu: menuConfig,
     levelSelection: levelSelectionConfig
 };
