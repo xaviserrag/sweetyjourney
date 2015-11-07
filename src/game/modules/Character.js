@@ -24,28 +24,28 @@ var Character = function Character(params) {
 
         if (direction === 'up') {
             posTo = self.y - (possibleMovements.rangeVertical - possibleMovements.initPosVertical);
-            distance = Math.abs(posTo - self.y);
+            distance = posTo - self.y;
             tween = self.game.add.tween(self).to({y: posTo}, Math.abs(distance/speed), Phaser.Easing.Linear.None);
         } else if (direction === 'down') {
             posTo = self.y + possibleMovements.rangeVertical - possibleMovements.initPosVertical - 180;
-            distance = Math.abs(posTo - self.y);
+            distance = posTo - self.y;
             tween = self.game.add.tween(self).to({y: posTo}, Math.abs(distance/speed), Phaser.Easing.Linear.None);
 
         } else if (direction === 'left') {
             posTo = self.x - (possibleMovements.rangeHorizontal - possibleMovements.initPosHorizontal);
-            distance = Math.abs(posTo - self.x);
+            distance = posTo - self.x;
             tween = self.game.add.tween(self).to({x: posTo}, Math.abs(distance/speed), Phaser.Easing.Linear.None);
 
         } else if (direction === 'right') {
             posTo = self.x + possibleMovements.rangeHorizontal - possibleMovements.initPosHorizontal - 180;
-            distance = Math.abs(posTo - self.x);
+            distance = posTo - self.x;
             tween = self.game.add.tween(self).to({x: posTo}, Math.abs(distance/speed), Phaser.Easing.Linear.None);
 
         }
 
         if(distance > 0) {
             tween.onComplete.add(function() {
-                params.callback(self, distance);
+                params.callback(self, distance, direction);
             });
             tween.start();
         }

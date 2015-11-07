@@ -8,7 +8,7 @@ var Block = function Block(params) {
         currentX = params.x,
         currentY = params.y,
         name = '',
-        callback = params.callback
+        callback = params.callback;
     //CONST
     const BLOCKED = 'blocked';
     const HORIZONTAL_BLOCK = 'horizontal';
