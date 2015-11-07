@@ -55,23 +55,38 @@ var Block = function Block(params) {
         initBlockMovement();
     };
 
-    var getFixedPosition = function getFixedPosition(userX){
-        for (var i = 0; i < rangeArray.length; i++){
-            
+    var getFixedPosition = function getFixedPosition(userDragPos) {
+        var finalPos;
+        for (var i = 0; i < rangeArray.length; i++) {
+            if (userDragPos >= rangeArray[i] && userDragPos < rangeArray[i + 1]) {
+                if (Math.abs(rangeArray[i + 1] - userDragPos) < Math.abs(rangeArray[i] - userDragPos)) {
+                    finalPos = rangeArray[i + 1];
+                } else {
+                    finalPos = rangeArray[i];
+                }
+            }
         }
-    }
+        if (!finalPos) {
+            finalPos = rangeArray[rangeArray.length - 1];
+        }
+        return finalPos;
+    };
+
 
     var onDragStop = function onDragStop(box) {
-        var distance;
+        var distance,
+            fixedPos;
         if (type === HORIZONTAL_BLOCK) {
-            getFixedPosition(box.x);
-            distance = box.x - currentX;
-            currentX = box.x;
+            fixedPos = getFixedPosition(box.x);
+            distance = fixedPos - currentX;
+            currentX = fixedPos;
+            box.x = fixedPos;
             callback(self, distance);
         } else if (type === VERTICAL_BLOCK) {
-            getFixedPosition(box.x);
-            distance = box.y - currentY;
-            currentY = box.y;
+            fixedPos = getFixedPosition(box.y);
+            distance = fixedPos - currentY;
+            currentY = fixedPos;
+            box.y = fixedPos;
             callback(self, distance);
         }
     };
@@ -83,11 +98,9 @@ var Block = function Block(params) {
             rangeArray.push(acum);
             acum += width;
         }
-        console.log ('SUPER RANGE', rangeArray);
     };
 
     this.updateBoundReferences = function updateBoundReferences(bounds) {
-        console.log('RANGE', bounds.range / 180);
         if (type === HORIZONTAL_BLOCK) {
             var floor = new Phaser.Rectangle(currentX - bounds.initPos, currentY, bounds.range, width);
             self.input.enableDrag(false, false, false, 255, floor);
