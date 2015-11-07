@@ -8,7 +8,7 @@ var BootState = require('./states/boot'),
     game;
 
 window.onload = function () {
-    game = new Phaser.Game(160, 288, Phaser.AUTO);
+    game = new Phaser.Game(1080, 1920, Phaser.AUTO);
 
     game.state.add('boot', BootState);
     game.state.add('play', PlayState);

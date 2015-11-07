@@ -19,28 +19,6 @@ Play.prototype = {
             y: 0,
             name: 'Grid'
         });
-
-        //Block1
-        var blockInfo = {
-            x: 0,
-            y: 0,
-            name: 'block1',
-            game: this.game
-        }
-
-        this.b1 = new Block(blockInfo);
-        //Block2
-
-        var blockInfo2 = {
-            x: 32,
-            y: 32,
-            name: 'block2',
-            game: this.game
-        }
-
-        this.b2 = new Block(blockInfo2);
-
-
     },
     update: function () {
 
