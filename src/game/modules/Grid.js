@@ -30,8 +30,10 @@ var Grid = function Grid(params) {
                 type: type,
                 row: row,
                 col: col,
-                game: self.game
+                game: self.game,
+                parent: self
             };
+
             return new Block(blockInfo);
         }
     };

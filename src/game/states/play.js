@@ -11,8 +11,8 @@ Play.prototype = {
 
         var grid = new Grid({
             game: this.game,
-            x: 0,
-            y: 0,
+            x: 90,
+            y: 90,
             name: 'Grid'
         });
     },
