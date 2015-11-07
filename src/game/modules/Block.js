@@ -4,7 +4,8 @@ var Block = function Block(params) {
     var self = this,
         type = params.type,
         width = 180,
-        height = 180,
+        height = 246,
+        yOffset = 50,
         currentX = params.x,
         currentY = params.y,
         name = '',
@@ -34,7 +35,7 @@ var Block = function Block(params) {
                 name = 'bloc_dev';
                 break;
         }
-        Phaser.Sprite.call(self, params.game, params.x, params.y, name);
+        Phaser.Sprite.call(self, params.game, params.x, params.y - yOffset, name);
         params.parent.addChild(self);
     };
 
@@ -83,10 +84,10 @@ var Block = function Block(params) {
             box.x = fixedPos;
             callback(self, distance);
         } else if (type === VERTICAL_BLOCK) {
-            fixedPos = getFixedPosition(box.y);
+            fixedPos = getFixedPosition(box.y + yOffset);
             distance = fixedPos - currentY;
             currentY = fixedPos;
-            box.y = fixedPos;
+            box.y = fixedPos - yOffset;
             callback(self, distance);
         }
     };
@@ -102,12 +103,12 @@ var Block = function Block(params) {
 
     this.updateBoundReferences = function updateBoundReferences(bounds) {
         if (type === HORIZONTAL_BLOCK) {
-            var floor = new Phaser.Rectangle(currentX - bounds.initPos, currentY, bounds.range, width);
+            var floor = new Phaser.Rectangle(currentX - bounds.initPos, currentY - yOffset, bounds.range, height);
             self.input.enableDrag(false, false, false, 255, floor);
             self.input.allowVerticalDrag = false;
             updateRangeArray(currentX - bounds.initPos, bounds.range);
         } else if (type === VERTICAL_BLOCK) {
-            var floor = new Phaser.Rectangle(currentX, currentY - bounds.initPos, height, bounds.range);
+            var floor = new Phaser.Rectangle(currentX, currentY - bounds.initPos, width, bounds.range);
             self.input.enableDrag(false, false, false, 255, floor);
             self.input.allowVerticalDrag = true;
             updateRangeArray(currentY - bounds.initPos, bounds.range);
