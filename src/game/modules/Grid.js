@@ -33,8 +33,8 @@ var Grid = function Grid(params) {
                 parent: self,
                 row: row,
                 col: col,
-                name: 'character'
-
+                name: 'character',
+                callback: updateBlockPosition
             });
         } else {
             var blockInfo = {
@@ -54,13 +54,10 @@ var Grid = function Grid(params) {
     };
 
     var calculateDistance = function calculateDistance(from, to) {
-        console.log('from', from, 'to', to);
         return from*180+180 +to*180;
     };
 
     var calculatePosInDistance = function calculatePosInDistance(from) {
-        console.log('from1', from);
-
         return (from*180);
     };
 
@@ -184,7 +181,6 @@ var Grid = function Grid(params) {
     };
 
     var updateGrid = function updateGrid() {
-        console.log('updategrid');
         var movement, block;
         for (var i = 0; i < 9; i++) {
             for(var j = 0; j < 5; j++) {
@@ -209,13 +205,16 @@ var Grid = function Grid(params) {
         self.theoreticalGrid[block.row][block.col] = null;
         var newPosition;
         if(block.orientation === 'vertical') {
-            newPosition = block.row + Math.Floor(distance / 180);
+            newPosition = block.row + Math.floor(distance / 180);
+            block.row = newPosition;
             self.theoreticalGrid[newPosition][block.col] = block;
 
         } else if(block.orientation === 'horizontal') {
-            newPosition = block.col + Math.Floor(distance / 180);
+            newPosition = block.col + Math.floor(distance / 180);
+            block.col = newPosition;
             self.theoreticalGrid[block.row][newPosition] = block;
         }
+        updateGrid();
     };
 
     var init = function init() {

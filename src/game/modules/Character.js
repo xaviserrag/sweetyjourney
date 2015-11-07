@@ -18,37 +18,43 @@ var Character = function Character(params) {
     var move = function move(direction) {
         var tween;
         console.log(direction, possibleMovements);
-        var speed = 10,
+        var speed = 2,
             posTo = 0,
             distance = 0;
 
         if (direction === 'up') {
             posTo = self.y - (possibleMovements.rangeVertical - possibleMovements.initPosVertical);
             distance = Math.abs(posTo - self.y);
-            tween = self.game.add.tween(self).to({y: posTo}, Math.abs(distance), Phaser.Easing.Linear.None);
-
+            tween = self.game.add.tween(self).to({y: posTo}, Math.abs(distance/speed), Phaser.Easing.Linear.None);
         } else if (direction === 'down') {
-            posTo = self.y + possibleMovements.rangeVertical - possibleMovements.initPosVertical;
+            posTo = self.y + possibleMovements.rangeVertical - possibleMovements.initPosVertical - 180;
             distance = Math.abs(posTo - self.y);
-            tween = self.game.add.tween(self).to({y: posTo}, Math.abs(distance), Phaser.Easing.Linear.None);
+            tween = self.game.add.tween(self).to({y: posTo}, Math.abs(distance/speed), Phaser.Easing.Linear.None);
 
         } else if (direction === 'left') {
             posTo = self.x - (possibleMovements.rangeHorizontal - possibleMovements.initPosHorizontal);
             distance = Math.abs(posTo - self.x);
-            tween = self.game.add.tween(self).to({x: posTo}, Math.abs(distance), Phaser.Easing.Linear.None);
+            tween = self.game.add.tween(self).to({x: posTo}, Math.abs(distance/speed), Phaser.Easing.Linear.None);
 
         } else if (direction === 'right') {
-            posTo = self.x + possibleMovements.rangeHorizontal - possibleMovements.initPosHorizontal
+            posTo = self.x + possibleMovements.rangeHorizontal - possibleMovements.initPosHorizontal - 180;
             distance = Math.abs(posTo - self.x);
-            tween = self.game.add.tween(self).to({x: posTo}, Math.abs(distance), Phaser.Easing.Linear.None);
+            tween = self.game.add.tween(self).to({x: posTo}, Math.abs(distance/speed), Phaser.Easing.Linear.None);
 
         }
-        tween.start();
-        console.log(tween)
+
+        if(distance > 0) {
+            tween.onComplete.add(function() {
+                params.callback(self, distance);
+            });
+            tween.start();
+        }
+
     };
 
     this.updatePosition = function updatePosition(params) {
         possibleMovements = params;
+        console.log('update pos', possibleMovements)
     };
 
     var listenSwipe = function listenSwipe(callback) {
