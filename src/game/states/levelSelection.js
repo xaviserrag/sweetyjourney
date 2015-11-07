@@ -16,12 +16,10 @@ SelectLevel.prototype = {
     initMenu: function () {
         var levels = [];
         var pages = gameData.levelSelection.length / config.levelSelection.maxLevelsPerPage;
-        console.log(pages);
         for (var i = 0; i < pages; i++) {
             levels[i] = []
             var page = this.game.add.group();
-            page.x = 80;
-            page.y = 100;
+            page.visible = false;
             levels[i].push(page);
         }
         var pagIndex = 0;
@@ -30,8 +28,7 @@ SelectLevel.prototype = {
         var rowIndex = 0
         var self = this;
         gameData.levelSelection.forEach(function (levelConfig) {
-            //var positions = self.calculatePosition(levelIndex);
-            if(ceilIndex === 3){
+            if(ceilIndex === config.levelSelection.maxLevelsPerRow){
                 ceilIndex = 0;
                 rowIndex++;
             }
@@ -40,8 +37,15 @@ SelectLevel.prototype = {
 
             levelIndex++;
             ceilIndex++;
+
+            if(levelIndex === config.levelSelection.maxLevelsPerPage){
+                pagIndex++;
+                ceilIndex = 0;
+                rowIndex = 0;
+            }
         });
-        console.log(levels);
+
+
     },
 
     getPosition: function getPosition(ceilIndex, rowIndex) {
@@ -68,13 +72,14 @@ SelectLevel.prototype = {
     initLevelButton: function initLevelButton(levelConfig, ceilIndex, rowIndex) {
         var positions = this.getPosition(ceilIndex, rowIndex);
         var buttonGp = this.game.add.group();
+        var textConfig = config.levelSelection.buttons.text;
         var callback = function(){
             console.log('Level selected', levelConfig.level);
         };
         var buttonSprite = this.game.add.button(positions.x, positions.y, 'levelSelection', callback);//+ levelConfig.stars
         var style = {font: "32px Arial", fill: "#ff0044", wordWrap: true};
 
-        var buttonText = this.game.add.text(0, 0, levelConfig.level, style);
+        var buttonText = this.game.add.text(positions.x + textConfig.x, positions.y + textConfig.y, levelConfig.level, style);
 
         buttonGp.add(buttonSprite);
         buttonGp.add(buttonText);
