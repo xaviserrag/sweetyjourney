@@ -2,6 +2,7 @@
 
 var config = require('../config/main');
 var Block = require('./Block');
+var Character = require('./Character');
 
 
 var Grid = function Grid(params) {
@@ -12,7 +13,8 @@ var Grid = function Grid(params) {
         0: 'empty',
         1: 'blocked',
         2: 'horizontal',
-        3: 'vertical'
+        3: 'vertical',
+        4: 'character'
     };
 
 
@@ -23,6 +25,8 @@ var Grid = function Grid(params) {
 
         if (type === 'empty') {
             return null;
+        } else if (type === 'character') {
+            return new Character();
         } else {
             var blockInfo = {
                 x: 180 * col,
