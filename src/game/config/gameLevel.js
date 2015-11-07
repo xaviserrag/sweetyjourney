@@ -140,7 +140,7 @@ module.exports = [
             [0,0,2,0,1]
         ],
         stars: '0',
-        blocked: false,
+        blocked: true,
         level: '9'
     }
 ];
