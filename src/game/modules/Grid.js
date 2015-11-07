@@ -42,11 +42,14 @@ var Grid = function Grid(params) {
     };
 
     var calculateDistance = function calculateDistance(from, to) {
-        return from*180+180+to*180;
+        console.log('from', from, 'to', to);
+        return from*180+180 +to*180;
     };
 
-    var calculatePosInDistance = function calculatePosInDistance(from, to) {
-        return -(from*180+180/2);
+    var calculatePosInDistance = function calculatePosInDistance(from) {
+        console.log('from1', from);
+
+        return (from*180);
     };
 
     var calculateMovement = function calculateMovement(block) {
