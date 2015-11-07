@@ -12,6 +12,7 @@ Preload.prototype = {
         this.load.image('block1', 'assets/images/block1.png');
         this.load.image('block2', 'assets/images/block2.png');
         this.load.image('playButton', 'assets/images/play_button.png');
+        this.load.image('muteButton', 'assets/images/mute_button.png');
         console.log('estoy en el estado preload');
 
     },
