@@ -117,7 +117,6 @@ var Grid = function Grid(params) {
     };
 
   var calculateCharacterMovement = function calculateCharacterMovement(block) {
-      console.log('characteeeeer')
             var leftMovement = 0,
             rightMovement = 0,
             upMovement = 0,
@@ -156,12 +155,22 @@ var Grid = function Grid(params) {
                 }
             }
 
-        return {
+        console.log('leftMovement', leftMovement);
+        console.log('rightMovement', rightMovement);
+        console.log('upMovement', upMovement);
+        console.log('downMovement', downMovement);
+
+       return {
                 rangeHorizontal: calculateDistance(leftMovement, rightMovement),
                 initPosHorizontal: calculatePosInDistance(leftMovement),
                 rangeVertical: calculateDistance(upMovement, downMovement),
-                initPosVertical: calculatePosInDistance(upMovement)
+                initPosVertical: calculatePosInDistance(upMovement),
+                left: leftMovement,
+                right: rightMovement,
+                up: upMovement,
+                down: downMovement
             };
+
     };
 
     var createGrid = function createGrid() {
@@ -203,7 +212,6 @@ var Grid = function Grid(params) {
     };
 
     var updateBlockPosition = function updateBlockPosition(block, distance, direction) {
-        console.log('pdateeeee', distance)
         self.theoreticalGrid[block.row][block.col] = null;
         var newPosition;
 
