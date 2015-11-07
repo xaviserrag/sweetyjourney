@@ -139,7 +139,7 @@ SelectLevel.prototype = {
         var style = {font: "32px Arial", fill: "#ff0044", wordWrap: true};
 
         var buttonText = this.game.add.bitmapText(positions.x + textConfig.x, positions.y + textConfig.y, 'levelButtonsFont', levelConfig.level, 120);
-
+        buttonText.anchor.set(textConfig.anchorX, textConfig.anchorY);
         buttonGp.add(buttonSprite);
         buttonGp.add(buttonText);
 
