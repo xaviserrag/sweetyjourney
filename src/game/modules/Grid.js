@@ -12,7 +12,12 @@ var Grid = function Grid(params) {
     var leftDeath = false,
         rightDeath = false,
         upDeath = false,
-        downDeath = false
+        downDeath = false,
+        haveBeenFail = false,
+        leftWin = false,
+        rightWin = false,
+        upWin = false,
+        downWin = false;
 
     var self = this;
     var types = {
@@ -155,14 +160,22 @@ var Grid = function Grid(params) {
         upDeath = false;
         downDeath = false;
 
+        leftWin = false;
+        rightWin = false;
+        upWin = false;
+        downWin = false;
+
 
         for (var j = 0; j < config.rows; j++) {
             if (j < block.row) {
                 if (self.theoreticalGrid[j][block.col] === null) {
-                    isDeathDirection(j, 'up');
+                    if (!upWin){
+                        isDeathDirection(j, 'up');
+                    }
                     upMovement++;
                 } else if (self.theoreticalGrid[j][block.col].orientation === 'win') {
                     upDeath = false;
+                    upWin = true;
                     block.hasWin = true;
                 } else {
                     upDeath = false;
@@ -171,10 +184,13 @@ var Grid = function Grid(params) {
                 }
             } else if (j > block.row) {
                 if (self.theoreticalGrid[j][block.col] === null) {
-                    isDeathDirection(j, 'down');
+                    if (!downWin) {
+                        isDeathDirection(j, 'down');
+                    }
                     downMovement++;
                 } else if (self.theoreticalGrid[j][block.col].orientation === 'win') {
                     downDeath = false;
+                    downWin = true
                     block.hasWin = true;
                 } else {
                     downDeath = false;
@@ -187,11 +203,14 @@ var Grid = function Grid(params) {
         for (var i = 0; i < config.cols; i++) {
             if (i < block.col) {
                 if (self.theoreticalGrid[block.row][i] === null) {
-                    isDeathDirection(i, 'left');
+                    if (!leftWin){
+                        isDeathDirection(i, 'left');
+                    }
                     leftMovement++;
                 } else if (self.theoreticalGrid[block.row][i].orientation === 'win') {
                     leftDeath = false;
                     block.hasWin = true;
+                    leftWin = true;
                 } else {
                     block.hasWin = false;
                     leftDeath = false;
@@ -199,10 +218,13 @@ var Grid = function Grid(params) {
                 }
             } else if (i > block.col) {
                 if (self.theoreticalGrid[block.row][i] === null) {
-                    isDeathDirection(i, 'right');
+                    if (!rightWin) {
+                        isDeathDirection(i, 'right');
+                    }
                     rightMovement++;
                 } else if (self.theoreticalGrid[block.row][i].orientation === 'win') {
                     console.log('aaa');
+                    rightWin = true;
                     rightDeath = false;
                     block.hasWin = true;
                 } else {
@@ -308,11 +330,16 @@ var Grid = function Grid(params) {
     };
 
     var winGame = function winGame() {
-        gameData.currentLevel++;
-        self.game.state.start('play');
+        console.log('WIN');
+        if (!haveBeenFail) {
+            gameData.currentLevel++;
+            self.game.state.start('play');
+        }
     };
 
     var resetGame = function resetGame() {
+        console.log('FAIL');
+        haveBeenFail = true;
         self.game.state.start('play');
     };
 
