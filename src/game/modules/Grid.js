@@ -121,13 +121,12 @@ var Grid = function Grid(params) {
     };
 
     var updateGrid = function updateGrid() {
-        var movement, block;
+        var movement, block = self.theoreticalGrid[i][j];
         for (var i = 0; i < 9; i++) {
             for(var j = 0; j < 5; j++) {
-                block = self.theoreticalGrid[j][i];
                 if(block && block.orientation !== 'blocked') {
                     movement = calculateMovement(block);
-                    block.updateBoundReference({
+                    block.updateBoundReferences({
                         initPos: movement.initPos,
                         range: movement.range
                     });
