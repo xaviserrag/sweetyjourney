@@ -33,9 +33,11 @@ var Grid = function Grid(params) {
                 game: self.game,
                 parent: self
             };
-
+            console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', self);
             return new Block(blockInfo);
         }
+
+
     };
 
     var calculateMovement = function calculateMovement(block) {

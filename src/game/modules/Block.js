@@ -1,5 +1,7 @@
 'use strict';
 var Block = function Block(params) {
+    params.x += 90;
+    params.y += 90;
     //VARS
     var self = this,
         type = params.type,
@@ -31,8 +33,10 @@ var Block = function Block(params) {
                 name = 'bloc_dev';
                 break;
         }
+        console.log('x', params.x);
+        console.log('y', params.y);
         Phaser.Sprite.call(self, params.game, params.x, params.y, name);
-        self.game.add.existing(self);
+        params.parent.addChild(self);
     };
 
     var initBlockMovement = function initBlockMovement(){
@@ -57,6 +61,7 @@ var Block = function Block(params) {
     };
 
     this.updateBoundReferences = function updateBoundReferences(bounds){
+        console.log('bounds', bounds);
         if (type === HORIZONTAL_BLOCK){
             var floor = new Phaser.Rectangle(bounds.x, bounds.y, range, bounds.width);
             self.input.enableDrag(false,false,false,255,floor);
@@ -66,14 +71,7 @@ var Block = function Block(params) {
         }
 
     };
-
-
-
-
     init();
-
-
-
 };
 
 
