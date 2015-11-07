@@ -26,7 +26,13 @@ var Grid = function Grid(params) {
         if (type === 'empty') {
             return null;
         } else if (type === 'character') {
-            return new Character();
+            return new Character({
+                x: 180 * col,
+                y: 180 * row,
+                game: self.game,
+                name: 'character'
+
+            });
         } else {
             var blockInfo = {
                 x: 180 * col,
@@ -128,7 +134,7 @@ var Grid = function Grid(params) {
         for (var i = 0; i < 9; i++) {
             for(var j = 0; j < 5; j++) {
                 block = self.theoreticalGrid[i][j];
-                if(block && block.orientation !== 'blocked') {
+                if(block && block.orientation !== 'blocked' && block.orientation !== 'character') {
                     movement = calculateMovement(block);
                     block.updateBoundReferences({
                         initPos: movement.initPos,

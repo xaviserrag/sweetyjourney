@@ -16,6 +16,7 @@ Preload.prototype = {
         this.load.image('bloc_dev', 'assets/images/block_ver.png');
         this.load.image('playButton', 'assets/images/play_button.png');
         this.load.image('muteButton', 'assets/images/mute_button.png');
+        this.load.image('character', 'assets/images/pj.png');
         this.load.image('backgroundMenu', 'assets/images/menu_background.jpg');
     },
     create: function () {
