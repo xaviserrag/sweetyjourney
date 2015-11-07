@@ -1,28 +1,35 @@
 'use strict';
 var Block = function Block(params) {
+    params.name = 'blocked';
     Phaser.Sprite.call(this, params.game, params.x, params.y, params.name);
-    //VARS
-    var self = this;
-    //CONST
-    const HORIZONTAL_BLOCK = 'block1';
-    const VERTICAL_BLOCK = 'block2';
 
+    console.log('params', params);
+    params.width = 32;
+    params.height = 32;
+
+    //VARS
+    var self = this,
+        type = params.type,
+        range = 0,
+        route = 0;
+    //CONST
+    const HORIZONTAL_BLOCK = 2;
+    const VERTICAL_BLOCK = 3;
+    console.log('type', type);
 
     var init = function init(){
         self.game.add.existing(self);
         self.inputEnabled = true;
         self.events.onDragStop.add(onDragStop, this);
-        if (params.name === HORIZONTAL_BLOCK){
-            var floor = new Phaser.Rectangle(0, 0, 64, 32);
+        if (type === HORIZONTAL_BLOCK){
+            var floor = new Phaser.Rectangle(0, 0, range, width);
             self.input.enableDrag(false,false,false,255,floor);
             self.input.allowVerticalDrag = false;
-        }else{
+        }else if (type === VERTICAL_BLOCK){
+            var floor = new Phaser.Rectangle(0, 0, width, range);
             self.input.allowHorizontalDrag = false;
             self.input.enableDrag();
         }
-
-        setTimeout(self.updateBoundReferences ,3000)
-
     };
 
     var onDragStop = function onDragStop (sprite, pointer) {
@@ -30,8 +37,14 @@ var Block = function Block(params) {
     };
 
     this.updateBoundReferences = function updateBoundReferences(bounds){
-        var floor = new Phaser.Rectangle(96, 0, 64, 32);
-        self.input.enableDrag(false,false,false,255,floor);
+        if (type === HORIZONTAL_BLOCK){
+            var floor = new Phaser.Rectangle(bounds.x, bounds.y, range, bounds.width);
+            self.input.enableDrag(false,false,false,255,floor);
+        }else if (type === VERTICAL_BLOCK){
+            var floor = new Phaser.Rectangle(bounds.x, bounds.y, bounds.height, range);
+            self.input.enableDrag(false,false,false,255,floor);
+        }
+
     };
 
 
