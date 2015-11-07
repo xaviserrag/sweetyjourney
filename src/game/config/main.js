@@ -1,4 +1,5 @@
 var menuConfig = require('./menu');
+var levelSelectionConfig = require('./levelSelection');
 module.exports = {
     startLevel: 0,
     rows: 9,
@@ -18,6 +19,6 @@ module.exports = {
             ]
         }
     },
-
-    menu: menuConfig
+    menu: menuConfig,
+    levelSelection: levelSelectionConfig
 };
