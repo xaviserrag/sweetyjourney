@@ -31,7 +31,8 @@ var Grid = function Grid(params) {
                 row: row,
                 col: col,
                 game: self.game,
-                parent: self
+                parent: self,
+                callback: updateGrid
             };
 
             return new Block(blockInfo);
