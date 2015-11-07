@@ -1,13 +1,16 @@
 'use strict';
 
 var Character = function Character(params) {
-    Phaser.Sprite.call(this, params.game, params.x, params.y, params.name);
-    var self = this;
+
+    var self = this,
+        yOffset = 50;
 
     this.col = params.col;
     this.row = params.row;
 
     var possibleMovements;
+
+    Phaser.Sprite.call(this, params.game, params.x, params.y - yOffset, params.name);
 
     var init = function init() {
         self.orientation = 'character';
