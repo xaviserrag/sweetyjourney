@@ -167,19 +167,27 @@ var Grid = function Grid(params) {
 
 
         for (var j = 0; j < config.rows; j++) {
+
+            //SI LA J ES MENOR ES QUE PUEDE DESPLAZARSE ARRIBA
             if (j < block.row) {
+                //SI NO ES UN BLOQUE....
                 if (self.theoreticalGrid[j][block.col] === null) {
                     if (!upWin) {
                         isDeathDirection(j, 'up');
                     }
                     upMovement++;
+                //SI ES UN WIN
                 } else if (self.theoreticalGrid[j][block.col].orientation === 'win') {
                     upDeath = false;
                     upWin = true;
                     block.hasWin = true;
-                } else if (self.theoreticalGrid[j][block.col].orientation !== 'character'){
+                //SI NO ES UN WIN, OSEA ES UN BLOQUE
+                } else {
+
                     upDeath = false;
-                    block.hasWin = false;
+                    if (!leftWin){
+                        block.hasWin = false;
+                    }
                     upMovement = 0;
                 }
             } else if (j > block.row) {
@@ -211,8 +219,11 @@ var Grid = function Grid(params) {
                     leftDeath = false;
                     block.hasWin = true;
                     leftWin = true;
-                } else if (self.theoreticalGrid[block.row][i].orientation !== 'character'){
-                    block.hasWin = false;
+                } else {
+                    if (!upWin){
+                        block.hasWin = false;
+                    }
+
                     leftDeath = false;
                     leftMovement = 0;
                 }
