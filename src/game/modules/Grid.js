@@ -44,9 +44,11 @@ var Grid = function Grid(params) {
                 parent: self,
                 callback: updateBlockPosition
             };
-
+            console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', self);
             return new Block(blockInfo);
         }
+
+
     };
 
     var calculateDistance = function calculateDistance(from, to) {
@@ -130,6 +132,7 @@ var Grid = function Grid(params) {
     };
 
     var updateGrid = function updateGrid() {
+        console.log('updategrid');
         var movement, block;
         for (var i = 0; i < 9; i++) {
             for(var j = 0; j < 5; j++) {
