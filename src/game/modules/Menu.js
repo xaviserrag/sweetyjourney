@@ -5,13 +5,11 @@ var Menu = function Menu(params) {
     Phaser.Group.call(this, params.game, params.x, params.y, params.name);
     var self = this;
     var init = function init() {
-        var graphics = self.game.add.graphics(0, 0);
-        graphics.beginFill(0x000000, 0.5);
-        graphics.drawRect(0, 0, self.game.width, self.game.height);
-        graphics.endFill();
 
-        self.add(graphics);
-        self.soundButton = self.game.add.sprite(30, 1150, 'gameButtons', 'sound_enabled_off');
+        self.menuBg = self.game.add.sprite(0,0,'bgPopup');
+        self.menuBg.inputEnabled = true;
+        self.add(self.menuBg);
+        self.soundButton = self.game.add.sprite(30, 1200, 'gameButtons', 'sound_enabled_off');
         self.soundButton.inputEnabled = true;
         self.soundButton.events.onInputDown.add(function () {
             self.game.mute = false;
@@ -20,15 +18,15 @@ var Menu = function Menu(params) {
         });
         self.add(self.soundButton);
 
-        self.buttonInfo = self.game.add.sprite(30, 1650, 'gameButtons', 'pause_off');
+        self.buttonInfo = self.game.add.sprite(30, 1700, 'gameButtons', 'pause_off');
         self.buttonInfo.inputEnabled = true;
         self.buttonInfo.events.onInputDown.add(function () {
             self.visible = false;
-            console.log('?')
+            params.buttonStarter.visible = true;
         }, self);
         self.add(self.buttonInfo);
 
-        self.levelButton = self.game.add.sprite(30, 1400, 'gameButtons', 'levels_off');
+        self.levelButton = self.game.add.sprite(30, 1450, 'gameButtons', 'levels_off');
         self.levelButton.inputEnabled = true;
         self.levelButton.events.onInputDown.add(function () {
             self.visible = false;
@@ -37,7 +35,7 @@ var Menu = function Menu(params) {
         self.add(self.levelButton);
 
 
-        self.muteButton = self.game.add.sprite(30, 1150, 'gameButtons', 'sound_disabled_off');
+        self.muteButton = self.game.add.sprite(30, 1200, 'gameButtons', 'sound_disabled_off');
         self.muteButton.inputEnabled = true;
         self.muteButton.events.onInputDown.add(function () {
             self.game.mute = true;

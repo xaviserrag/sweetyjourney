@@ -177,6 +177,7 @@ var Grid = function Grid(params) {
                     upDeath = false;
                     upWin = true;
                     block.hasWin = true;
+                    console.log('has win', block.hasWin);
                 } else {
                     upDeath = false;
                     block.hasWin = false;
@@ -190,7 +191,7 @@ var Grid = function Grid(params) {
                     downMovement++;
                 } else if (self.theoreticalGrid[j][block.col].orientation === 'win') {
                     downDeath = false;
-                    downWin = true
+                    downWin = true;
                     block.hasWin = true;
                 } else {
                     downDeath = false;
