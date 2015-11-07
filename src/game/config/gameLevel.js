@@ -28,7 +28,7 @@ module.exports = [
             [5,0,1,4,0]
         ],
         stars: '0',
-        blocked: true,
+        blocked: false,
         level: '2'
     },
     {
@@ -44,7 +44,7 @@ module.exports = [
             [0,0,2,0,1]
         ],
         stars: '0',
-        blocked: true,
+        blocked: false,
         level: '3'
     },
     {
@@ -60,7 +60,7 @@ module.exports = [
             [0,0,2,0,1]
         ],
         stars: '0',
-        blocked: true,
+        blocked: false,
         level: '4'
     },
     {
@@ -76,7 +76,7 @@ module.exports = [
             [0,0,2,0,1]
         ],
         stars: '0',
-        blocked: true,
+        blocked: false,
         level: '5'
     },
     {
@@ -92,7 +92,7 @@ module.exports = [
             [0,0,2,0,1]
         ],
         stars: '0',
-        blocked: true,
+        blocked: false,
         level: '6'
     },
     {
@@ -108,7 +108,7 @@ module.exports = [
             [0,0,2,0,1]
         ],
         stars: '0',
-        blocked: true,
+        blocked: false,
         level: '7'
     },
     {
@@ -124,7 +124,7 @@ module.exports = [
             [0,0,2,0,1]
         ],
         stars: '0',
-        blocked: true,
+        blocked: false,
         level: '8'
     },
     {
@@ -140,7 +140,7 @@ module.exports = [
             [0,0,2,0,1]
         ],
         stars: '0',
-        blocked: true,
+        blocked: false,
         level: '9'
     }
 ];

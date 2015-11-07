@@ -125,7 +125,7 @@ SelectLevel.prototype = {
         var textConfig = config.levelSelection.buttons.text;
         var callback = function () {
             console.log('Level selected', levelConfig.level);
-            gameData.currentLevel = levelConfig.level;
+            gameData.currentLevel = (parseInt(levelConfig.level)-1);
             this.game.state.start('play');
         };
         var frameName;
@@ -138,7 +138,7 @@ SelectLevel.prototype = {
         console.log(buttonSprite);
         var style = {font: "32px Arial", fill: "#ff0044", wordWrap: true};
 
-        var buttonText = this.game.add.text(positions.x + textConfig.x, positions.y + textConfig.y, levelConfig.level, style);
+        var buttonText = this.game.add.bitmapText(positions.x + textConfig.x, positions.y + textConfig.y, 'levelButtonsFont', levelConfig.level, 120);
 
         buttonGp.add(buttonSprite);
         buttonGp.add(buttonText);
