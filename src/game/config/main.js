@@ -1,3 +1,4 @@
+var menuConfig = require('./menu');
 module.exports = {
     startLevel: 0,
     level: {
@@ -15,5 +16,7 @@ module.exports = {
                 [0,0,0,0,0]
             ]
         }
-    }
+    },
+
+    menu: menuConfig
 };
