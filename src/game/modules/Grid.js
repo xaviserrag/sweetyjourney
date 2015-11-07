@@ -128,17 +128,17 @@ var Grid = function Grid(params) {
                     if (self.theoreticalGrid[j][block.col] === null) {
                         upMovement++;
                     } else if (self.theoreticalGrid[j][block.col].orientation === 'win'){
-                        upMovement++;
-                        break;
+                        block.hasWin = true;
                     }else{
+                        block.hasWin = false;
+
                         upMovement = 0;
                     }
                 } else if (j > block.row) {
                     if (self.theoreticalGrid[j][block.col] === null) {
                         downMovement++;
                     } else if (self.theoreticalGrid[j][block.col].orientation === 'win'){
-                        downMovement++;
-                        break;
+                        block.hasWin = true;
                     }else{
                         break;
                     }
@@ -151,17 +151,16 @@ var Grid = function Grid(params) {
                     if (self.theoreticalGrid[block.row][i] === null) {
                         leftMovement++;
                     } else if (self.theoreticalGrid[block.row][i].orientation === 'win'){
-                        rightMovement++;
-                        break;
+                        block.hasWin = true;
                     }else{
+                        block.hasWin = false;
                         leftMovement = 0;
                     }
                 } else if (i > block.col) {
                     if (self.theoreticalGrid[block.row][i] === null) {
                         rightMovement++;
                     } else if (self.theoreticalGrid[block.row][i].orientation === 'win'){
-                        rightMovement++;
-                        break;
+                        block.hasWin = true;
                     }else{
                         break;
                     }
@@ -234,21 +233,21 @@ var Grid = function Grid(params) {
             self.theoreticalGrid[block.row][newPosition] = block;
         } else if(block.orientation === 'character') {
             if (direction === 'left' || direction === 'right') {
-                newPosition = block.col + Math.floor(distance / 180);
-
-                if (self.theoreticalGrid[block.row][newPosition] && self.theoreticalGrid[block.row][newPosition].orientation === 'win') {
-                    winGame();
+                if (block.hasWin) {
+                            winGame();
                 }
+
+                newPosition = block.col + Math.floor(distance / 180);
 
                 block.col = newPosition;
                 self.theoreticalGrid[block.row][newPosition] = block;
             }
             if (direction === 'up' || direction === 'down') {
-                newPosition = block.row + Math.floor(distance / 180);
-
-                if (self.theoreticalGrid[newPosition][block.col] && self.theoreticalGrid[newPosition][block.col].orientation === 'win') {
+                if (block.hasWin) {
                     winGame();
                 }
+
+                newPosition = block.row + Math.floor(distance / 180);
 
                 block.row = newPosition;
                 self.theoreticalGrid[newPosition][block.col] = block;
