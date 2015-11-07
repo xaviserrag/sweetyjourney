@@ -7,13 +7,15 @@ var Block = function Block(params) {
         type = params.type,
         width = 180,
         height = 180,
+        currentX = params.x,
+        currentY = params.y,
         name = '',
-        range = 0,
-        route = 0;
+        callback = params.callback
     //CONST
     const BLOCKED = 'blocked';
     const HORIZONTAL_BLOCK = 'horizontal';
     const VERTICAL_BLOCK = 'vertical';
+
 
     //public
     this.orientation = type;
@@ -33,8 +35,6 @@ var Block = function Block(params) {
                 name = 'bloc_dev';
                 break;
         }
-        console.log('x', params.x);
-        console.log('y', params.y);
         Phaser.Sprite.call(self, params.game, params.x, params.y, name);
         params.parent.addChild(self);
     };
@@ -43,11 +43,11 @@ var Block = function Block(params) {
         if (type === HORIZONTAL_BLOCK){
             self.inputEnabled = true;
             self.input.allowVerticalDrag = false;
-            //self.events.onDragStop.add(onDragStop, this);
+            self.events.onDragStop.add(onDragStop, this);
         }else if (type === VERTICAL_BLOCK){
             self.inputEnabled = true;
             self.input.allowHorizontalDrag = false;
-            //self.events.onDragStop.add(onDragStop, this);
+            self.events.onDragStop.add(onDragStop, this);
         }
     };
 
@@ -56,25 +56,22 @@ var Block = function Block(params) {
         initBlockMovement();
     };
 
-    var onDragStop = function onDragStop (sprite, pointer) {
-     console.log(sprite.key + " dropped at x:" + pointer.x + " y: " + pointer.y);
+    var onDragStop = function onDragStop (box) {
+        if (type === HORIZONTAL_BLOCK) {
+            var distance = box.x - currentX;
+            console.log("Previous X:" + currentX + " Current X: " + box.x + 'Distance' + (box.x - currentX));
+            currentX = box.x;
+            callback(self, distance);
+        }
     };
 
     this.updateBoundReferences = function updateBoundReferences(bounds){
-        console.log('bounds', bounds);
         if (type === HORIZONTAL_BLOCK){
-            console.log('h');
-            //var floor = new Phaser.Rectangle(bounds.initPos, params.y, bounds.range, 0);
-            console.log(params.x, params.y);
-
-
-            var floor = new Phaser.Rectangle(params.x - bounds.initPos , params.y, bounds.range, width);
-
+            var floor = new Phaser.Rectangle(currentX - bounds.initPos , currentY, bounds.range, width);
             self.input.enableDrag(false,false,false,255,floor);
             self.input.allowVerticalDrag = false;
         }else if (type === VERTICAL_BLOCK){
-            console.log('v');
-           var floor = new Phaser.Rectangle(params.x, params.y - bounds.initPos ,height , bounds.range);
+           var floor = new Phaser.Rectangle(currentX, currentY - bounds.initPos ,height , bounds.range);
             self.input.enableDrag(false,false,false,255,floor);
             self.input.allowVerticalDrag = true;
         }
