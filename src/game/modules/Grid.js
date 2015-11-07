@@ -268,7 +268,7 @@ var Grid = function Grid(params) {
         gameData.levelSelection[gameData.currentLevel+1].blocked = false;
         gameData.steps = 0;
         gameData.currentLevel++;
-        self.game.state.start('menu');
+        self.game.state.start('play');
     };
 
     var init = function init() {
