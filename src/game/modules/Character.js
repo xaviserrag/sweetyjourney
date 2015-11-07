@@ -4,6 +4,10 @@ var Character = function Character(params) {
     Phaser.Sprite.call(this, params.game, params.x, params.y, params.name);
     var self = this;
 
+    this.col = params.col;
+    this.row = params.row;
+
+    var possibleMovements;
 
     var init = function init() {
         self.orientation = 'character';
@@ -13,6 +17,30 @@ var Character = function Character(params) {
 
     };
 
+    var move = function move(direction) {
+        var tween;
+        console.log(direction);
+        if (direction === 'up') {
+            tween = self.game.add.tween(self).to({y: -(possibleMovements.rangeVertical +git st possibleMovements.initPosVertical - 90)}, 500, Phaser.Easing.Linear.None);
+
+        } else if (direction === 'down') {
+            tween = self.game.add.tween(self).to({y: possibleMovements.rangeVertical - possibleMovements.initPosVertical - 90}, 500, Phaser.Easing.Linear.None);
+
+        } else if (direction === 'left') {
+            tween = self.game.add.tween(self).to({x: -(possibleMovements.rangeHorizontal + possibleMovements.initPosHorizontal - 90)}, 500, Phaser.Easing.Linear.None);
+
+        } else if (direction === 'right') {
+            tween = self.game.add.tween(self).to({x: possibleMovements.rangeHorizontal - possibleMovements.initPosHorizontal - 90}, 500, Phaser.Easing.Linear.None);
+
+        }
+        tween.start();
+        console.log(tween)
+    };
+
+    this.updatePosition = function updatePosition(params) {
+        possibleMovements = params;
+    };
+
     var listenSwipe = function listenSwipe(callback) {
         var eventDuration;
         var startPoint = {};
@@ -20,7 +48,7 @@ var Character = function Character(params) {
         var direction;
         var minimum = {
             duration: 75,
-            distance: 20
+            distance: 150
         };
 
         self.game.input.onDown.add(function(pointer) {
@@ -45,9 +73,9 @@ var Character = function Character(params) {
                 } else if (startPoint.x - endPoint.x > minimum.distance) {
                     direction = 'left';
                 } else if (endPoint.y - startPoint.y > minimum.distance) {
-                    direction = 'bottom';
+                    direction = 'down';
                 } else if (startPoint.y - endPoint.y > minimum.distance) {
-                    direction = 'top';
+                    direction = 'up';
                 }
 
                 if (direction) {
@@ -60,7 +88,7 @@ var Character = function Character(params) {
     };
 
     listenSwipe(function(direction) {
-        console.log(direction);
+        move(direction);
     });
 
     init();

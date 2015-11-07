@@ -31,6 +31,8 @@ var Grid = function Grid(params) {
                 y: (180 * row) + 90,
                 game: self.game,
                 parent: self,
+                row: row,
+                col: col,
                 name: 'character'
 
             });
@@ -45,7 +47,6 @@ var Grid = function Grid(params) {
                 parent: self,
                 callback: updateBlockPosition
             };
-            console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', self);
             return new Block(blockInfo);
         }
 
@@ -118,6 +119,53 @@ var Grid = function Grid(params) {
         return result;
     };
 
+  var calculateCharacterMovement = function calculateCharacterMovement(block) {
+            var leftMovement = 0,
+            rightMovement = 0,
+            upMovement = 0,
+            downMovement = 0;
+
+            for (var j = 0; j < config.rows; j++) {
+                if (j < block.row) {
+                    if (self.theoreticalGrid[j][block.col] === null) {
+                        upMovement++;
+                    } else {
+                        upMovement = 0;
+                    }
+                } else if (j > block.row) {
+                    if (self.theoreticalGrid[j][block.col] === null) {
+                        downMovement++;
+                    } else {
+                        break;
+                    }
+                }
+            }
+
+            for (var i = 0; i < config.cols; i++) {
+
+                if (i < block.col) {
+                    if (self.theoreticalGrid[block.row][i] === null) {
+                        leftMovement++;
+                    } else {
+                        leftMovement = 0;
+                    }
+                } else if (i > block.col) {
+                    if (self.theoreticalGrid[block.row][i] === null) {
+                        rightMovement++;
+                    } else {
+                        break;
+                    }
+                }
+            }
+
+        return {
+                rangeHorizontal: calculateDistance(leftMovement, rightMovement),
+                initPosHorizontal: calculatePosInDistance(leftMovement),
+                rangeVertical: calculateDistance(upMovement, downMovement),
+                initPosVertical: calculatePosInDistance(upMovement)
+            };
+    };
+
     var createGrid = function createGrid() {
         var rows = 9,
             cols = 5,
@@ -147,6 +195,11 @@ var Grid = function Grid(params) {
                         initPos: movement.initPos,
                         range: movement.range
                     });
+                }
+
+                if (block && block.orientation === 'character') {
+                    movement = calculateCharacterMovement(block);
+                    block.updatePosition(movement);
                 }
             }
         }
