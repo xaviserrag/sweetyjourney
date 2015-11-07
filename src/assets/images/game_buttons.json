@@ -1,6 +1,6 @@
 {"frames": {
 
-"levels_off.png":
+"levels_off":
 {
 	"frame": {"x":1,"y":1,"w":210,"h":216},
 	"rotated": false,
@@ -8,7 +8,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":216},
 	"sourceSize": {"w":210,"h":216}
 },
-"levels_on.png":
+"levels_on":
 {
 	"frame": {"x":213,"y":1,"w":210,"h":216},
 	"rotated": false,
@@ -16,7 +16,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":216},
 	"sourceSize": {"w":210,"h":216}
 },
-"pause_off.png":
+"pause_off":
 {
 	"frame": {"x":425,"y":1,"w":210,"h":216},
 	"rotated": false,
@@ -24,7 +24,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":216},
 	"sourceSize": {"w":210,"h":216}
 },
-"pause_on.png":
+"pause_on":
 {
 	"frame": {"x":1,"y":219,"w":210,"h":216},
 	"rotated": false,
@@ -32,7 +32,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":216},
 	"sourceSize": {"w":210,"h":216}
 },
-"play_off.png":
+"play_off":
 {
 	"frame": {"x":213,"y":219,"w":210,"h":216},
 	"rotated": false,
@@ -40,7 +40,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":216},
 	"sourceSize": {"w":210,"h":216}
 },
-"play_on.png":
+"play_on":
 {
 	"frame": {"x":425,"y":219,"w":210,"h":216},
 	"rotated": false,
@@ -48,7 +48,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":216},
 	"sourceSize": {"w":210,"h":216}
 },
-"replay_off.png":
+"replay_off":
 {
 	"frame": {"x":1,"y":437,"w":210,"h":216},
 	"rotated": false,
@@ -56,7 +56,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":216},
 	"sourceSize": {"w":210,"h":216}
 },
-"replay_on.png":
+"replay_on":
 {
 	"frame": {"x":213,"y":437,"w":210,"h":216},
 	"rotated": false,
@@ -64,7 +64,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":216},
 	"sourceSize": {"w":210,"h":216}
 },
-"sound_disabled_off.png":
+"sound_disabled_off":
 {
 	"frame": {"x":425,"y":437,"w":210,"h":216},
 	"rotated": false,
@@ -72,7 +72,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":216},
 	"sourceSize": {"w":210,"h":216}
 },
-"sound_disabled_on.png":
+"sound_disabled_on":
 {
 	"frame": {"x":1,"y":655,"w":210,"h":216},
 	"rotated": false,
@@ -80,7 +80,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":216},
 	"sourceSize": {"w":210,"h":216}
 },
-"sound_enabled_off.png":
+"sound_enabled_off":
 {
 	"frame": {"x":213,"y":655,"w":210,"h":216},
 	"rotated": false,
@@ -88,7 +88,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":216},
 	"sourceSize": {"w":210,"h":216}
 },
-"sound_enabled_on.png":
+"sound_enabled_on":
 {
 	"frame": {"x":425,"y":655,"w":210,"h":216},
 	"rotated": false,
@@ -99,7 +99,7 @@
 "meta": {
 	"app": "http://www.codeandweb.com/texturepacker",
 	"version": "1.0",
-	"image": "game_buttons.png",
+	"image": "game_buttons",
 	"format": "RGBA8888",
 	"size": {"w":636,"h":872},
 	"scale": "1",
