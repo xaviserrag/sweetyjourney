@@ -20,18 +20,15 @@ Play.prototype = {
         });
 
 
-        self.buttonInfo = self.game.add.sprite(30, 1700, 'gameButtons', 'pause_off');
-        self.buttonInfo.inputEnabled = true;
-        self.buttonInfo.events.onInputDown.add(function () {
+        self.buttonInfo = self.game.add.button(30, 1650, 'gameButtons', function () {
             self.menu.visible = true;
             self.buttonInfo.visible = false;
-        }, self);
+        }, this, 'pause_off', 'pause_off', 'pause_on')//'pause_off'
 
-        self.replayButton = self.game.add.sprite(250, 1700, 'gameButtons', 'replay_off');
-        self.replayButton.inputEnabled = true;
-        self.replayButton.events.onInputDown.add(function () {
-           self.game.state.start('play');
-        }, self);
+
+        self.replayButton = self.game.add.button(250, 1650, 'gameButtons', function () {
+            self.game.state.start('play');
+        }, this, 'replay_off', 'replay_off', 'replay_on');//'replay_off'
 
         this.menu = new Menu({
             x: 0,
@@ -41,7 +38,6 @@ Play.prototype = {
             buttonStarter: self.buttonInfo
         });
         this.menu.visible = false;
-
     },
     shutdown: function () {
         this.grid.destroy();
