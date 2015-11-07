@@ -6,7 +6,7 @@ var BootState = require('./states/boot'),
     SelectLevelState = require('./states/levelSelection'),
     PreloadState = require('./states/preload'),
     GameOverState = require('./states/game-over'),
-    GameSuccesState = require('./states/game-succes'),
+    GameSuccesState = require('./states/game-success'),
     game;
 
 window.onload = function () {

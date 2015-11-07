@@ -330,21 +330,18 @@ var Grid = function Grid(params) {
     };
 
     var winGame = function winGame() {
-<<<<<<< HEAD
-        console.log('Steps ', gameData.steps, 'Stars', gameData.levelSelection[gameData.currentLevel].stars);
-        if(gameData.steps <= gameData.levelSelection[gameData.currentLevel].minStepsTo3 && gameData.levelSelection[gameData.currentLevel].stars < 3){
-            gameData.levelSelection[gameData.currentLevel].stars = '3';
-        }else if(gameData.steps <= gameData.levelSelection[gameData.currentLevel].minStepsTo2 && gameData.levelSelection[gameData.currentLevel].stars < 2){
-            gameData.levelSelection[gameData.currentLevel].stars = '2';
-        }else if(gameData.levelSelection[gameData.currentLevel].stars < 1){
-            gameData.levelSelection[gameData.currentLevel].stars = '1';
-        }
-        gameData.levelSelection[gameData.currentLevel+1].blocked = false;
-        gameData.steps = 0;
-        gameData.currentLevel++;
-=======
-        console.log('WIN');
         if (!haveBeenFail) {
+            console.log('Steps ', gameData.steps, 'Stars', gameData.levelSelection[gameData.currentLevel].stars);
+            if(gameData.steps <= gameData.levelSelection[gameData.currentLevel].minStepsTo3 && gameData.levelSelection[gameData.currentLevel].stars < 3){
+                gameData.levelSelection[gameData.currentLevel].stars = '3';
+            }else if(gameData.steps <= gameData.levelSelection[gameData.currentLevel].minStepsTo2 && gameData.levelSelection[gameData.currentLevel].stars < 2){
+                gameData.levelSelection[gameData.currentLevel].stars = '2';
+            }else if(gameData.levelSelection[gameData.currentLevel].stars < 1){
+                gameData.levelSelection[gameData.currentLevel].stars = '1';
+            }
+            gameData.levelSelection[gameData.currentLevel+1].blocked = false;
+            gameData.steps = 0;
+            gameData.currentLevel++;
             gameData.currentLevel++;
             self.game.state.start('play');
         }
@@ -353,7 +350,6 @@ var Grid = function Grid(params) {
     var resetGame = function resetGame() {
         console.log('FAIL');
         haveBeenFail = true;
->>>>>>> 525e444e980e2a9d6d1691bad150ce122c426905
         self.game.state.start('play');
     };
 
