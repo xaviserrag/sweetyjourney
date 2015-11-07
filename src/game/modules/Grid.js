@@ -40,7 +40,8 @@ var Grid = function Grid(params) {
                 row: row,
                 col: col,
                 name: 'character',
-                callback: updateBlockPosition
+                callback: updateBlockPosition,
+                resetGame: resetGame
             });
         } else {
             var blockInfo = {
@@ -149,10 +150,10 @@ var Grid = function Grid(params) {
             upMovement = 0,
             downMovement = 0;
 
-            leftDeath = false;
-            rightDeath = false;
-            upDeath = false;
-            downDeath = false;
+        leftDeath = false;
+        rightDeath = false;
+        upDeath = false;
+        downDeath = false;
 
 
         for (var j = 0; j < config.rows; j++) {
@@ -301,6 +302,11 @@ var Grid = function Grid(params) {
         gameData.currentLevel++;
         self.game.state.start('play');
     };
+
+    var resetGame = function resetGame() {
+        self.game.state.start('play');
+    };
+
 
     var init = function init() {
         createGrid();

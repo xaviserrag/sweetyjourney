@@ -22,7 +22,7 @@ var Character = function Character(params) {
         var tween;
         var speed = 2,
             deathSpeed = 3,
-            deathOffset = 500,
+            deathOffset = 10,
             posTo = 0,
             distance = 0;
 
@@ -31,6 +31,7 @@ var Character = function Character(params) {
             distance = posTo - self.y;
             if (possibleMovements.upDeath) {
                 tween = self.game.add.tween(self).to({y: posTo - deathOffset}, Math.abs(distance / deathSpeed), Phaser.Easing.Linear.None);
+                tween.onComplete.add(params.resetGame);
             } else {
                 tween = self.game.add.tween(self).to({y: posTo}, Math.abs(distance / speed), Phaser.Easing.Linear.None);
             }
@@ -41,6 +42,7 @@ var Character = function Character(params) {
             distance = posTo - self.y;
             if (possibleMovements.downDeath) {
                 tween = self.game.add.tween(self).to({y: posTo + deathOffset}, Math.abs(distance / deathSpeed), Phaser.Easing.Linear.None);
+                tween.onComplete.add(params.resetGame);
             } else {
                 tween = self.game.add.tween(self).to({y: posTo}, Math.abs(distance / speed), Phaser.Easing.Linear.None);
             }
@@ -49,7 +51,8 @@ var Character = function Character(params) {
             posTo = self.x - (possibleMovements.left * 180);
             distance = posTo - self.x;
             if (possibleMovements.leftDeath) {
-                tween = self.game.add.tween(self).to({x: posTo - deathOffset}, Math.abs(distance / deathOffset), Phaser.Easing.Linear.None);
+                tween = self.game.add.tween(self).to({x: posTo - deathOffset}, Math.abs(distance / deathSpeed), Phaser.Easing.Linear.None);
+                tween.onComplete.add(params.resetGame);
             } else {
                 tween = self.game.add.tween(self).to({x: posTo}, Math.abs(distance / speed), Phaser.Easing.Linear.None);
             }
@@ -59,6 +62,7 @@ var Character = function Character(params) {
             distance = posTo - self.x;
             if (possibleMovements.rightDeath) {
                 tween = self.game.add.tween(self).to({x: posTo + deathOffset}, Math.abs(distance / deathSpeed), Phaser.Easing.Linear.None);
+                tween.onComplete.add(params.resetGame);
             } else {
                 tween = self.game.add.tween(self).to({x: posTo}, Math.abs(distance / speed), Phaser.Easing.Linear.None);
             }
