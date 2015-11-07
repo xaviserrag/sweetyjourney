@@ -11,39 +11,31 @@ var Menu = function Menu(params) {
         graphics.endFill();
 
         self.add(graphics);
-        self.soundButton = self.game.add.sprite(30, 1150, 'gameButtons', 'sound_enabled_off');
-        self.soundButton.inputEnabled = true;
-        self.soundButton.events.onInputDown.add(function () {
+        self.soundButton = self.game.add.button(30, 1150, 'gameButtons', function () {
             self.game.mute = false;
             self.soundButton.visible = false;
             self.muteButton.visible = true;
-        });
+            console.log('tocame');
+        }, this, 'sound_enabled_off', 'sound_enabled_off', 'sound_enabled_on', 'sound_enabled_off');//'sound_enabled_off')
         self.add(self.soundButton);
 
-        self.buttonInfo = self.game.add.sprite(30, 1650, 'gameButtons', 'pause_off');
-        self.buttonInfo.inputEnabled = true;
-        self.buttonInfo.events.onInputDown.add(function () {
-            self.visible = false;
-            console.log('?')
-        }, self);
-        self.add(self.buttonInfo);
+        self.buttonInfo = self.game.add.button(30, 1650, 'gameButtons', function(){
+            self.visible = !self.visible;
+        }, this, 'pause_off', 'pause_off', 'pause_on')//'pause_off'
 
-        self.levelButton = self.game.add.sprite(30, 1400, 'gameButtons', 'levels_off');
-        self.levelButton.inputEnabled = true;
-        self.levelButton.events.onInputDown.add(function () {
+        self.levelButton = self.game.add.button(30, 1400, 'gameButtons', function () {
             self.visible = false;
             self.game.state.start('levelSelection');
-        });
+        }, this, 'levels_off', 'levels_off', 'levels_on', 'levels_off');'levels_off'
         self.add(self.levelButton);
 
 
-        self.muteButton = self.game.add.sprite(30, 1150, 'gameButtons', 'sound_disabled_off');
-        self.muteButton.inputEnabled = true;
-        self.muteButton.events.onInputDown.add(function () {
-            self.game.mute = true;
+        self.muteButton = self.game.add.button(30, 1150, 'gameButtons', function () {
+            self.game.mute = false;
             self.soundButton.visible = true;
             self.muteButton.visible = false;
-        }, this);
+            console.log('muteee');
+        }, this, 'sound_disabled_off', 'sound_disabled_off', 'sound_disabled_on', 'sound_disabled_off');//'gameButtons', 'sound_disabled_off'
         self.add(self.muteButton);
 
         if (self.game.mute) {
