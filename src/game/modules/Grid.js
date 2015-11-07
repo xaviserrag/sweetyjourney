@@ -73,8 +73,8 @@ var Grid = function Grid(params) {
             }
 
             result = {
-                initPos: calculateDistance(upMovement, downMovement),
-                y: calculatePosInDistance(upMovement)
+                range: calculateDistance(upMovement, downMovement),
+                initPos: calculatePosInDistance(upMovement)
             };
         } else if(block.orientation === 'horizontal') {
             for (var i = 0; i < config.cols; i++) {
@@ -95,8 +95,8 @@ var Grid = function Grid(params) {
             }
 
             result =  {
-                initPos: calculateDistance(leftMovement, rightMovement),
-                x: calculatePosInDistance(leftMovement)
+                range: calculateDistance(leftMovement, rightMovement),
+                initPos: calculatePosInDistance(leftMovement)
             };
         }
 
