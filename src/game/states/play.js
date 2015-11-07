@@ -19,14 +19,6 @@ Play.prototype = {
             name: 'Grid'
         });
 
-        this.menu = new Menu({
-            x: 0,
-            y: 0,
-            game: this.game,
-            name: 'Menu'
-        });
-
-        this.menu.visible = false;
 
         self.buttonInfo = self.game.add.button(30, 1650, 'gameButtons', function () {
             self.menu.visible = true;
@@ -37,6 +29,15 @@ Play.prototype = {
         self.replayButton = self.game.add.button(250, 1650, 'gameButtons', function () {
             self.game.state.start('play');
         }, this, 'replay_off', 'replay_off', 'replay_on');//'replay_off'
+
+        this.menu = new Menu({
+            x: 0,
+            y: 0,
+            game: this.game,
+            name: 'Menu',
+            buttonStarter: self.buttonInfo
+        });
+        this.menu.visible = false;
     },
     shutdown: function () {
         this.grid.destroy();

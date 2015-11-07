@@ -5,17 +5,14 @@ var Menu = function Menu(params) {
     Phaser.Group.call(this, params.game, params.x, params.y, params.name);
     var self = this;
     var init = function init() {
-        var graphics = self.game.add.graphics(0, 0);
-        graphics.beginFill(0x000000, 0.5);
-        graphics.drawRect(0, 0, self.game.width, self.game.height);
-        graphics.endFill();
 
-        self.add(graphics);
+        self.menuBg = self.game.add.sprite(0,0,'bgPopup');
+        self.menuBg.inputEnabled = true;
+        self.add(self.menuBg);
         self.soundButton = self.game.add.button(30, 1150, 'gameButtons', function () {
             self.game.mute = false;
             self.soundButton.visible = false;
             self.muteButton.visible = true;
-            console.log('tocame');
         }, this, 'sound_enabled_off', 'sound_enabled_off', 'sound_enabled_on', 'sound_enabled_off');//'sound_enabled_off')
         self.add(self.soundButton);
 
@@ -34,7 +31,6 @@ var Menu = function Menu(params) {
             self.game.mute = false;
             self.soundButton.visible = true;
             self.muteButton.visible = false;
-            console.log('muteee');
         }, this, 'sound_disabled_off', 'sound_disabled_off', 'sound_disabled_on', 'sound_disabled_off');//'gameButtons', 'sound_disabled_off'
         self.add(self.muteButton);
 

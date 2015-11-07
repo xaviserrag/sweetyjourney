@@ -22,7 +22,6 @@ SelectLevel.prototype = {
 
     calculatePuntuation: function calculatePuntuation(){
         var puntuation = gameData.levelSelection.reduce(function(previous, current){
-            console.log(previous.stars, current);
             return previous + parseInt(current.stars);
         }, 0);
         var globalPuntuation = gameData.levelSelection.length * 3;
@@ -137,7 +136,6 @@ SelectLevel.prototype = {
         var buttonGp = this.game.add.group();
         var textConfig = config.levelSelection.buttons.text;
         var callback = function () {
-            console.log('Level selected', levelConfig.level);
             gameData.currentLevel = (parseInt(levelConfig.level)-1);
             this.game.state.start('play');
         };
