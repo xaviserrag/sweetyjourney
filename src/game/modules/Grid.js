@@ -1,6 +1,7 @@
 'use strict';
 
 var config = require('../config/main');
+var gameData = require('../gameData/gameData');
 var Block = require('./Block');
 var Character = require('./Character');
 
@@ -14,14 +15,15 @@ var Grid = function Grid(params) {
         1: 'blocked',
         2: 'horizontal',
         3: 'vertical',
-        4: 'character'
+        4: 'character',
+        5: 'win'
     };
 
 
     this.theoreticalGrid = [];
 
     var createBlock = function createBlock(col, row, cellPosition) {
-        var type = types[config.level[0].grid[row][col]];
+        var type = types[config.level[gameData.currentLevel].grid[row][col]];
 
         if (type === 'empty') {
             return null;
@@ -126,13 +128,21 @@ var Grid = function Grid(params) {
                 if (j < block.row) {
                     if (self.theoreticalGrid[j][block.col] === null) {
                         upMovement++;
-                    } else {
+                    } else if (self.theoreticalGrid[j][block.col].orientation === 'win'){
+                        downMovement++;
+                        break;
+                    }else{
+
                         upMovement = 0;
                     }
                 } else if (j > block.row) {
                     if (self.theoreticalGrid[j][block.col] === null) {
                         downMovement++;
-                    } else {
+                    } else if (self.theoreticalGrid[j][block.col].orientation === 'win'){
+                        downMovement++;
+                        break;
+                    }else{
+
                         break;
                     }
                 }
@@ -143,13 +153,21 @@ var Grid = function Grid(params) {
                 if (i < block.col) {
                     if (self.theoreticalGrid[block.row][i] === null) {
                         leftMovement++;
-                    } else {
+                    } else if (self.theoreticalGrid[block.row][i].orientation === 'win'){
+                        downMovement++;
+                        break;
+                    }else{
+
                         leftMovement = 0;
                     }
                 } else if (i > block.col) {
                     if (self.theoreticalGrid[block.row][i] === null) {
                         rightMovement++;
-                    } else {
+                    } else if (self.theoreticalGrid[block.row][i].orientation === 'win'){
+                        downMovement++;
+                        break;
+                    }else{
+
                         break;
                     }
                 }
