@@ -38,15 +38,23 @@ var Grid = function Grid(params) {
         }
     };
 
+    var calculateDistance = function calculateDistance(from, to) {
+        return from*180+180+to*180;
+    };
+
+    var calculatePosInDistance = function calculatePosInDistance(from, to) {
+        return -(from*180+180/2);
+    };
+
     var calculateMovement = function calculateMovement(block) {
             var leftMovement = 0,
             rightMovement = 0,
             upMovement = 0,
-            downMovement = 0;
+            downMovement = 0,
+            result;
 
         if (block.orientation === 'vertical') {
             for (var j = 0; j < config.rows; j++) {
-
                 if (j < block.row) {
                     if (self.theoreticalGrid[j][block.col] === null) {
                         upMovement++;
@@ -62,10 +70,11 @@ var Grid = function Grid(params) {
                 }
             }
 
-            console.log('upMovements', upMovement);
-            console.log('downMovements', downMovement);
-
-        } else {
+            result = {
+                initPos: calculateDistance(upMovement, downMovement),
+                y: calculatePosInDistance(upMovement)
+            };
+        } else if(block.orientation === 'horizontal') {
             for (var i = 0; i < config.cols; i++) {
 
                 if (i < block.col) {
@@ -83,12 +92,13 @@ var Grid = function Grid(params) {
                 }
             }
 
-            console.log('leftMovements', leftMovement);
-            console.log('rightMovements', rightMovement);
+            result =  {
+                initPos: calculateDistance(leftMovement, rightMovement),
+                x: calculatePosInDistance(leftMovement)
+            };
         }
 
-
-        console.log(self.theoreticalGrid);
+        return result;
     };
 
     var createGrid = function createGrid() {
@@ -106,24 +116,26 @@ var Grid = function Grid(params) {
 
             self.theoreticalGrid.push(row);
         }
-
-        console.log(self.theoreticalGrid);
     };
 
     var updateGrid = function updateGrid() {
-        var movement;
+        var movement, block = self.theoreticalGrid[i][j];
         for (var i = 0; i < 9; i++) {
             for(var j = 0; j < 5; j++) {
-                movement = calculateMovement(self.theoreticalGrid[i][j]);
+                if(block && block.orientation !== 'blocked') {
+                    movement = calculateMovement(block);
+                    block.updateBoundReference({
+                        initPos: movement.initPos,
+                        range: movement.range
+                    });
+                }
             }
         }
-
-        console.log(self.theoreticalGrid);
     };
 
     var init = function init() {
         createGrid();
-        //updateGrid();
+        updateGrid();
     };
 
     init();
