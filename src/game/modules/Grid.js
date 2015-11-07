@@ -128,7 +128,8 @@ var Grid = function Grid(params) {
                     if (self.theoreticalGrid[j][block.col] === null) {
                         upMovement++;
                     } else if (self.theoreticalGrid[j][block.col].orientation === 'win'){
-                        upMovement = 1;
+                        upMovement++;
+                        break;
                     }else{
                         upMovement = 0;
                     }
@@ -136,7 +137,8 @@ var Grid = function Grid(params) {
                     if (self.theoreticalGrid[j][block.col] === null) {
                         downMovement++;
                     } else if (self.theoreticalGrid[j][block.col].orientation === 'win'){
-                        downMovement = 1;
+                        downMovement++;
+                        break;
                     }else{
                         break;
                     }
@@ -149,7 +151,8 @@ var Grid = function Grid(params) {
                     if (self.theoreticalGrid[block.row][i] === null) {
                         leftMovement++;
                     } else if (self.theoreticalGrid[block.row][i].orientation === 'win'){
-                        rightMovement = 1;
+                        rightMovement++;
+                        break;
                     }else{
                         leftMovement = 0;
                     }
@@ -157,7 +160,8 @@ var Grid = function Grid(params) {
                     if (self.theoreticalGrid[block.row][i] === null) {
                         rightMovement++;
                     } else if (self.theoreticalGrid[block.row][i].orientation === 'win'){
-                        rightMovement = 1;
+                        rightMovement++;
+                        break;
                     }else{
                         break;
                     }
