@@ -34,21 +34,57 @@ var Grid = function Grid(params) {
             };
             return new Block(blockInfo);
         }
-
     };
 
     var calculateMovement = function calculateMovement(block) {
-        var iterationNum = block.orientation === 'vertical' ? config.cols : config.rows,
-            leftMovement = 0,
-            rightMovement = 0;
+            var leftMovement = 0,
+            rightMovement = 0,
+            upMovement = 0,
+            downMovement = 0;
 
-        for (var i = 0; i < iterationNum; i++) {
-            if(self.theoreticalGrid[block.row][i] === null) {
-                leftMovement++;
-            } else {
-                leftMovement = 0;
+        if (block.orientation === 'vertical') {
+            for (var j = 0; j < config.rows; j++) {
+
+                if (j < block.row) {
+                    if (self.theoreticalGrid[j][block.col] === null) {
+                        upMovement++;
+                    } else {
+                        upMovement = 0;
+                    }
+                } else if (j > block.row) {
+                    if (self.theoreticalGrid[j][block.col] === null) {
+                        downMovement++;
+                    } else {
+                        break;
+                    }
+                }
             }
+
+            console.log('upMovements', upMovement);
+            console.log('downMovements', downMovement);
+
+        } else {
+            for (var i = 0; i < config.cols; i++) {
+
+                if (i < block.col) {
+                    if (self.theoreticalGrid[block.row][i] === null) {
+                        leftMovement++;
+                    } else {
+                        leftMovement = 0;
+                    }
+                } else if (i > block.col) {
+                    if (self.theoreticalGrid[block.row][i] === null) {
+                        rightMovement++;
+                    } else {
+                        break;
+                    }
+                }
+            }
+
+            console.log('leftMovements', leftMovement);
+            console.log('rightMovements', rightMovement);
         }
+
 
         console.log(self.theoreticalGrid);
     };
@@ -72,8 +108,20 @@ var Grid = function Grid(params) {
         console.log(self.theoreticalGrid);
     };
 
+    var updateGrid = function updateGrid() {
+        var movement;
+        for (var i = 0; i < 9; i++) {
+            for(var j = 0; j < 5; j++) {
+                movement = calculateMovement(self.theoreticalGrid[i][j]);
+            }
+        }
+
+        console.log(self.theoreticalGrid);
+    };
+
     var init = function init() {
         createGrid();
+        //updateGrid();
     };
 
     init();
