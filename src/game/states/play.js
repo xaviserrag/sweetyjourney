@@ -1,5 +1,6 @@
 'use strict';
 var Block = require('../modules/Block');
+var Grid = require('../modules/Grid');
 
 function Play() {
 }
@@ -12,6 +13,13 @@ Play.prototype = {
 
     },
     create: function () {
+        var grid = new Grid({
+            game: this.game,
+            x: 0,
+            y: 0,
+            name: 'Grid'
+        });
+
         //Block1
         var blockInfo = {
             x: 0,
