@@ -167,36 +167,28 @@ var Grid = function Grid(params) {
 
 
         for (var j = 0; j < config.rows; j++) {
-            console.log('J', j);
 
             //SI LA J ES MENOR ES QUE PUEDE DESPLAZARSE ARRIBA
             if (j < block.row) {
-                console.log('UP CASE');
                 //SI NO ES UN BLOQUE....
                 if (self.theoreticalGrid[j][block.col] === null) {
                     if (!upWin) {
                         isDeathDirection(j, 'up');
                     }
-                    console.log('BLOCK NULL');
                     upMovement++;
                 //SI ES UN WIN
                 } else if (self.theoreticalGrid[j][block.col].orientation === 'win') {
-                    console.log('orientation', self.theoreticalGrid[j][block.col].orientation);
                     upDeath = false;
                     upWin = true;
                     block.hasWin = true;
-                    console.log('up hasWin true');
                 //SI NO ES UN WIN, OSEA ES UN BLOQUE
                 } else {
-                    console.log('orientation', self.theoreticalGrid[j][block.col].orientation);
 
                     upDeath = false;
-                    console.log('up hasWin false 1');
                     if (!leftWin){
                         block.hasWin = false;
                     }
                     upMovement = 0;
-                    console.log('up hasWin false', j, self.theoreticalGrid[j], self.theoreticalGrid[j][block.col]);
                 }
             } else if (j > block.row) {
                 if (self.theoreticalGrid[j][block.col] === null) {
@@ -210,7 +202,6 @@ var Grid = function Grid(params) {
                     block.hasWin = true;
                 } else {
                     downDeath = false;
-                    console.log('BREAAAAKK');
                     break;
                 }
             }
@@ -229,7 +220,6 @@ var Grid = function Grid(params) {
                     block.hasWin = true;
                     leftWin = true;
                 } else {
-                    console.log('up hasWin false2');
                     if (!upWin){
                         block.hasWin = false;
                     }
@@ -361,7 +351,6 @@ var Grid = function Grid(params) {
     };
 
     var winGame = function winGame() {
-        console.log('WIN!!!');
         if (!haveBeenFail) {
             checkStars();
             gameData.currentLevel++;
