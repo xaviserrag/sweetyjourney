@@ -34,6 +34,7 @@ Preload.prototype = {
         this.load.atlasJSONHash('gameButtons', 'assets/images/game_buttons.png', 'assets/images/game_buttons.json');
         this.load.atlasJSONHash('homeButtons', 'assets/images/home_buttons.png', 'assets/images/home_buttons.json');
         this.load.atlasJSONHash('homeButton', 'assets/images/home_button.png', 'assets/images/home_button.json');
+        this.load.atlasJSONHash('endButtons', 'assets/images/end_buttons.png', 'assets/images/end_buttons.json');
 
         gameData.levelSelection = config.level;
     },

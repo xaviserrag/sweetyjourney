@@ -21,7 +21,6 @@ Play.prototype = {
         });
 
         self.buttonInfo = self.game.add.button(30, 1650, 'gameButtons', function () {
-            console.log('lol');
             self.menu.button1animation = this.game.add.tween(self.menu.levelButton);
             self.menu.button2animation = this.game.add.tween(self.menu.muteButton);
             self.menu.button1animation.from({ x: 30, y: 1650 }, 300, Phaser.Easing.Linear.None);
