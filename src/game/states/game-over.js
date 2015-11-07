@@ -10,35 +10,23 @@ GameOver.prototype = {
     },
     create: function () {
         this.initBackground();
-        /*this.initPlay();
-        this.initSound();*/
+        this.initAngryFlan();
+        this.initLoseText();
+
     },
 
     initBackground: function initBackground(){
         var background = this.game.add.sprite(0,0, 'backgroundGameOver');
     },
 
-    /*initPlay: function initPlay() {
-        this.playButton = this.game.add.button(this.game.width /2, this.game.height / 2, config.menu.buttons.play.spriteSheet, this.start, this);
-        this.playButton.anchor.set(config.menu.buttons.play.anchorX, config.menu.buttons.play.anchorY);
-        this.playButton.scale.x = 1.5;
-        this.playButton.scale.y = 1.5;
+    initAngryFlan: function initAngryFlan(){
+        var angryFlan = this.game.add.sprite(300,550, 'angryFlan');
     },
 
-    initSound: function initSound() {
-        this.muteButton = this.game.add.button(config.menu.buttons.mute.x, config.menu.buttons.mute.y, config.menu.buttons.mute.spriteSheet, this.switchSound, this);
-        this.muteButton.scale.x = 0.1;
-        this.muteButton.scale.y = 0.1;
-    },
-
-    switchSound: function initSound() {
-        this.game.sound.mute = !this.game.sound.mute;
-        this.muteButton.frameName = this.game.sound.mute ? config.menu.buttons.mute.muteOff : config.menu.buttons.mute.muteOn;
-    },
-
-    start: function () {
-        this.game.state.start('levelSelection');
-    }*/
+    initLoseText: function initAngryFlan(){
+        var style = {font: "bold 120px creamreg", fill: "#ff6ba0"};
+        this.stars = this.game.add.text(240, 1170, 'YOU LOSE!', style);
+    }
 };
 
 module.exports = GameOver;

@@ -23,6 +23,7 @@ Preload.prototype = {
         this.load.image('bgPopup', 'assets/images/bg_popup.png');
         this.load.image('backgroundMenu', 'assets/images/menu_background.jpg');
         this.load.image('backgroundGameOver', 'assets/images/bg_lose.jpg');
+        this.load.image('angryFlan', 'assets/images/flan_lose.png');
         this.load.atlasJSONHash('pageButtons', 'assets/images/selector_pages.png', 'assets/images/selector_pages.json');
         this.load.atlasJSONHash('levelButtons', 'assets/images/level_buttons.png', 'assets/images/level_buttons.json');
         this.load.atlasJSONHash('gameButtons', 'assets/images/game_buttons.png', 'assets/images/game_buttons.json');
