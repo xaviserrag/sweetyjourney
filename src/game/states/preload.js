@@ -12,6 +12,8 @@ Preload.prototype = {
         this.load.image('blocked', 'assets/images/block.png');
         this.load.image('block1', 'assets/images/block1.png');
         this.load.image('block2', 'assets/images/block2.png');
+        this.load.image('block_hor', 'assets/images/block_hor.png');
+        this.load.image('bloc_dev', 'assets/images/block_ver.png');
         this.load.image('playButton', 'assets/images/play_button.png');
         console.log('estoy en el estado preload');
 
