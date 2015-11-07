@@ -19,7 +19,6 @@ var Grid = function Grid(params) {
         5: 'win'
     };
 
-
     this.theoreticalGrid = [];
 
     var createBlock = function createBlock(col, row, cellPosition) {
@@ -129,20 +128,16 @@ var Grid = function Grid(params) {
                     if (self.theoreticalGrid[j][block.col] === null) {
                         upMovement++;
                     } else if (self.theoreticalGrid[j][block.col].orientation === 'win'){
-                        downMovement++;
-                        break;
+                        upMovement = 1;
                     }else{
-
                         upMovement = 0;
                     }
                 } else if (j > block.row) {
                     if (self.theoreticalGrid[j][block.col] === null) {
                         downMovement++;
                     } else if (self.theoreticalGrid[j][block.col].orientation === 'win'){
-                        downMovement++;
-                        break;
+                        downMovement = 1;
                     }else{
-
                         break;
                     }
                 }
@@ -154,29 +149,20 @@ var Grid = function Grid(params) {
                     if (self.theoreticalGrid[block.row][i] === null) {
                         leftMovement++;
                     } else if (self.theoreticalGrid[block.row][i].orientation === 'win'){
-                        downMovement++;
-                        break;
+                        rightMovement = 1;
                     }else{
-
                         leftMovement = 0;
                     }
                 } else if (i > block.col) {
                     if (self.theoreticalGrid[block.row][i] === null) {
                         rightMovement++;
                     } else if (self.theoreticalGrid[block.row][i].orientation === 'win'){
-                        downMovement++;
-                        break;
+                        rightMovement = 1;
                     }else{
-
                         break;
                     }
                 }
             }
-
-        console.log('leftMovement', leftMovement);
-        console.log('rightMovement', rightMovement);
-        console.log('upMovement', upMovement);
-        console.log('downMovement', downMovement);
 
        return {
                 rangeHorizontal: calculateDistance(leftMovement, rightMovement),
@@ -213,7 +199,7 @@ var Grid = function Grid(params) {
         for (var i = 0; i < 9; i++) {
             for(var j = 0; j < 5; j++) {
                 block = self.theoreticalGrid[i][j];
-                if(block && block.orientation !== 'blocked' && block.orientation !== 'character') {
+                if(block && block.orientation !== 'blocked' && block.orientation !== 'character' && block.orientation !== 'win') {
                     movement = calculateMovement(block);
                     block.updateBoundReferences({
                         initPos: movement.initPos,
@@ -245,16 +231,31 @@ var Grid = function Grid(params) {
         } else if(block.orientation === 'character') {
             if (direction === 'left' || direction === 'right') {
                 newPosition = block.col + Math.floor(distance / 180);
+
+                if (self.theoreticalGrid[block.row][newPosition] && self.theoreticalGrid[block.row][newPosition].orientation === 'win') {
+                    winGame();
+                }
+
                 block.col = newPosition;
                 self.theoreticalGrid[block.row][newPosition] = block;
             }
             if (direction === 'up' || direction === 'down') {
                 newPosition = block.row + Math.floor(distance / 180);
+
+                if (self.theoreticalGrid[newPosition][block.col] && self.theoreticalGrid[newPosition][block.col].orientation === 'win') {
+                    winGame();
+                }
+
                 block.row = newPosition;
                 self.theoreticalGrid[newPosition][block.col] = block;
             }
         }
         updateGrid();
+    };
+
+    var winGame = function winGame() {
+        gameData.currentLevel++;
+        self.game.state.start('play');
     };
 
     var init = function init() {
