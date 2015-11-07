@@ -1,32 +1,60 @@
 'use strict';
 var Block = function Block(params) {
-    Phaser.Sprite.call(this, params.game, params.x, params.y, params.width, params.height, params.name);
-    params.width = 32;
-    params.height = 32;
+    params.name = 'blocked';
+
+
+
+
+
+    console.log('params', params);
 
     //VARS
     var self = this,
-        range = 0;
+        type = params.type,
+        width = params.width,
+        height = params.height,
+        name = '',
+        range = 0,
+        route = 0;
     //CONST
-    const HORIZONTAL_BLOCK = 'block1';
-    const VERTICAL_BLOCK = 'block2';
+    const BLOCKED = 'blocked';
+    const HORIZONTAL_BLOCK = 'horizontal';
+    const VERTICAL_BLOCK = 'vertical';
+
+    //public
+    this.orientation = type;
+    this.col = params.col;
+    this.row = params.row;
+
+    switch (type){
+        case BLOCKED:
+            name = 'blocked';
+            break;
+        case HORIZONTAL_BLOCK:
+            name = 'block_hor';
+            break;
+        case VERTICAL_BLOCK:
+            name = 'bloc_dev';
+            break;
+    }
+
+    Phaser.Sprite.call(this, params.game, params.x, params.y, name);
+
+    console.log('type', type);
 
     var init = function init(){
         self.game.add.existing(self);
         self.inputEnabled = true;
         self.events.onDragStop.add(onDragStop, this);
-        if (params.name === HORIZONTAL_BLOCK){
-            var floor = new Phaser.Rectangle(0, 0, range, params.width);
+        if (type === HORIZONTAL_BLOCK){
+            var floor = new Phaser.Rectangle(0, 0, range, width);
             self.input.enableDrag(false,false,false,255,floor);
             self.input.allowVerticalDrag = false;
-        }else if (params.name === VERTICAL_BLOCK){
-            var floor = new Phaser.Rectangle(0, 0, params.width, range);
+        }else if (type === VERTICAL_BLOCK){
+            var floor = new Phaser.Rectangle(0, 0, height, range);
             self.input.allowHorizontalDrag = false;
             self.input.enableDrag();
         }
-
-        //setTimeout(self.updateBoundReferences ,3000)
-
     };
 
     var onDragStop = function onDragStop (sprite, pointer) {
@@ -34,15 +62,16 @@ var Block = function Block(params) {
     };
 
     this.updateBoundReferences = function updateBoundReferences(bounds){
-        if (params.name === HORIZONTAL_BLOCK){
+        if (type === HORIZONTAL_BLOCK){
             var floor = new Phaser.Rectangle(bounds.x, bounds.y, range, bounds.width);
             self.input.enableDrag(false,false,false,255,floor);
-        }else if (params.name === VERTICAL_BLOCK){
+        }else if (type === VERTICAL_BLOCK){
             var floor = new Phaser.Rectangle(bounds.x, bounds.y, bounds.height, range);
             self.input.enableDrag(false,false,false,255,floor);
         }
 
     };
+
 
 
 
