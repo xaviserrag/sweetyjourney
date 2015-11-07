@@ -22,7 +22,7 @@ module.exports = function (grunt) {
                     {expand: true, flatten: true, src: ['src/assets/styles/*.css'], dest: 'build/css'},
                     {expand: true, cwd: 'src', src: ['plugins/**'], dest: 'build/js'},
                     {expand: true, cwd: 'src', src: ['index.html'], dest: 'build'},
-                    {expand: true, flatten: true, src: ['node_modules/phaser/build/phaser.min.js'], dest: 'build/js'}
+                    {expand: true, flatten: true, src: ['node_modules/phaser/build/phaser.js'], dest: 'build/js'}
                 ]
             }
         },
