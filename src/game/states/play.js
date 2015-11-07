@@ -6,17 +6,13 @@ function Play() {
 }
 
 Play.prototype = {
-    preload: function () {
-        this.map = this.add.tilemap('map');
-        this.map.addTilesetImage('tiles', 'tiles');
-        this.layer = this.map.createLayer('Tile Layer 1');
-
-    },
     create: function () {
+        var bgBase = this.game.add.sprite(0, 0, 'bgBase');
+
         var grid = new Grid({
             game: this.game,
-            x: 0,
-            y: 0,
+            x: 90,
+            y: 90,
             name: 'Grid'
         });
     },

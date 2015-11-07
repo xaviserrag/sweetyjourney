@@ -1,20 +1,45 @@
 'use strict';
 var Block = function Block(params) {
     params.name = 'blocked';
-    Phaser.Sprite.call(this, params.game, params.x, params.y, params.name);
+
+
+
+
 
     console.log('params', params);
-    params.width = 32;
-    params.height = 32;
 
     //VARS
     var self = this,
         type = params.type,
+        width = params.width,
+        height = params.height,
+        name = '',
         range = 0,
         route = 0;
     //CONST
-    const HORIZONTAL_BLOCK = 2;
-    const VERTICAL_BLOCK = 3;
+    const BLOCKED = 'blocked';
+    const HORIZONTAL_BLOCK = 'horizontal';
+    const VERTICAL_BLOCK = 'vertical';
+
+    //public
+    this.orientation = type;
+    this.col = params.col;
+    this.row = params.row;
+
+    switch (type){
+        case BLOCKED:
+            name = 'blocked';
+            break;
+        case HORIZONTAL_BLOCK:
+            name = 'block_hor';
+            break;
+        case VERTICAL_BLOCK:
+            name = 'bloc_dev';
+            break;
+    }
+
+    Phaser.Sprite.call(this, params.game, params.x, params.y, name);
+
     console.log('type', type);
 
     var init = function init(){
@@ -26,7 +51,7 @@ var Block = function Block(params) {
             self.input.enableDrag(false,false,false,255,floor);
             self.input.allowVerticalDrag = false;
         }else if (type === VERTICAL_BLOCK){
-            var floor = new Phaser.Rectangle(0, 0, width, range);
+            var floor = new Phaser.Rectangle(0, 0, height, range);
             self.input.allowHorizontalDrag = false;
             self.input.enableDrag();
         }
@@ -46,6 +71,7 @@ var Block = function Block(params) {
         }
 
     };
+
 
 
 
