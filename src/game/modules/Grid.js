@@ -24,7 +24,6 @@ var Grid = function Grid(params) {
         5: 'win'
     };
 
-
     this.theoreticalGrid = [];
 
     var createBlock = function createBlock(col, row, cellPosition) {
@@ -126,82 +125,84 @@ var Grid = function Grid(params) {
     var isDeathDirection = function isDeathDirection(col, direction) {
         if (direction === 'left' || direction === 'right') {
             if (col === 0 || col === 4) {
-                if(direction === 'left'){
+                if (direction === 'left') {
                     leftDeath = true;
-                }else{
+                } else {
                     rightDeath = true;
                 }
             }
         } else {
             if (col === 0 || col === 8) {
-                if(direction === 'up'){
+                if (direction === 'up') {
                     upDeath = true;
-                }else{
+                } else {
                     downDeath = true;
                 }
 
             }
         }
-    }
+    };
 
     var calculateCharacterMovement = function calculateCharacterMovement(block) {
         var leftMovement = 0,
             rightMovement = 0,
             upMovement = 0,
-            downMovement = 0
+            downMovement = 0;
+
+            leftDeath = false;
+            rightDeath = false;
+            upDeath = false;
+            downDeath = false;
 
 
         for (var j = 0; j < config.rows; j++) {
             if (j < block.row) {
                 if (self.theoreticalGrid[j][block.col] === null) {
-                    isDeathDirection(j,'up');
+                    isDeathDirection(j, 'up');
                     upMovement++;
                 } else if (self.theoreticalGrid[j][block.col].orientation === 'win') {
-                    downMovement++;
-                    break;
+                    block.hasWin = true;
                 } else {
+                    block.hasWin = false;
+
                     upMovement = 0;
                 }
             } else if (j > block.row) {
                 if (self.theoreticalGrid[j][block.col] === null) {
-                    isDeathDirection(j,'down');
+                    isDeathDirection(j, 'down');
                     downMovement++;
                 } else if (self.theoreticalGrid[j][block.col].orientation === 'win') {
-                    downMovement++;
-                    break;
+                    block.hasWin = true;
                 } else {
-
                     break;
                 }
             }
         }
 
-        for (var i = 0; i < config.cols; i++) {
 
+        for (var i = 0; i < config.cols; i++) {
             if (i < block.col) {
                 if (self.theoreticalGrid[block.row][i] === null) {
-                    isDeathDirection(i,'left');
+                    isDeathDirection(i, 'left');
                     leftMovement++;
                 } else if (self.theoreticalGrid[block.row][i].orientation === 'win') {
-                    downMovement++;
-                    break;
+                    block.hasWin = true;
                 } else {
-
+                    block.hasWin = false;
                     leftMovement = 0;
                 }
             } else if (i > block.col) {
                 if (self.theoreticalGrid[block.row][i] === null) {
-                    isDeathDirection(i,'right');
+                    isDeathDirection(i, 'right');
                     rightMovement++;
                 } else if (self.theoreticalGrid[block.row][i].orientation === 'win') {
-                    downMovement++;
-                    break;
+                    block.hasWin = true;
                 } else {
-
                     break;
                 }
             }
         }
+
         return {
             rangeHorizontal: calculateDistance(leftMovement, rightMovement),
             initPosHorizontal: calculatePosInDistance(leftMovement),
@@ -237,25 +238,26 @@ var Grid = function Grid(params) {
     };
 
     var updateGrid = function updateGrid() {
-        var movement, block;
-        for (var i = 0; i < 9; i++) {
-            for (var j = 0; j < 5; j++) {
-                block = self.theoreticalGrid[i][j];
-                if (block && block.orientation !== 'blocked' && block.orientation !== 'character') {
-                    movement = calculateMovement(block);
-                    block.updateBoundReferences({
-                        initPos: movement.initPos,
-                        range: movement.range
-                    });
-                }
+            var movement, block;
+            for (var i = 0; i < 9; i++) {
+                for (var j = 0; j < 5; j++) {
+                    block = self.theoreticalGrid[i][j];
+                    if (block && block.orientation !== 'blocked' && block.orientation !== 'character' && block.orientation !== 'win') {
+                        movement = calculateMovement(block);
+                        block.updateBoundReferences({
+                            initPos: movement.initPos,
+                            range: movement.range
+                        });
+                    }
 
-                if (block && block.orientation === 'character') {
-                    movement = calculateCharacterMovement(block);
-                    block.updatePosition(movement);
+                    if (block && block.orientation === 'character') {
+                        movement = calculateCharacterMovement(block);
+                        block.updatePosition(movement);
+                    }
                 }
             }
         }
-    };
+        ;
 
     var updateBlockPosition = function updateBlockPosition(block, distance, direction) {
         self.theoreticalGrid[block.row][block.col] = null;
@@ -272,17 +274,32 @@ var Grid = function Grid(params) {
             self.theoreticalGrid[block.row][newPosition] = block;
         } else if (block.orientation === 'character') {
             if (direction === 'left' || direction === 'right') {
+                if (block.hasWin) {
+                    winGame();
+                }
+
                 newPosition = block.col + Math.floor(distance / 180);
+
                 block.col = newPosition;
                 self.theoreticalGrid[block.row][newPosition] = block;
             }
             if (direction === 'up' || direction === 'down') {
+                if (block.hasWin) {
+                    winGame();
+                }
+
                 newPosition = block.row + Math.floor(distance / 180);
+
                 block.row = newPosition;
                 self.theoreticalGrid[newPosition][block.col] = block;
             }
         }
         updateGrid();
+    };
+
+    var winGame = function winGame() {
+        gameData.currentLevel++;
+        self.game.state.start('play');
     };
 
     var init = function init() {
