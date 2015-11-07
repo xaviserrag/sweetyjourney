@@ -25,7 +25,7 @@ Preload.prototype = {
         this.load.atlasJSONHash('levelButtons', 'assets/images/level_buttons.png', 'assets/images/level_buttons.json');
         this.load.atlasJSONHash('homeButton', 'assets/images/home_button.png', 'assets/images/home_button.json');
 
-        gameData.levelSelection = config.levelSelection.levels;
+        gameData.levelSelection = config.level;
     },
     create: function () {
         this.game.state.start('menu');

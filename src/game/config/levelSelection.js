@@ -15,60 +15,6 @@ module.exports = {
             y: 140
 
         }
-    },
-    levels: [
-        {
-            stars: '0',
-            blocked: false,
-            level: '1'
-        },
-
-        {
-            stars: '0',
-            blocked: true,
-            level: '2'
-        },
-        {
-            stars: '0',
-            blocked: true,
-            level: '3'
-        },
-
-        {
-            stars: '0',
-            blocked: true,
-            level: '4'
-        },
-
-        {
-            stars: '0',
-            blocked: true,
-            level: '5'
-        },
-
-        {
-            stars: '0',
-            blocked: true,
-            level: '6'
-        },
-
-        {
-            stars: '0',
-            blocked: true,
-            level: '7'
-        },
-
-        {
-            stars: '0',
-            blocked: true,
-            level: '8'
-        },
-
-        {
-            stars: '0',
-            blocked: true,
-            level: '9'
-        }
-    ]
+    }
 
 }
