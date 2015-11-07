@@ -24,18 +24,7 @@ var Block = function Block(params) {
 
 
     var createBlock = function createBlock() {
-        switch (type) {
-            case BLOCKED:
-                name = 'blocked';
-                break;
-            case HORIZONTAL_BLOCK:
-                name = 'block_hor';
-                break;
-            case VERTICAL_BLOCK:
-                name = 'bloc_dev';
-                break;
-        }
-        Phaser.Sprite.call(self, params.game, params.x, params.y - yOffset, name);
+        Phaser.Sprite.call(self, params.game, params.x, params.y - yOffset, type);
         params.parent.addChild(self);
     };
 

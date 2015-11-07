@@ -125,6 +125,8 @@ SelectLevel.prototype = {
         var textConfig = config.levelSelection.buttons.text;
         var callback = function () {
             console.log('Level selected', levelConfig.level);
+            gameData.currentLevel = levelConfig.level;
+            this.game.state.start('play');
         };
         var frameName;
         if (!levelConfig.blocked) {

@@ -12,10 +12,10 @@ Preload.prototype = {
         this.load.image('bgBase', 'assets/images/bg_base.jpg');
         this.load.image('bgLevelsSelector', 'assets/images/bg_levels_selector.jpg');
         this.load.image('tiles', 'assets/tiles/tiles.png');
-        this.load.image('win', 'assets/images/block.png');
+        this.load.image('win', 'assets/images/win.png');
         this.load.image('blocked', 'assets/images/block.png');
-        this.load.image('block_hor', 'assets/images/block_hor.png');
-        this.load.image('bloc_dev', 'assets/images/block_ver.png');
+        this.load.image('horizontal', 'assets/images/block_hor.png');
+        this.load.image('vertical', 'assets/images/block_ver.png');
         this.load.image('playButton', 'assets/images/play_button.png');
         this.load.image('muteButton', 'assets/images/mute_button.png');
         this.load.image('levelSelection', 'assets/images/level_selection.png');
