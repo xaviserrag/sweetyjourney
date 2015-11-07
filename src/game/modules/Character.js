@@ -12,33 +12,49 @@ var Character = function Character(params) {
     var init = function init() {
         self.orientation = 'character';
         params.parent.addChild(self);
-        console.log('??', self.events)
         self.inputEnabled = true;
-
     };
 
     var move = function move(direction) {
         var tween;
-        console.log(direction);
-        if (direction === 'up') {
-            tween = self.game.add.tween(self).to({y: -(possibleMovements.rangeVertical +possibleMovements.initPosVertical - 90)}, 500, Phaser.Easing.Linear.None);
+        console.log(direction, possibleMovements);
+        var speed = 2,
+            posTo = 0,
+            distance = 0;
 
+        if (direction === 'up') {
+            posTo = self.y - (possibleMovements.rangeVertical - possibleMovements.initPosVertical);
+            distance = posTo - self.y;
+            tween = self.game.add.tween(self).to({y: posTo}, Math.abs(distance/speed), Phaser.Easing.Linear.None);
         } else if (direction === 'down') {
-            tween = self.game.add.tween(self).to({y: possibleMovements.rangeVertical - possibleMovements.initPosVertical - 90}, 500, Phaser.Easing.Linear.None);
+            posTo = self.y + possibleMovements.rangeVertical - possibleMovements.initPosVertical - 180;
+            distance = posTo - self.y;
+            tween = self.game.add.tween(self).to({y: posTo}, Math.abs(distance/speed), Phaser.Easing.Linear.None);
 
         } else if (direction === 'left') {
-            tween = self.game.add.tween(self).to({x: -(possibleMovements.rangeHorizontal + possibleMovements.initPosHorizontal - 90)}, 500, Phaser.Easing.Linear.None);
+            posTo = self.x - (possibleMovements.rangeHorizontal - possibleMovements.initPosHorizontal);
+            distance = posTo - self.x;
+            tween = self.game.add.tween(self).to({x: posTo}, Math.abs(distance/speed), Phaser.Easing.Linear.None);
 
         } else if (direction === 'right') {
-            tween = self.game.add.tween(self).to({x: possibleMovements.rangeHorizontal - possibleMovements.initPosHorizontal - 90}, 500, Phaser.Easing.Linear.None);
+            posTo = self.x + possibleMovements.rangeHorizontal - possibleMovements.initPosHorizontal - 180;
+            distance = posTo - self.x;
+            tween = self.game.add.tween(self).to({x: posTo}, Math.abs(distance/speed), Phaser.Easing.Linear.None);
 
         }
-        tween.start();
-        console.log(tween)
+
+        if(distance > 0) {
+            tween.onComplete.add(function() {
+                params.callback(self, distance, direction);
+            });
+            tween.start();
+        }
+
     };
 
     this.updatePosition = function updatePosition(params) {
         possibleMovements = params;
+        console.log('update pos', possibleMovements)
     };
 
     var listenSwipe = function listenSwipe(callback) {
