@@ -16,10 +16,11 @@ Preload.prototype = {
         this.load.image('bloc_dev', 'assets/images/block_ver.png');
         this.load.image('playButton', 'assets/images/play_button.png');
         this.load.image('muteButton', 'assets/images/mute_button.png');
+        this.load.image('levelSelection', 'assets/images/level_selection.png');
         this.load.image('backgroundMenu', 'assets/images/menu_background.jpg');
     },
     create: function () {
-        this.game.state.start('play');
+        this.game.state.start('menu');
     }
 };
 
