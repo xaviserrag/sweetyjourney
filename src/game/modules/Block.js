@@ -3,8 +3,8 @@ var Block = function Block(params) {
     //VARS
     var self = this,
         type = params.type,
-        width = params.width,
-        height = params.height,
+        width = 180,
+        height = 180,
         name = '',
         range = 0,
         route = 0;
@@ -41,11 +41,11 @@ var Block = function Block(params) {
         if (type === HORIZONTAL_BLOCK){
             self.inputEnabled = true;
             self.input.allowVerticalDrag = false;
-            self.events.onDragStop.add(onDragStop, this);
+            //self.events.onDragStop.add(onDragStop, this);
         }else if (type === VERTICAL_BLOCK){
             self.inputEnabled = true;
             self.input.allowHorizontalDrag = false;
-            self.events.onDragStop.add(onDragStop, this);
+            //self.events.onDragStop.add(onDragStop, this);
         }
     };
 
@@ -63,16 +63,18 @@ var Block = function Block(params) {
         if (type === HORIZONTAL_BLOCK){
             console.log('h');
             //var floor = new Phaser.Rectangle(bounds.initPos, params.y, bounds.range, 0);
+            console.log(params.x, params.y);
 
-            var floor = new Phaser.Rectangle(params.x, params.y, 0, 500);
+
+            var floor = new Phaser.Rectangle(params.x - bounds.initPos , params.y, bounds.range, width);
+
             self.input.enableDrag(false,false,false,255,floor);
             self.input.allowVerticalDrag = false;
         }else if (type === VERTICAL_BLOCK){
             console.log('v');
-            //var floor = new Phaser.Rectangle(params.x, bounds.initPos, 0, bounds.range);
-           // var floor = new Phaser.Rectangle(bounds.initPos, params.y, bounds.range, 0);
-            //self.input.enableDrag(false,false,false,255,floor);
-            //self.input.allowVerticalDrag = true;
+           var floor = new Phaser.Rectangle(params.x, params.y - bounds.initPos ,height , bounds.range);
+            self.input.enableDrag(false,false,false,255,floor);
+            self.input.allowVerticalDrag = true;
         }
 
     };
