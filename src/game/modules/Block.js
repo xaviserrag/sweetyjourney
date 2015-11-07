@@ -4,14 +4,18 @@ var Block = function Block(params) {
     var self = this,
         type = params.type,
         width = 180,
-        height = 180,
+        height = 246,
+        yOffset = 50,
+        currentX = params.x,
+        currentY = params.y,
         name = '',
-        range = 0,
-        route = 0;
+        callback = params.callback,
+        rangeArray = [];
     //CONST
     const BLOCKED = 'blocked';
     const HORIZONTAL_BLOCK = 'horizontal';
     const VERTICAL_BLOCK = 'vertical';
+
 
     //public
     this.orientation = type;
@@ -19,8 +23,8 @@ var Block = function Block(params) {
     this.row = params.row;
 
 
-    var createBlock = function createBlock(){
-        switch (type){
+    var createBlock = function createBlock() {
+        switch (type) {
             case BLOCKED:
                 name = 'blocked';
                 break;
@@ -31,50 +35,83 @@ var Block = function Block(params) {
                 name = 'bloc_dev';
                 break;
         }
-        console.log('x', params.x);
-        console.log('y', params.y);
-        Phaser.Sprite.call(self, params.game, params.x, params.y, name);
+        Phaser.Sprite.call(self, params.game, params.x, params.y - yOffset, name);
         params.parent.addChild(self);
     };
 
-    var initBlockMovement = function initBlockMovement(){
-        if (type === HORIZONTAL_BLOCK){
+    var initBlockMovement = function initBlockMovement() {
+        if (type === HORIZONTAL_BLOCK) {
             self.inputEnabled = true;
             self.input.allowVerticalDrag = false;
-            //self.events.onDragStop.add(onDragStop, this);
-        }else if (type === VERTICAL_BLOCK){
+            self.events.onDragStop.add(onDragStop, this);
+        } else if (type === VERTICAL_BLOCK) {
             self.inputEnabled = true;
             self.input.allowHorizontalDrag = false;
-            //self.events.onDragStop.add(onDragStop, this);
+            self.events.onDragStop.add(onDragStop, this);
         }
     };
 
-    var init = function init(){
+    var init = function init() {
         createBlock();
         initBlockMovement();
     };
 
-    var onDragStop = function onDragStop (sprite, pointer) {
-     console.log(sprite.key + " dropped at x:" + pointer.x + " y: " + pointer.y);
+    var getFixedPosition = function getFixedPosition(userDragPos) {
+        var finalPos;
+        for (var i = 0; i < rangeArray.length; i++) {
+            if (userDragPos >= rangeArray[i] && userDragPos < rangeArray[i + 1]) {
+                if (Math.abs(rangeArray[i + 1] - userDragPos) < Math.abs(rangeArray[i] - userDragPos)) {
+                    finalPos = rangeArray[i + 1];
+                } else {
+                    finalPos = rangeArray[i];
+                }
+            }
+        }
+        if (!finalPos) {
+            finalPos = rangeArray[rangeArray.length - 1];
+        }
+        return finalPos;
     };
 
-    this.updateBoundReferences = function updateBoundReferences(bounds){
-        console.log('bounds', bounds);
-        if (type === HORIZONTAL_BLOCK){
-            console.log('h');
-            //var floor = new Phaser.Rectangle(bounds.initPos, params.y, bounds.range, 0);
-            console.log(params.x, params.y);
 
+    var onDragStop = function onDragStop(box) {
+        var distance,
+            fixedPos;
+        if (type === HORIZONTAL_BLOCK) {
+            fixedPos = getFixedPosition(box.x);
+            distance = fixedPos - currentX;
+            currentX = fixedPos;
+            box.x = fixedPos;
+            callback(self, distance);
+        } else if (type === VERTICAL_BLOCK) {
+            fixedPos = getFixedPosition(box.y + yOffset);
+            distance = fixedPos - currentY;
+            currentY = fixedPos;
+            box.y = fixedPos - yOffset;
+            callback(self, distance);
+        }
+    };
 
-            var floor = new Phaser.Rectangle(params.x - bounds.initPos , params.y, bounds.range, width);
+    var updateRangeArray = function updateRangeArray(firstPos, range) {
+        var rangeLength = range / width;
+        var acum = firstPos;
+        for (var i = 0; i < rangeLength; i++) {
+            rangeArray.push(acum);
+            acum += width;
+        }
+    };
 
-            self.input.enableDrag(false,false,false,255,floor);
+    this.updateBoundReferences = function updateBoundReferences(bounds) {
+        if (type === HORIZONTAL_BLOCK) {
+            var floor = new Phaser.Rectangle(currentX - bounds.initPos, currentY - yOffset, bounds.range, height);
+            self.input.enableDrag(false, false, false, 255, floor);
             self.input.allowVerticalDrag = false;
-        }else if (type === VERTICAL_BLOCK){
-            console.log('v');
-           var floor = new Phaser.Rectangle(params.x, params.y - bounds.initPos ,height , bounds.range);
-            self.input.enableDrag(false,false,false,255,floor);
+            updateRangeArray(currentX - bounds.initPos, bounds.range);
+        } else if (type === VERTICAL_BLOCK) {
+            var floor = new Phaser.Rectangle(currentX, currentY - bounds.initPos, width, bounds.range);
+            self.input.enableDrag(false, false, false, 255, floor);
             self.input.allowVerticalDrag = true;
+            updateRangeArray(currentY - bounds.initPos, bounds.range);
         }
 
     };

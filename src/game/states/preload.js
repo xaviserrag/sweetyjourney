@@ -12,6 +12,7 @@ Preload.prototype = {
         this.load.image('bgBase', 'assets/images/bg_base.jpg');
         this.load.image('bgLevelsSelector', 'assets/images/bg_levels_selector.jpg');
         this.load.image('tiles', 'assets/tiles/tiles.png');
+        this.load.image('win', 'assets/images/block.png');
         this.load.image('blocked', 'assets/images/block.png');
         this.load.image('block_hor', 'assets/images/block_hor.png');
         this.load.image('bloc_dev', 'assets/images/block_ver.png');

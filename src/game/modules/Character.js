@@ -1,16 +1,61 @@
 'use strict';
 
 var Character = function Character(params) {
-    Phaser.Sprite.call(this, params.game, params.x, params.y, params.name);
-    var self = this;
 
+    var self = this,
+        yOffset = 50;
+
+    this.col = params.col;
+    this.row = params.row;
+
+    var possibleMovements;
+
+    Phaser.Sprite.call(this, params.game, params.x, params.y - yOffset, params.name);
 
     var init = function init() {
         self.orientation = 'character';
         params.parent.addChild(self);
-        console.log('??', self.events)
         self.inputEnabled = true;
+    };
 
+    var move = function move(direction) {
+        var tween;
+        var speed = 2,
+            posTo = 0,
+            distance = 0;
+
+        if (direction === 'up') {
+            posTo = self.y - (possibleMovements.up * 180);
+            distance = posTo - self.y;
+            tween = self.game.add.tween(self).to({y: posTo}, Math.abs(distance/speed), Phaser.Easing.Linear.None);
+        } else if (direction === 'down') {
+            posTo = self.y + possibleMovements.down * 180;
+            distance = posTo - self.y;
+            tween = self.game.add.tween(self).to({y: posTo}, Math.abs(distance/speed), Phaser.Easing.Linear.None);
+
+        } else if (direction === 'left') {
+            posTo = self.x - (possibleMovements.left * 180);
+            distance = posTo - self.x;
+            tween = self.game.add.tween(self).to({x: posTo}, Math.abs(distance/speed), Phaser.Easing.Linear.None);
+
+        } else if (direction === 'right') {
+            posTo = self.x + possibleMovements.right * 180;
+            distance = posTo - self.x;
+            tween = self.game.add.tween(self).to({x: posTo}, Math.abs(distance/speed), Phaser.Easing.Linear.None);
+        }
+
+        if(Math.abs(distance) > 0) {
+            tween.onComplete.add(function() {
+                params.callback(self, distance, direction);
+            });
+            tween.start();
+        }
+
+    };
+
+    this.updatePosition = function updatePosition(params) {
+        possibleMovements = params;
+        console.log('update pos', possibleMovements)
     };
 
     var listenSwipe = function listenSwipe(callback) {
@@ -20,7 +65,7 @@ var Character = function Character(params) {
         var direction;
         var minimum = {
             duration: 75,
-            distance: 20
+            distance: 150
         };
 
         self.game.input.onDown.add(function(pointer) {
@@ -45,9 +90,9 @@ var Character = function Character(params) {
                 } else if (startPoint.x - endPoint.x > minimum.distance) {
                     direction = 'left';
                 } else if (endPoint.y - startPoint.y > minimum.distance) {
-                    direction = 'bottom';
+                    direction = 'down';
                 } else if (startPoint.y - endPoint.y > minimum.distance) {
-                    direction = 'top';
+                    direction = 'up';
                 }
 
                 if (direction) {
@@ -60,7 +105,7 @@ var Character = function Character(params) {
     };
 
     listenSwipe(function(direction) {
-        console.log(direction);
+        move(direction);
     });
 
     init();

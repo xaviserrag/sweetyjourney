@@ -1,3 +1,4 @@
 module.exports = {
-    levelSelection: null
-}
+    levelSelection: null,
+    currentLevel: 0
+};
