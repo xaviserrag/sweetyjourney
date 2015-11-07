@@ -190,7 +190,7 @@ var Grid = function Grid(params) {
                     downMovement++;
                 } else if (self.theoreticalGrid[j][block.col].orientation === 'win') {
                     downDeath = false;
-                    downWin = true
+                    downWin = true;
                     block.hasWin = true;
                 } else {
                     downDeath = false;
@@ -223,13 +223,11 @@ var Grid = function Grid(params) {
                     }
                     rightMovement++;
                 } else if (self.theoreticalGrid[block.row][i].orientation === 'win') {
-                    console.log('aaa');
                     rightWin = true;
                     rightDeath = false;
                     block.hasWin = true;
                 } else {
                     rightDeath = false;
-                    console.log('eee');
                     break;
                 }
             }
@@ -331,7 +329,6 @@ var Grid = function Grid(params) {
 
     var winGame = function winGame() {
         if (!haveBeenFail) {
-            console.log('Steps ', gameData.steps, 'Stars', gameData.levelSelection[gameData.currentLevel].stars);
             if(gameData.steps <= gameData.levelSelection[gameData.currentLevel].minStepsTo3 && gameData.levelSelection[gameData.currentLevel].stars < 3){
                 gameData.levelSelection[gameData.currentLevel].stars = '3';
             }else if(gameData.steps <= gameData.levelSelection[gameData.currentLevel].minStepsTo2 && gameData.levelSelection[gameData.currentLevel].stars < 2){
@@ -348,7 +345,6 @@ var Grid = function Grid(params) {
     };
 
     var resetGame = function resetGame() {
-        console.log('FAIL');
         haveBeenFail = true;
         self.game.state.start('gameOver');
         //self.game.state.start('play');
