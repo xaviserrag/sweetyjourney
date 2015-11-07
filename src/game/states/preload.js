@@ -11,10 +11,12 @@ Preload.prototype = {
         this.load.image('tiles', 'assets/tiles/tiles.png');
         this.load.image('block1', 'assets/images/block1.png');
         this.load.image('block2', 'assets/images/block2.png');
+        this.load.image('playButton', 'assets/images/play_button.png');
+        console.log('estoy en el estado preload');
 
     },
     create: function () {
-        this.game.state.start('play');
+        this.game.state.start('menu');
     }
 };
 
