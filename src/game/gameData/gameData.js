@@ -1,4 +1,5 @@
 module.exports = {
     levelSelection: null,
-    currentLevel: 0
+    currentLevel: 0,
+    steps: 0
 };
