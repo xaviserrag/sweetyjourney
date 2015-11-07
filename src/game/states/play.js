@@ -8,6 +8,7 @@ function Play() {
 
 Play.prototype = {
     create: function () {
+
         var self = this;
 
         this.bgBase = this.game.add.sprite(0, 0, 'bgBase');
@@ -19,16 +20,20 @@ Play.prototype = {
             name: 'Grid'
         });
 
-
         self.buttonInfo = self.game.add.button(30, 1650, 'gameButtons', function () {
-            self.menu.visible = true;
+            console.log('lol');
+            self.menu.button1animation = this.game.add.tween(self.menu.levelButton);
+            self.menu.button2animation = this.game.add.tween(self.menu.muteButton);
+            self.menu.button1animation.from({ x: 30, y: 1650 }, 300, Phaser.Easing.Linear.None);
+            self.menu.button1animation.start();
+            self.menu.button2animation.from({ x: 30, y: 1650 }, 300, Phaser.Easing.Linear.None);
+            self.menu.button2animation.start();
             self.buttonInfo.visible = false;
+            self.buttonInfo.inputEnabled = false;
+            self.menu.buttonInfo.visible = true;
+            self.menu.buttonInfo.inputEnabled = true;
+            self.menu.visible = true;
         }, this, 'pause_off', 'pause_off', 'pause_on')//'pause_off'
-
-
-        self.replayButton = self.game.add.button(250, 1650, 'gameButtons', function () {
-            self.game.state.start('play');
-        }, this, 'replay_off', 'replay_off', 'replay_on');//'replay_off'
 
         this.menu = new Menu({
             x: 0,
@@ -38,6 +43,10 @@ Play.prototype = {
             buttonStarter: self.buttonInfo
         });
         this.menu.visible = false;
+
+        self.replayButton = self.game.add.button(250, 1650, 'gameButtons', function () {
+            self.game.state.start('play');
+        }, this, 'replay_off', 'replay_off', 'replay_on');//'replay_off'
     },
     shutdown: function () {
         this.grid.destroy();
