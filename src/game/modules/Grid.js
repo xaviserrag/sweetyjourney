@@ -32,7 +32,7 @@ var Grid = function Grid(params) {
                 col: col,
                 game: self.game,
                 parent: self,
-                callback: updateGrid
+                callback: updateBlockPosition
             };
 
             return new Block(blockInfo);
@@ -132,6 +132,19 @@ var Grid = function Grid(params) {
                     });
                 }
             }
+        }
+    };
+
+    var updateBlockPosition = function updateBlockPosition(block, distance) {
+        self.theoreticalGrid[block.row][block.col] = null;
+        var newPosition;
+        if(block.orientation === 'vertical') {
+            newPosition = block.row + Math.Floor(distance / 180);
+            self.theoreticalGrid[newPosition][block.col] = block;
+
+        } else if(block.orientation === 'horizontal') {
+            newPosition = block.col + Math.Floor(distance / 180);
+            self.theoreticalGrid[block.row][newPosition] = block;
         }
     };
 
