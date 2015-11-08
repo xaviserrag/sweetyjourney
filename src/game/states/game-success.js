@@ -13,19 +13,24 @@ GameSuccess.prototype = {
         this.initBackground();
         this.initStars();
         this.initHappyFlan();
-        //this.initLoseText();
-        //this.initButtons();
-
+        this.initButtons();
     },
 
     initButtons:  function initButtons(){
-        var replayButton = this.game.add.button(570, 1400, 'endButtons', function () {
+        var levelButton = this.game.add.button(155, 1400, 'endButtons', function () {
+            this.game.state.start('levelSelection');
+        }, this, 'levels_off', 'levels_off', 'levels_on');
+
+        var replayButton = this.game.add.button(430, 1400, 'endButtons', function () {
+            gameData.currentLevel--;
             this.game.state.start('play');
         }, this, 'replay_off', 'replay_off', 'replay_on');
 
-        var levelButton = this.game.add.button(295, 1400, 'endButtons', function () {
-            this.game.state.start('levelSelection');
-        }, this, 'levels_off', 'levels_off', 'levels_on');
+        var nextButton = this.game.add.button(705, 1400, 'endButtons', function () {
+            this.game.state.start('play');
+        }, this, 'next_off', 'next_off', 'next_on');
+
+
     },
 
     initBackground: function initBackground(){
@@ -33,11 +38,11 @@ GameSuccess.prototype = {
     },
 
     initHappyFlan: function initHappyFlan(){
-        var happyFlan = this.game.add.sprite(300,560, 'happyFlan');
+        var happyFlan = this.game.add.sprite(300,600, 'happyFlan');
     },
 
     initStars: function initStars(){
-        var starFrame = gameData.levelSelection[gameData.currentLevel].stars;
+        var starFrame = gameData.levelSelection[gameData.currentLevel - 1].stars;
         console.log('starFrame', starFrame);
         var starts = this.game.add.sprite(100,240, 'endStarts', 'stars'+starFrame);
     },

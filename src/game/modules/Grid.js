@@ -356,6 +356,7 @@ var Grid = function Grid(params) {
         } else if (gameData.levelSelection[gameData.currentLevel].stars < 1) {
             gameData.levelSelection[gameData.currentLevel].stars = '1';
         }
+        console.log('test', gameData.levelSelection[gameData.currentLevel]);
         gameData.levelSelection[gameData.currentLevel + 1].blocked = false;
         gameData.steps = 0;
     };
