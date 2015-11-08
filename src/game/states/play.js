@@ -24,6 +24,9 @@ Play.prototype = {
 
         generalGameGroup.add(this.grid);
 
+        var gameMusic = this.game.add.sound('mainSound', 0.1, true);
+        gameMusic.play();
+
         self.buttonInfo = self.game.add.button(30, 1650, 'gameButtons', function () {
             self.menu.button1animation = this.game.add.tween(self.menu.levelButton);
             self.menu.button2animation = this.game.add.tween(self.menu.muteButton);
@@ -59,6 +62,8 @@ Play.prototype = {
     },
     shutdown: function () {
         this.grid.destroy();
+        gameMusic.stop();
+
     }
 };
 

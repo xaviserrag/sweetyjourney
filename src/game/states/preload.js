@@ -19,9 +19,9 @@ Preload.prototype = {
         this.load.image('playButton', 'assets/images/play_button.png');
         this.load.image('muteButton', 'assets/images/mute_button.png');
         this.load.image('levelSelection', 'assets/images/level_selection.png');
-        this.load.image('character', 'assets/images/pj.png');
         this.load.image('bgPopup', 'assets/images/bg_popup.png');
         this.load.image('backgroundMenu', 'assets/images/menu_background.jpg');
+        this.load.audio('mainSound', 'assets/sound/gameloop.mp3');
         this.load.audio('angrySound', 'assets/sound/angrysound.mp3');
         this.load.audio('happySound2', 'assets/sound/happysound2.mp3');
         this.load.audio('happySound3', 'assets/sound/happysound3.mp3');
@@ -29,6 +29,7 @@ Preload.prototype = {
         this.load.image('angryFlan', 'assets/images/flan_lose.png');
         this.load.image('bgHome', 'assets/images/bg_home_game.jpg');
         this.load.image('titleGame', 'assets/images/game_title.png');
+        this.load.atlasJSONHash('character', 'assets/images/pj_anim.png', 'assets/images/pj_anim.json');
         this.load.atlasJSONHash('pageButtons', 'assets/images/selector_pages.png', 'assets/images/selector_pages.json');
         this.load.atlasJSONHash('levelButtons', 'assets/images/level_buttons.png', 'assets/images/level_buttons.json');
         this.load.atlasJSONHash('gameButtons', 'assets/images/game_buttons.png', 'assets/images/game_buttons.json');
