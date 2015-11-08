@@ -9,7 +9,8 @@ var Character = require('./Character');
 var Grid = function Grid(params) {
     Phaser.Group.call(this, params.game, params.x, params.y, params.name);
 
-    var leftDeath = false,
+    var totalBlocks = 0,
+        leftDeath = false,
         rightDeath = false,
         upDeath = false,
         downDeath = false,
@@ -37,6 +38,7 @@ var Grid = function Grid(params) {
         if (type === 'empty') {
             return null;
         } else if (type === 'character') {
+            totalBlocks++;
             return new Character({
                 x: (180 * col) + 90,
                 y: (180 * row) + 90,
@@ -59,9 +61,9 @@ var Grid = function Grid(params) {
                 parent: self,
                 callback: updateBlockPosition
             };
+            totalBlocks++;
             return new Block(blockInfo);
         }
-
 
     };
 
@@ -180,16 +182,15 @@ var Grid = function Grid(params) {
                 } else if (self.theoreticalGrid[j][block.col].orientation === 'win') {
                     upDeath = false;
                     upWin = true;
+                    upMovement = 1;
+
                     block.hasWinVertical = true;
-                    console.log('hasWin to true VERTICAL');
                     //SI NO ES UN WIN, OSEA ES UN BLOQUE
                 } else {
 
                     upDeath = false;
                     if (!leftWin) {
                         block.hasWinVertical = false;
-                        console.log('hasWin to false');
-
                     }
                     upMovement = 0;
                 }
@@ -203,8 +204,6 @@ var Grid = function Grid(params) {
                     downDeath = false;
                     downWin = true;
                     block.hasWinVertical = true;
-                    console.log('hasWin to true VERTICAL');
-
                 } else {
                     downDeath = false;
                     break;
@@ -224,6 +223,8 @@ var Grid = function Grid(params) {
                     leftDeath = false;
                     block.hasWinHorizontal = true;
                     leftWin = true;
+                    leftMovement = 1;
+
                 } else {
                     if (!upWin) {
                         block.hasWin = false;
@@ -266,6 +267,7 @@ var Grid = function Grid(params) {
 
     };
 
+
     var createGrid = function createGrid() {
         var rows = 9,
             cols = 5,
@@ -280,6 +282,19 @@ var Grid = function Grid(params) {
             }
 
             self.theoreticalGrid.push(row);
+        }
+        sortDepthElements();
+
+    };
+
+    var sortDepthElements = function sortDepthElement() {
+        for (var i = 0; i < self.theoreticalGrid.length; i++) {
+            for (var j = 0; j < self.theoreticalGrid[i].length; j++) {
+                var currentBlock = self.theoreticalGrid[i][j];
+                if (currentBlock && currentBlock.orientation !== 'win') {
+                    self.bringToTop(currentBlock);
+                }
+            }
         }
     };
 
@@ -302,6 +317,7 @@ var Grid = function Grid(params) {
                     }
                 }
             }
+            sortDepthElements();
         }
         ;
 
@@ -324,18 +340,18 @@ var Grid = function Grid(params) {
                     if (block.hasWinHorizontal && self.theoreticalGrid[block.row][i] && self.theoreticalGrid[block.row][i].orientation === 'win') {
                         if (direction === 'left' && !block.leftDeath) {
                             winGame();
-                        } else if(direction === 'up' && !block.upDeath) {
+                        } else if (direction === 'up' && !block.upDeath) {
                             winGame();
-                        } else if(direction === 'down' && !block.downDeath) {
+                        } else if (direction === 'down' && !block.downDeath) {
                             winGame();
-                        } else if(direction === 'right' && !block.rightDeath) {
+                        } else if (direction === 'right' && !block.rightDeath) {
                             winGame();
                         }
                     }
                 }
 
                 newPosition = block.col + Math.floor(distance / 180);
-                if(newPosition >= 0) {
+                if (newPosition >= 0) {
                     block.col = newPosition;
                     self.theoreticalGrid[block.row][newPosition] = block;
                 }
@@ -346,18 +362,18 @@ var Grid = function Grid(params) {
                     if (block.hasWinVertical && self.theoreticalGrid[j][block.col] && self.theoreticalGrid[j][block.col].orientation === 'win') {
                         if (direction === 'left' && !block.leftDeath) {
                             winGame();
-                        } else if(direction === 'up' && !block.upDeath) {
+                        } else if (direction === 'up' && !block.upDeath) {
                             winGame();
-                        } else if(direction === 'down' && !block.downDeath) {
+                        } else if (direction === 'down' && !block.downDeath) {
                             winGame();
-                        } else if(direction === 'right' && !block.rightDeath) {
+                        } else if (direction === 'right' && !block.rightDeath) {
                             winGame();
                         }
                     }
                 }
 
                 newPosition = block.row + Math.floor(distance / 180);
-                if(newPosition >= 0) {
+                if (newPosition >= 0) {
                     block.row = newPosition;
                     self.theoreticalGrid[newPosition][block.col] = block;
                 }
@@ -367,10 +383,9 @@ var Grid = function Grid(params) {
     };
 
     var checkCurrentStars = function checkCurrentStars() {
-        console.log(gameData.steps, (gameData.levelSelection[gameData.currentLevel].minStepsTo3 + (gameData.levelSelection[gameData.currentLevel].minStepsTo3 * gameData.levelSelection[gameData.currentLevel].proportionalStepsTo1)/100));
         if (gameData.steps <= gameData.levelSelection[gameData.currentLevel].minStepsTo3) {
             gameData.levelSelection[gameData.currentLevel].currentStars = '3';
-        } else if (gameData.steps <= (gameData.levelSelection[gameData.currentLevel].minStepsTo3 + (gameData.levelSelection[gameData.currentLevel].minStepsTo3 * gameData.levelSelection[gameData.currentLevel].proportionalStepsTo1)/100)) {
+        } else if (gameData.steps <= (gameData.levelSelection[gameData.currentLevel].minStepsTo3 + (gameData.levelSelection[gameData.currentLevel].minStepsTo3 * gameData.levelSelection[gameData.currentLevel].proportionalStepsTo1) / 100)) {
             gameData.levelSelection[gameData.currentLevel].currentStars = '2';
         } else {
             gameData.levelSelection[gameData.currentLevel].currentStars = '1';
@@ -380,7 +395,7 @@ var Grid = function Grid(params) {
     var checkStars = function checkStars() {
         if (gameData.steps <= gameData.levelSelection[gameData.currentLevel].minStepsTo3 && gameData.levelSelection[gameData.currentLevel].stars < 3) {
             gameData.levelSelection[gameData.currentLevel].stars = '3';
-        } else if (gameData.steps <= (gameData.levelSelection[gameData.currentLevel].minStepsTo3 + (gameData.levelSelection[gameData.currentLevel].minStepsTo3 * gameData.levelSelection[gameData.currentLevel].proportionalStepsTo1)/100) && gameData.levelSelection[gameData.currentLevel].stars < 2) {
+        } else if (gameData.steps <= (gameData.levelSelection[gameData.currentLevel].minStepsTo3 + (gameData.levelSelection[gameData.currentLevel].minStepsTo3 * gameData.levelSelection[gameData.currentLevel].proportionalStepsTo1) / 100) && gameData.levelSelection[gameData.currentLevel].stars < 2) {
             gameData.levelSelection[gameData.currentLevel].stars = '2';
         } else if (gameData.levelSelection[gameData.currentLevel].stars < 1) {
             gameData.levelSelection[gameData.currentLevel].stars = '1';
@@ -401,16 +416,12 @@ var Grid = function Grid(params) {
     };
 
     var winGame = function winGame() {
-
         if (!haveBeenFail) {
             checkCurrentStars();//Check current game stars
             checkStars();
             if (gameData.currentLevel <= config.level.length) {
-                console.log('?', config.level)
                 gameData.currentLevel++;
             }
-            console.log('?', config.level)
-
             self.game.state.start('gameSucces');
 
         }
