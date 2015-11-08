@@ -12,7 +12,7 @@ Play.prototype = {
         var self = this;
 
         this.bgBase = this.game.add.sprite(0, 0, 'bgBase');
-
+        this.game.events.onShutdown = new Phaser.Signal();
         this.grid = new Grid({
             game: this.game,
             x: 90,
@@ -66,6 +66,7 @@ Play.prototype = {
     shutdown: function () {
         this.grid.destroy();
         this.gameMusic.stop();
+        this.game.events.onShutdown.dispatch();
 
     }
 };
