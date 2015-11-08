@@ -366,10 +366,11 @@ var Grid = function Grid(params) {
         updateGrid();
     };
 
-    var checkOldStars = function checkOldStars() {
+    var checkCurrentStars = function checkCurrentStars() {
+        console.log(gameData.steps, (gameData.levelSelection[gameData.currentLevel].minStepsTo3 + (gameData.levelSelection[gameData.currentLevel].minStepsTo3 * gameData.levelSelection[gameData.currentLevel].proportionalStepsTo1)/100));
         if (gameData.steps <= gameData.levelSelection[gameData.currentLevel].minStepsTo3) {
             gameData.levelSelection[gameData.currentLevel].currentStars = '3';
-        } else if (gameData.steps <= gameData.levelSelection[gameData.currentLevel].minStepsTo2) {
+        } else if (gameData.steps <= (gameData.levelSelection[gameData.currentLevel].minStepsTo3 + (gameData.levelSelection[gameData.currentLevel].minStepsTo3 * gameData.levelSelection[gameData.currentLevel].proportionalStepsTo1)/100)) {
             gameData.levelSelection[gameData.currentLevel].currentStars = '2';
         } else {
             gameData.levelSelection[gameData.currentLevel].currentStars = '1';
@@ -379,7 +380,7 @@ var Grid = function Grid(params) {
     var checkStars = function checkStars() {
         if (gameData.steps <= gameData.levelSelection[gameData.currentLevel].minStepsTo3 && gameData.levelSelection[gameData.currentLevel].stars < 3) {
             gameData.levelSelection[gameData.currentLevel].stars = '3';
-        } else if (gameData.steps <= gameData.levelSelection[gameData.currentLevel].minStepsTo2 && gameData.levelSelection[gameData.currentLevel].stars < 2) {
+        } else if (gameData.steps <= (gameData.levelSelection[gameData.currentLevel].minStepsTo3 + (gameData.levelSelection[gameData.currentLevel].minStepsTo3 * gameData.levelSelection[gameData.currentLevel].proportionalStepsTo1)/100) && gameData.levelSelection[gameData.currentLevel].stars < 2) {
             gameData.levelSelection[gameData.currentLevel].stars = '2';
         } else if (gameData.levelSelection[gameData.currentLevel].stars < 1) {
             gameData.levelSelection[gameData.currentLevel].stars = '1';
@@ -395,14 +396,13 @@ var Grid = function Grid(params) {
 
         }
         //End save in local storage
-
         gameData.steps = 0;
     };
 
     var winGame = function winGame() {
 
         if (!haveBeenFail) {
-            checkOldStars();
+            checkCurrentStars();//Check current game stars
             checkStars();
             gameData.currentLevel++;
             self.game.state.start('gameSucces');
