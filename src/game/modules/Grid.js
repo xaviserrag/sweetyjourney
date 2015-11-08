@@ -198,15 +198,20 @@ var Grid = function Grid(params) {
                 }
             } else if (j > block.row) {
                 if (self.theoreticalGrid[j][block.col] === null) {
+                    console.log('null')
                     if (!downWin) {
                         isDeathDirection(j, 'down');
                     }
                     downMovement++;
                 } else if (self.theoreticalGrid[j][block.col].orientation === 'win') {
+                    console.log('win')
                     downDeath = false;
                     downWin = true;
                     block.hasWinVertical = true;
+                    downMovement++;
+                    break;
                 } else {
+                    console.log('another')
                     downDeath = false;
                     break;
                 }
@@ -237,6 +242,8 @@ var Grid = function Grid(params) {
                 }
             } else if (i > block.col) {
                 if (self.theoreticalGrid[block.row][i] === null) {
+                    console.log('NULL')
+
                     if (!rightWin) {
                         isDeathDirection(i, 'right');
                     }
@@ -245,7 +252,13 @@ var Grid = function Grid(params) {
                     rightWin = true;
                     rightDeath = false;
                     block.hasWinHorizontal = true;
+                    rightMovement++;
+                    break;
+                    console.log('win')
+
                 } else {
+                    console.log('another')
+
                     rightDeath = false;
                     break;
                 }
