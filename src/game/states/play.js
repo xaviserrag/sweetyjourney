@@ -90,6 +90,7 @@ Play.prototype = {
             });
 
             this.tutorial.visible = true;
+
         }
     },
     shutdown: function () {

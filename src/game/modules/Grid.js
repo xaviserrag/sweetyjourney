@@ -180,15 +180,15 @@ var Grid = function Grid(params) {
                 } else if (self.theoreticalGrid[j][block.col].orientation === 'win') {
                     upDeath = false;
                     upWin = true;
+                    upMovement = 1;
+
                     block.hasWinVertical = true;
-                    console.log('hasWin to true VERTICAL');
                     //SI NO ES UN WIN, OSEA ES UN BLOQUE
                 } else {
 
                     upDeath = false;
                     if (!leftWin) {
                         block.hasWinVertical = false;
-                        console.log('hasWin to false');
 
                     }
                     upMovement = 0;
@@ -203,8 +203,6 @@ var Grid = function Grid(params) {
                     downDeath = false;
                     downWin = true;
                     block.hasWinVertical = true;
-                    console.log('hasWin to true VERTICAL');
-
                 } else {
                     downDeath = false;
                     break;
@@ -224,6 +222,8 @@ var Grid = function Grid(params) {
                     leftDeath = false;
                     block.hasWinHorizontal = true;
                     leftWin = true;
+                    leftMovement = 1;
+
                 } else {
                     if (!upWin) {
                         block.hasWin = false;
@@ -367,7 +367,6 @@ var Grid = function Grid(params) {
     };
 
     var checkCurrentStars = function checkCurrentStars() {
-        console.log(gameData.steps, (gameData.levelSelection[gameData.currentLevel].minStepsTo3 + (gameData.levelSelection[gameData.currentLevel].minStepsTo3 * gameData.levelSelection[gameData.currentLevel].proportionalStepsTo1)/100));
         if (gameData.steps <= gameData.levelSelection[gameData.currentLevel].minStepsTo3) {
             gameData.levelSelection[gameData.currentLevel].currentStars = '3';
         } else if (gameData.steps <= (gameData.levelSelection[gameData.currentLevel].minStepsTo3 + (gameData.levelSelection[gameData.currentLevel].minStepsTo3 * gameData.levelSelection[gameData.currentLevel].proportionalStepsTo1)/100)) {
@@ -406,11 +405,8 @@ var Grid = function Grid(params) {
             checkCurrentStars();//Check current game stars
             checkStars();
             if (gameData.currentLevel <= config.level.length) {
-                console.log('?', config.level)
                 gameData.currentLevel++;
             }
-            console.log('?', config.level)
-
             self.game.state.start('gameSucces');
 
         }
