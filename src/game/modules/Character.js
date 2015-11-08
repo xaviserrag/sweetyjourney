@@ -20,7 +20,6 @@ var Character = function Character(params) {
 
     Phaser.Sprite.call(this, params.game, params.x, params.y - yOffset, params.name, 0);
 
-
     var initAnimations = function initAnimations() {
         animationIdle = self.animations.add('idle', Phaser.Animation.generateFrameNames('pj_idle', 1, 92, '', 4), 24, true);
 
