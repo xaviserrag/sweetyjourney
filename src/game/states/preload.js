@@ -44,8 +44,6 @@ Preload.prototype = {
         this.load.audio('dieSound', 'assets/sound/deadsound.mp3');
         this.load.image('backgroundGameOver', 'assets/images/bg_lose.jpg');
         this.load.image('backgroundWin', 'assets/images/bg_win.jpg');
-        this.load.image('angryFlan', 'assets/images/flan_lose.png');
-        this.load.image('happyFlan', 'assets/images/flan_win.png');
         this.load.image('bgHome', 'assets/images/bg_home_game.jpg');
         this.load.image('titleGame', 'assets/images/game_title.png');
         this.load.atlasJSONHash('character', 'assets/images/pj_anim.png', 'assets/images/pj_anim.json');
@@ -59,6 +57,7 @@ Preload.prototype = {
         this.load.atlasJSONHash('endButtons', 'assets/images/end_buttons.png', 'assets/images/end_buttons.json');
         this.load.atlasJSONHash('endStarts', 'assets/images/stars.png', 'assets/images/stars.json');
         this.load.atlasJSONArray('loseAnim', 'assets/images/lose_anim.png', 'assets/images/lose_anim.json');
+        this.load.atlasJSONArray('winAnim', 'assets/images/win_anim.png', 'assets/images/win_anim.json');
         this.load.atlasJSONHash('tutorial', 'assets/images/tutorial.png', 'assets/images/tutorial.json');
     },
     create: function () {

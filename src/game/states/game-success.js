@@ -38,7 +38,9 @@ GameSuccess.prototype = {
     },
 
     initHappyFlan: function initHappyFlan(){
-        var happyFlan = this.game.add.sprite(300,600, 'happyFlan');
+        var happyFlan = this.game.add.sprite(300,600, 'winAnim', 0);
+        var anim =  happyFlan.animations.add();
+        anim.play(24, true);
     },
 
     initStars: function initStars(){
