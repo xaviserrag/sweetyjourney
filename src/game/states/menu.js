@@ -35,7 +35,7 @@ Menu.prototype = {
 
         var initSound = function initSound() {
             self.soundButton = self.game.add.button(self.game.width - 120, 1800, 'gameButtons', function () {
-                self.game.mute = false;
+                self.game.sound.mute = true;
                 self.soundButton.visible = false;
                 self.muteButton.visible = true;
 
@@ -52,21 +52,23 @@ Menu.prototype = {
                 .to({alpha: 1}, 800, Phaser.Easing.Cubic.InOut, true);
 
             self.muteButton = self.game.add.button(self.game.width - 120, 1800, 'gameButtons', function () {
-                self.game.mute = false;
+                self.game.sound.mute = false;
                 self.soundButton.visible = true;
                 self.muteButton.visible = false;
             }, this, 'sound_disabled_off', 'sound_disabled_off', 'sound_disabled_on', 'sound_disabled_off');//'gameButtons', 'sound_disabled_off'
 
             self.muteButton.anchor.set(config.menu.buttons.play.anchorX, config.menu.buttons.play.anchorY);
-            self.muteButton.scale.set(0.5);
-            self.muteButton.visible = false;
+            self.muteButton.scale.set(0);
+            self.muteButton.visible = self.game.sound.mute;
             self.game.add.tween(self.muteButton.scale)
                 .to({x: 1}, 800, Phaser.Easing.Cubic.InOut, true);
             self.game.add.tween(self.muteButton.scale)
                 .to({y: 1}, 800, Phaser.Easing.Cubic.InOut, true);
-
-
-
+            self.game.add.tween(self.soundButton.scale)
+                .to({x: 1}, 800, Phaser.Easing.Cubic.InOut, true);
+            self.game.add.tween(self.soundButton.scale)
+                .to({y: 1}, 800, Phaser.Easing.Cubic.InOut, true);
+            self.soundButton.visible = !self.game.sound.mute;
         };
 
         this.initBackground();
