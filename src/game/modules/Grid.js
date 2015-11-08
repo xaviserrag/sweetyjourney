@@ -423,8 +423,6 @@ var Grid = function Grid(params) {
         if (typeof(Storage) !== "undefined") {
             localStorage.setItem('level' + (gameData.currentLevel + 1), {blocked: false});
             localStorage.setItem('level' + (gameData.currentLevel) + '-stars', gameData.levelSelection[gameData.currentLevel].stars);
-
-
         }
         //End save in local storage
         gameData.steps = 0;

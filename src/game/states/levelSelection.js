@@ -15,6 +15,9 @@ SelectLevel.prototype = {
         this.initPageManager();
         this.initHeader();
         this.currentPage = 0;
+        gameData.steps = 0;
+        this.loopSound = this.game.add.audio('openSound', 0.1, true);
+        this.loopSound.play();
     },
     initBackgroud: function initBackgroun() {
         this.background = this.game.add.sprite(0, 0, 'bgLevelsSelector');
@@ -39,6 +42,7 @@ SelectLevel.prototype = {
     },
 
     goHome: function goHome() {
+        this.loopSound.stop();
         this.game.state.start('menu');
     },
 
@@ -156,6 +160,7 @@ SelectLevel.prototype = {
         var textConfig = config.levelSelection.buttons.text;
         var callback = function () {
             gameData.currentLevel = levelIndex;
+            this.loopSound.stop();
             this.game.state.start('play');
         };
         var frameName;
