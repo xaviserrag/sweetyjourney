@@ -1,6 +1,7 @@
 'use strict';
 
 var config = require('../config/main');
+var gameData = require('../gameData/gameData');
 function GameOver() {
 }
 
@@ -13,10 +14,10 @@ GameOver.prototype = {
         this.initAngryFlan();
         this.initLoseText();
         this.initButtons();
-
+        gameData.steps = 0;
     },
 
-    initButtons:  function initButtons(){
+    initButtons: function initButtons() {
         var replayButton = this.game.add.button(570, 1400, 'endButtons', function () {
             this.game.state.start('play');
         }, this, 'replay_off', 'replay_off', 'replay_on');
@@ -26,20 +27,20 @@ GameOver.prototype = {
         }, this, 'levels_off', 'levels_off', 'levels_on');
     },
 
-    initBackground: function initBackground(){
-        var background = this.game.add.sprite(0,0, 'backgroundGameOver');
+    initBackground: function initBackground() {
+        var background = this.game.add.sprite(0, 0, 'backgroundGameOver');
     },
 
-    initAngryFlan: function initAngryFlan(){
+    initAngryFlan: function initAngryFlan() {
         var looser = this.game.add.audio('gameOverSound', 0.6);
         looser.play();
 
-        var angryFlan = this.game.add.sprite(300,550, 'loseAnim', 0);
-        var anim =  angryFlan.animations.add();
+        var angryFlan = this.game.add.sprite(300, 550, 'loseAnim', 0);
+        var anim = angryFlan.animations.add();
         anim.play(24, true);
     },
 
-    initLoseText: function initAngryFlan(){
+    initLoseText: function initAngryFlan() {
         var style = {font: "bold 120px creamreg", fill: "#ff6ba0"};
         this.stars = this.game.add.text(240, 1170, 'YOU LOSE!', style);
     }
