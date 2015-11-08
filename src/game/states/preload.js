@@ -62,6 +62,8 @@ Preload.prototype = {
         this.load.atlasJSONArray('loseAnim', 'assets/images/lose_anim.png', 'assets/images/lose_anim.json');
         this.load.atlasJSONArray('winAnim', 'assets/images/win_anim.png', 'assets/images/win_anim.json');
         this.load.atlasJSONHash('tutorial', 'assets/images/tutorial.png', 'assets/images/tutorial.json');
+        this.load.atlasJSONHash('intro', 'assets/images/intro.png', 'assets/images/intro.json');
+
     },
     create: function () {
 

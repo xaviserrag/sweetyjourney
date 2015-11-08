@@ -290,12 +290,10 @@ var Grid = function Grid(params) {
     };
 
     var sortDepthElements = function sortDepthElement() {
-        console.log('AAAA', totalBlocks);
-        var depth = totalBlocks;
         for (var i = 0; i < self.theoreticalGrid.length; i++) {
             for (var j = 0; j < self.theoreticalGrid[i].length; j++) {
                 var currentBlock = self.theoreticalGrid[i][j];
-                if (currentBlock) {
+                if (currentBlock && currentBlock.orientation !== 'win') {
                     self.bringToTop(currentBlock);
                 }
             }
