@@ -180,13 +180,16 @@ var Grid = function Grid(params) {
                 } else if (self.theoreticalGrid[j][block.col].orientation === 'win') {
                     upDeath = false;
                     upWin = true;
-                    block.hasWin = true;
+                    block.hasWinVertical = true;
+                    console.log('hasWin to true VERTICAL');
                 //SI NO ES UN WIN, OSEA ES UN BLOQUE
                 } else {
 
                     upDeath = false;
                     if (!leftWin){
-                        block.hasWin = false;
+                        block.hasWinVertical = false;
+                        console.log('hasWin to false');
+
                     }
                     upMovement = 0;
                 }
@@ -199,7 +202,9 @@ var Grid = function Grid(params) {
                 } else if (self.theoreticalGrid[j][block.col].orientation === 'win') {
                     downDeath = false;
                     downWin = true;
-                    block.hasWin = true;
+                    block.hasWinVertical = true;
+                    console.log('hasWin to true VERTICAL');
+
                 } else {
                     downDeath = false;
                     break;
@@ -217,7 +222,7 @@ var Grid = function Grid(params) {
                     leftMovement++;
                 } else if (self.theoreticalGrid[block.row][i].orientation === 'win') {
                     leftDeath = false;
-                    block.hasWin = true;
+                    block.hasWinHorizontal = true;
                     leftWin = true;
                 } else {
                     if (!upWin){
@@ -236,7 +241,7 @@ var Grid = function Grid(params) {
                 } else if (self.theoreticalGrid[block.row][i].orientation === 'win') {
                     rightWin = true;
                     rightDeath = false;
-                    block.hasWin = true;
+                    block.hasWinHorizontal = true;
                 } else {
                     rightDeath = false;
                     break;
@@ -315,19 +320,24 @@ var Grid = function Grid(params) {
             self.theoreticalGrid[block.row][newPosition] = block;
         } else if (block.orientation === 'character') {
             if (direction === 'left' || direction === 'right') {
-                if (block.hasWin) {
-                    winGame();
+                for(var i = 0; i < 5; i++) {
+                    if (block.hasWinHorizontal && self.theoreticalGrid[block.row][i] && self.theoreticalGrid[block.row][i].orientation === 'win') {
+                        winGame();
+                    }
                 }
 
                 newPosition = block.col + Math.floor(distance / 180);
-
                 block.col = newPosition;
                 self.theoreticalGrid[block.row][newPosition] = block;
             }
             if (direction === 'up' || direction === 'down') {
-                if (block.hasWin) {
-                    winGame();
+
+                for(var j = 0; j < 9; j++) {
+                    if (block.hasWinVertical && self.theoreticalGrid[j][block.col] && self.theoreticalGrid[j][block.col].orientation === 'win') {
+                        winGame();
+                    }
                 }
+
 
                 newPosition = block.row + Math.floor(distance / 180);
 
@@ -351,6 +361,7 @@ var Grid = function Grid(params) {
     };
 
     var winGame = function winGame() {
+
         if (!haveBeenFail) {
             checkStars();
             gameData.currentLevel++;
