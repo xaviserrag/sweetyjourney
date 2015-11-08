@@ -10,7 +10,7 @@ var Menu = function Menu(params) {
         self.menuBg.inputEnabled = true;
         self.add(self.menuBg);
         self.soundButton = self.game.add.button(30, 1150, 'gameButtons', function () {
-            self.game.sound.mute = false;
+            self.game.sound.mute = true;
             self.soundButton.visible = false;
             self.muteButton.visible = true;
         }, this, 'sound_enabled_off', 'sound_enabled_off', 'sound_enabled_on', 'sound_enabled_off');
@@ -32,7 +32,7 @@ var Menu = function Menu(params) {
         self.add(self.levelButton);
 
         self.muteButton = self.game.add.button(30, 1150, 'gameButtons', function () {
-            self.game.sound.mute = true;
+            self.game.sound.mute = false;
             self.soundButton.visible = true;
             self.muteButton.visible = false;
         }, this, 'sound_disabled_off', 'sound_disabled_off', 'sound_disabled_on', 'sound_disabled_off');//'gameButtons', 'sound_disabled_off'
