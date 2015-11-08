@@ -20,8 +20,8 @@ SelectLevel.prototype = {
         this.background = this.game.add.sprite(0, 0, 'bgLevelsSelector');
     },
 
-    calculatePuntuation: function calculatePuntuation(){
-        var puntuation = gameData.levelSelection.reduce(function(previous, current){
+    calculatePuntuation: function calculatePuntuation() {
+        var puntuation = gameData.levelSelection.reduce(function (previous, current) {
             return previous + parseInt(current.stars);
         }, 0);
         var globalPuntuation = gameData.levelSelection.length * 3;
@@ -78,6 +78,16 @@ SelectLevel.prototype = {
             }
         }
     },
+    getLevelInfoFromLocalStorage: function () {
+        for (var i = 0; i < gameData.levelSelection.length; i++) {
+            if (localStorage['level'+i]){
+                gameData.levelSelection[i].blocked = localStorage['level'+i].blocked;
+                console.log('eyyy', localStorage['level'+i], gameData.levelSelection[i]);
+            }
+        }
+
+    },
+
 
     initMenu: function () {
         this.levels = [];
@@ -91,6 +101,9 @@ SelectLevel.prototype = {
         var ceilIndex = 0
         var rowIndex = 0
         var self = this;
+
+        this.getLevelInfoFromLocalStorage();
+
         gameData.levelSelection.forEach(function (levelConfig) {
             if (ceilIndex === config.levelSelection.maxLevelsPerRow) {
                 ceilIndex = 0;
@@ -136,7 +149,7 @@ SelectLevel.prototype = {
         var buttonGp = this.game.add.group();
         var textConfig = config.levelSelection.buttons.text;
         var callback = function () {
-            gameData.currentLevel = (parseInt(levelConfig.level)-1);
+            gameData.currentLevel = (parseInt(levelConfig.level) - 1);
             this.game.state.start('play');
         };
         var frameName;

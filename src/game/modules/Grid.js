@@ -367,6 +367,19 @@ var Grid = function Grid(params) {
             gameData.levelSelection[gameData.currentLevel].stars = '1';
         }
         gameData.levelSelection[gameData.currentLevel + 1].blocked = false;
+
+        //Save in local storage
+        if(typeof(Storage) !== "undefined") {
+            localStorage.setItem('level' + (gameData.currentLevel + 1), {blocked:false});
+            //localStorage['level' + gameData.currentLevel + 1].blocked = false;
+            // Code for localStorage/sessionStorage.
+        } else {
+            // Sorry! No Web Storage support..
+        }
+
+
+        //End save in local storage
+
         gameData.steps = 0;
     };
 
