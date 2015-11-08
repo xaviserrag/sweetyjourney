@@ -43,6 +43,7 @@ Preload.prototype = {
         this.load.audio('happySound2', 'assets/sound/happysound2.mp3');
         this.load.audio('happySound3', 'assets/sound/happysound3.mp3');
         this.load.audio('dieSound', 'assets/sound/deadsound.mp3');
+        this.load.audio('gameOverSound', 'assets/sound/looser.mp3');
         this.load.audio('starSound', 'assets/sound/starsound.mp3');
         this.load.image('backgroundGameOver', 'assets/images/bg_lose.jpg');
         this.load.image('backgroundWin', 'assets/images/bg_win.jpg');
