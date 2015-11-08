@@ -191,10 +191,6 @@ var Grid = function Grid(params) {
                     upDeath = false;
                     if (!leftWin) {
                         block.hasWinVertical = false;
-<<<<<<< HEAD
-=======
-
->>>>>>> acf8c885642679d5171d4a024763c505ff8b7813
                     }
                     upMovement = 0;
                 }
