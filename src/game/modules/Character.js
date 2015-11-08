@@ -50,9 +50,10 @@ var Character = function Character(params) {
         var tween;
         var speed = 1.5,
             deathSpeed = 1.5,
-            deathOffset = 200,
+            deathOffset = 300,
             posTo = 0,
-            distance = 0;
+            distance = 0,
+            hasDeadTween = false;
 
         var random = self.game.rnd.integerInRange(0, 1);
         sounds[random].play();
@@ -64,8 +65,9 @@ var Character = function Character(params) {
             animationUp.play(30);
 
             if (possibleMovements.upDeath) {
-                tween = self.game.add.tween(self).to({y: posTo - deathOffset}, Math.abs(distance / deathSpeed), Phaser.Easing.Linear.None);
-                tween.onComplete.add(params.resetGame);
+                distance = posTo - deathOffset - self.y;
+                tween = self.game.add.tween(self).to({y: posTo - deathOffset}, Math.abs(distance - deathOffset / deathSpeed), Phaser.Easing.Linear.None);
+                hasDeadTween = true;
             } else {
                 tween = self.game.add.tween(self).to({y: posTo}, Math.abs(distance / speed), Phaser.Easing.Linear.None);
             }
@@ -77,8 +79,8 @@ var Character = function Character(params) {
             animationDown.play(30);
 
             if (possibleMovements.downDeath) {
-                tween = self.game.add.tween(self).to({y: posTo + deathOffset}, Math.abs(distance / deathSpeed), Phaser.Easing.Linear.None);
-                tween.onComplete.add(params.resetGame);
+                tween = self.game.add.tween(self).to({y: posTo + deathOffset}, Math.abs(distance - deathOffset / deathSpeed), Phaser.Easing.Linear.None);
+                hasDeadTween = true;
             } else {
                 tween = self.game.add.tween(self).to({y: posTo}, Math.abs(distance / speed), Phaser.Easing.Linear.None);
             }
@@ -89,8 +91,8 @@ var Character = function Character(params) {
             animationHorizontal.play(30);
 
             if (possibleMovements.leftDeath) {
-                tween = self.game.add.tween(self).to({x: posTo - deathOffset}, Math.abs(distance / deathSpeed), Phaser.Easing.Linear.None);
-                tween.onComplete.add(params.resetGame);
+                tween = self.game.add.tween(self).to({x: posTo - deathOffset}, Math.abs(distance - deathOffset / deathSpeed), Phaser.Easing.Linear.None);
+                hasDeadTween = true;
             } else {
                 tween = self.game.add.tween(self).to({x: posTo}, Math.abs(distance / speed), Phaser.Easing.Linear.None);
             }
@@ -100,11 +102,29 @@ var Character = function Character(params) {
             distance = posTo - self.x;
             animationHorizontal.play(30);
             if (possibleMovements.rightDeath) {
-                tween = self.game.add.tween(self).to({x: posTo + deathOffset}, Math.abs(distance / deathSpeed), Phaser.Easing.Linear.None);
-                tween.onComplete.add(params.resetGame);
+                tween = self.game.add.tween(self).to({x: posTo + deathOffset}, Math.abs(distance - deathOffset / deathSpeed), Phaser.Easing.Linear.None);
+                hasDeadTween = true;
             } else {
                 tween = self.game.add.tween(self).to({x: posTo}, Math.abs(distance / speed), Phaser.Easing.Linear.None);
             }
+        }
+
+        if(hasDeadTween) {
+            tween.onComplete.add(function(){
+                setTimeout(function() {
+                    var cameraTween = self.game.add.tween(self.game.camera)
+                        .to({x: 5,y: 5}, 20)
+                        .to({x: 15,y: 15}, 20)
+                        .to({x: -5, y:-5}, 20)
+                        .to({x: 25,y: 25}, 20)
+                        .to({x: 1,y: 5}, 20)
+                        .to({x: 5, y:-5}, 20)
+                        .to({x: 15,y: 5}, 20);
+
+                    cameraTween.start();
+                    setTimeout(params.resetGame, 500);
+                }, 200);
+            });
         }
 
         if (Math.abs(distance) > 0) {
@@ -118,6 +138,10 @@ var Character = function Character(params) {
 
     this.updatePosition = function updatePosition(params) {
         possibleMovements = params;
+        this.leftDeath = params.leftDeath;
+        this.rightDeath = params.rightDeath;
+        this.upDeath = params.upDeath;
+        this.downDeath = params.downDeath;
     };
 
     var listenSwipe = function listenSwipe(callback) {

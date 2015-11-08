@@ -322,7 +322,16 @@ var Grid = function Grid(params) {
             if (direction === 'left' || direction === 'right') {
                 for(var i = 0; i < 5; i++) {
                     if (block.hasWinHorizontal && self.theoreticalGrid[block.row][i] && self.theoreticalGrid[block.row][i].orientation === 'win') {
-                        winGame();
+
+                        if (direction === 'left' && !block.leftDeath) {
+                            winGame();
+                        } else if(direction === 'up' && !block.upDeath) {
+                            winGame();
+                        } else if(direction === 'down' && !block.downDeath) {
+                            winGame();
+                        } else if(direction === 'right' && !block.rightDeath) {
+                            winGame();
+                        }
                     }
                 }
 
@@ -334,7 +343,15 @@ var Grid = function Grid(params) {
 
                 for(var j = 0; j < 9; j++) {
                     if (block.hasWinVertical && self.theoreticalGrid[j][block.col] && self.theoreticalGrid[j][block.col].orientation === 'win') {
-                        winGame();
+                        if (direction === 'left' && !block.leftDeath) {
+                            winGame();
+                        } else if(direction === 'up' && !block.upDeath) {
+                            winGame();
+                        } else if(direction === 'down' && !block.downDeath) {
+                            winGame();
+                        } else if(direction === 'right' && !block.rightDeath) {
+                            winGame();
+                        }
                     }
                 }
 

@@ -19,7 +19,7 @@ Menu.prototype = {
         var initButtonInfo = function initButtonInfo() {
             self.buttonInfo = self.game.add.button(120, 1800, 'homeButtons', function(){
                 openInfo();
-            }, this, 'info_off', 'info_off', 'info_on');//'pause_off'
+            }, self, 'info_off', 'info_off', 'info_on');//'pause_off'
             self.buttonInfo.anchor.set(0.5);
 
             self.buttonInfo.anchor.set(config.menu.buttons.play.anchorX, config.menu.buttons.play.anchorY);
@@ -53,7 +53,7 @@ Menu.prototype = {
                 self.soundButton.visible = false;
                 self.muteButton.visible = true;
 
-            }, this, 'sound_enabled_off', 'sound_enabled_off', 'sound_enabled_on', 'sound_enabled_off');//'sound_enabled_off')
+            }, self, 'sound_enabled_off', 'sound_enabled_off', 'sound_enabled_on', 'sound_enabled_off');//'sound_enabled_off')
 
             self.soundButton.anchor.set(config.menu.buttons.play.anchorX, config.menu.buttons.play.anchorY);
             self.soundButton.scale.set(0.5);
@@ -69,7 +69,7 @@ Menu.prototype = {
                 self.game.sound.mute = false;
                 self.soundButton.visible = true;
                 self.muteButton.visible = false;
-            }, this, 'sound_disabled_off', 'sound_disabled_off', 'sound_disabled_on', 'sound_disabled_off');//'gameButtons', 'sound_disabled_off'
+            }, self, 'sound_disabled_off', 'sound_disabled_off', 'sound_disabled_on', 'sound_disabled_off');//'gameButtons', 'sound_disabled_off'
 
             self.muteButton.anchor.set(config.menu.buttons.play.anchorX, config.menu.buttons.play.anchorY);
             self.muteButton.scale.set(0);
@@ -86,9 +86,9 @@ Menu.prototype = {
         };
 
         this.initBackground();
-        setTimeout(initPlay, 500);
-        setTimeout(initButtonInfo, 1000);
-        setTimeout(initSound, 1500);
+        setTimeout(initPlay, 450);
+        setTimeout(initButtonInfo, 500);
+        setTimeout(initSound, 750);
 
         this.title = this.game.add.sprite(this.game.width/2, 300, 'titleGame');
         this.title.anchor.set(0.5);
@@ -109,7 +109,7 @@ Menu.prototype = {
             x: 0,
             y: 0,
             game: this.game,
-            name: 'Tutorial',
+            name: 'Tutorial'
         });
     },
 

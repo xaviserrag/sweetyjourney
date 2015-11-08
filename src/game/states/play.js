@@ -11,6 +11,7 @@ Play.prototype = {
 
         var self = this;
 
+        this.game.world.setBounds(0, 0, 2000, 2000);
         this.bgBase = this.game.add.sprite(0, 0, 'bgBase');
         this.game.events.onShutdown = new Phaser.Signal();
         this.grid = new Grid({

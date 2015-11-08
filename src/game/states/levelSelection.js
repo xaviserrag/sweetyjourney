@@ -104,12 +104,12 @@ SelectLevel.prototype = {
 
         this.getLevelInfoFromLocalStorage();
 
-        gameData.levelSelection.forEach(function (levelConfig) {
+        gameData.levelSelection.forEach(function (levelConfig, index) {
             if (ceilIndex === config.levelSelection.maxLevelsPerRow) {
                 ceilIndex = 0;
                 rowIndex++;
             }
-            var levelButton = self.initLevelButton(levelConfig, ceilIndex, rowIndex);
+            var levelButton = self.initLevelButton(levelConfig, index, ceilIndex, rowIndex);
             self.levels[pagIndex].add(levelButton);
 
             levelIndex++;
@@ -144,12 +144,12 @@ SelectLevel.prototype = {
         return {x: x, y: y};
     },
 
-    initLevelButton: function initLevelButton(levelConfig, ceilIndex, rowIndex) {
+    initLevelButton: function initLevelButton(levelConfig, levelIndex, ceilIndex, rowIndex) {
         var positions = this.getPosition(ceilIndex, rowIndex);
         var buttonGp = this.game.add.group();
         var textConfig = config.levelSelection.buttons.text;
         var callback = function () {
-            gameData.currentLevel = (parseInt(levelConfig.level) - 1);
+            gameData.currentLevel = levelIndex;
             this.game.state.start('play');
         };
         var frameName;
@@ -161,7 +161,7 @@ SelectLevel.prototype = {
         var buttonSprite = this.game.add.button(positions.x, positions.y, 'levelButtons', callback, this, null, frameName);//+ levelConfig.stars
         var style = {font: "122px creamreg", fill: "#7B441A", wordWrap: true};
 
-        var buttonText = this.game.add.text(positions.x + textConfig.x, positions.y + textConfig.y, levelConfig.level, style);
+        var buttonText = this.game.add.text(positions.x + textConfig.x, positions.y + textConfig.y, levelIndex+1, style);
         buttonText.anchor.set(textConfig.anchorX, textConfig.anchorY);
         buttonGp.add(buttonSprite);
         buttonGp.add(buttonText);
