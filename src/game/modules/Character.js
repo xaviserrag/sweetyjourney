@@ -14,7 +14,8 @@ var Character = function Character(params) {
     var happySound3 = params.game.add.audio('happySound3', 0.6);
 
     var sounds = [happySound2, happySound3];
-
+    var dieSound = params.game.add.audio('dieSound', 0.6);
+    var currentHappySound;
     var animationIdle, animationHorizontal, animationDown, animationUp;
 
     Phaser.Sprite.call(this, params.game, params.x, params.y - yOffset, params.name, 0);
@@ -57,7 +58,7 @@ var Character = function Character(params) {
 
         var random = self.game.rnd.integerInRange(0, 1);
         sounds[random].play();
-
+        currentHappySound = sounds[random];
         if (direction === 'up') {
             posTo = self.y - (possibleMovements.up * 180);
             distance = posTo - self.y;
@@ -122,6 +123,8 @@ var Character = function Character(params) {
                         .to({x: 15,y: 5}, 20);
 
                     cameraTween.start();
+                    currentHappySound.stop();
+                    dieSound.play();
                     setTimeout(params.resetGame, 500);
                 }, 200);
             });
