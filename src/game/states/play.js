@@ -3,6 +3,7 @@ var Block = require('../modules/Block');
 var Grid = require('../modules/Grid');
 var Menu = require('../modules/Menu');
 var Tutorial = require('../modules/Tutorial');
+var HistoryBoard = require('../modules/HistoryBoard');
 var gameData = require('../gameData/gameData');
 
 function Play() {
@@ -80,6 +81,7 @@ Play.prototype = {
                 page = 'tutorial_03';
             }
 
+
             this.tutorial = new Tutorial({
                 x: 0,
                 y: 0,
@@ -89,7 +91,22 @@ Play.prototype = {
                 firstPage: page
             });
 
-            this.tutorial.visible = true;
+            this.tutorial.visible = false;
+
+            if(gameData.currentLevel === 0){
+                this.storyBoard = new HistoryBoard({
+                    x: 0,
+                    y: 0,
+                    game: this.game,
+                    name: 'storyBoard',
+                    callback: function(){
+                        self.tutorial.visible = true;
+                    }
+                });
+            }else{
+                this.tutorial.visible = true;
+            }
+
         }
     },
     shutdown: function () {
