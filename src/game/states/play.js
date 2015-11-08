@@ -12,7 +12,7 @@ Play.prototype = {
         var self = this;
 
         this.bgBase = this.game.add.sprite(0, 0, 'bgBase');
-
+        this.game.events.onShutdown = new Phaser.Signal();
         this.grid = new Grid({
             game: this.game,
             x: 90,
@@ -30,10 +30,13 @@ Play.prototype = {
         self.buttonInfo = self.game.add.button(30, 1650, 'gameButtons', function () {
             self.menu.button1animation = this.game.add.tween(self.menu.levelButton);
             self.menu.button2animation = this.game.add.tween(self.menu.muteButton);
+            self.menu.button3animation = this.game.add.tween(self.menu.soundButton);
             self.menu.button1animation.from({ x: 30, y: 1650 }, 300, Phaser.Easing.Linear.None);
             self.menu.button1animation.start();
             self.menu.button2animation.from({ x: 30, y: 1650 }, 300, Phaser.Easing.Linear.None);
             self.menu.button2animation.start();
+            self.menu.button3animation.from({ x: 30, y: 1650 }, 300, Phaser.Easing.Linear.None);
+            self.menu.button3animation.start();
             self.buttonInfo.visible = false;
             self.buttonInfo.inputEnabled = false;
             self.menu.buttonInfo.visible = true;
@@ -63,6 +66,7 @@ Play.prototype = {
     shutdown: function () {
         this.grid.destroy();
         this.gameMusic.stop();
+        this.game.events.onShutdown.dispatch();
 
     }
 };

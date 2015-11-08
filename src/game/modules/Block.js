@@ -6,17 +6,21 @@ var Block = function Block(params) {
         type = params.type,
         width = 180,
         height = 246,
-        yOffset = 50,
+        yOffset = 70,
         currentX = params.x,
         currentY = params.y,
         name = '',
         callback = params.callback,
-        rangeArray = [];
+        rangeArray = [],
+        animationIdle,
+        animationMove;
     //CONST
     var BLOCKED = 'blocked';
     var HORIZONTAL_BLOCK = 'horizontal';
     var VERTICAL_BLOCK = 'vertical';
 
+
+    var intervalCustom;
 
     var angrySound = params.game.add.audio('angrySound', 0.6);
     //public
@@ -30,6 +34,17 @@ var Block = function Block(params) {
         params.parent.addChild(self);
     };
 
+    var initAnimations = function initAnimations() {
+        animationIdle = self.animations.add('idle', Phaser.Animation.generateFrameNames('enemy_idle', 1, 65, '', 4), 24);
+
+        animationMove = self.animations.add('moveHorizontal', Phaser.Animation.generateFrameNames('enemy_move', 1, 65, '', 4), 24);
+
+        animationIdle.play();
+        intervalCustom = setInterval(function(){
+            animationIdle.play()
+        }, 3900);
+    };
+
     var initBlockMovement = function initBlockMovement() {
         if (type === HORIZONTAL_BLOCK) {
             self.inputEnabled = true;
@@ -37,20 +52,29 @@ var Block = function Block(params) {
             self.events.onDragStop.add(onDragStop, this);
             self.events.onDragStart.add(function() {
                 angrySound.play();
+                animationMove.play();
             }, this);
         } else if (type === VERTICAL_BLOCK) {
             self.inputEnabled = true;
             self.input.allowHorizontalDrag = false;
             self.events.onDragStop.add(onDragStop, this);
             self.events.onDragStart.add(function() {
+                animationMove.play();
                 angrySound.play();
             }, this);
+
         }
     };
 
     var init = function init() {
         createBlock();
+        if(self.orientation === HORIZONTAL_BLOCK || self.orientation === VERTICAL_BLOCK){
+            initAnimations();
+        }
         initBlockMovement();
+        self.game.events.onShutdown.add(function () {
+            intervalCustom && clearInterval(intervalCustom);
+        });
     };
 
     var getFixedPosition = function getFixedPosition(userDragPos) {
@@ -81,12 +105,18 @@ var Block = function Block(params) {
             currentX = fixedPos;
             box.x = fixedPos;
             callback(self, distance);
+            intervalCustom = setInterval(function(){
+                animationIdle.play()
+            }, 3900);
         } else if (type === VERTICAL_BLOCK) {
             fixedPos = getFixedPosition(box.y + yOffset);
             distance = fixedPos - currentY;
             currentY = fixedPos;
             box.y = fixedPos - yOffset;
             callback(self, distance);
+            intervalCustom = setInterval(function(){
+                animationIdle.play()
+            }, 3900);
         }
 
         gameData.steps++;
@@ -105,11 +135,17 @@ var Block = function Block(params) {
         if (type === HORIZONTAL_BLOCK) {
             var floor = new Phaser.Rectangle(currentX - bounds.initPos, currentY - yOffset, bounds.range, height);
             self.input.enableDrag(false, false, false, 255, floor);
+            self.events.onDragStart.add(function() {
+                clearInterval(intervalCustom);
+            });
             self.input.allowVerticalDrag = false;
             updateRangeArray(currentX - bounds.initPos, bounds.range);
         } else if (type === VERTICAL_BLOCK) {
             var floor = new Phaser.Rectangle(currentX, currentY - bounds.initPos, width, bounds.range);
             self.input.enableDrag(false, false, false, 255, floor);
+            self.events.onDragStart.add(function() {
+                clearInterval(intervalCustom);
+            });
             self.input.allowVerticalDrag = true;
             updateRangeArray(currentY - bounds.initPos, bounds.range);
         }

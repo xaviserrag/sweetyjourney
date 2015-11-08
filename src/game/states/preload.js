@@ -32,8 +32,6 @@ Preload.prototype = {
         this.load.image('tiles', 'assets/tiles/tiles.png');
         this.load.image('win', 'assets/images/win.png');
         this.load.image('blocked', 'assets/images/block.png');
-        this.load.image('horizontal', 'assets/images/block_hor.png');
-        this.load.image('vertical', 'assets/images/block_ver.png');
         this.load.image('playButton', 'assets/images/play_button.png');
         this.load.image('muteButton', 'assets/images/mute_button.png');
         this.load.image('levelSelection', 'assets/images/level_selection.png');
@@ -50,6 +48,8 @@ Preload.prototype = {
         this.load.image('bgHome', 'assets/images/bg_home_game.jpg');
         this.load.image('titleGame', 'assets/images/game_title.png');
         this.load.atlasJSONHash('character', 'assets/images/pj_anim.png', 'assets/images/pj_anim.json');
+        this.load.atlasJSONHash('vertical', 'assets/images/block_ver.png', 'assets/images/block_ver.json');
+        this.load.atlasJSONHash('horizontal', 'assets/images/block_hor.png', 'assets/images/block_hor.json');
         this.load.atlasJSONHash('pageButtons', 'assets/images/selector_pages.png', 'assets/images/selector_pages.json');
         this.load.atlasJSONHash('levelButtons', 'assets/images/level_buttons.png', 'assets/images/level_buttons.json');
         this.load.atlasJSONHash('gameButtons', 'assets/images/game_buttons.png', 'assets/images/game_buttons.json');
