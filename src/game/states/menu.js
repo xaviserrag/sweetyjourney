@@ -92,7 +92,7 @@ Menu.prototype = {
         setTimeout(initPlay, 450);
         setTimeout(initButtonInfo, 500);
         setTimeout(initSound, 750);
-
+        this.initHappyFlan();
         this.title = this.game.add.sprite(this.game.width/2, 300, 'titleGame');
         this.title.anchor.set(0.5);
         this.title.scale.set(0.2);
@@ -122,8 +122,15 @@ Menu.prototype = {
 
     },
 
+    initHappyFlan: function initHappyFlan() {
+        var happyFlan = this.game.add.sprite(this.game.width/2, 1200, 'winAnim', 0);
+        var anim = happyFlan.animations.add();
+        happyFlan.anchor.x = 0.5;
+        anim.play(24, true);
+    },
+
     start: function () {
-        this.loopSound.stop()
+        this.loopSound.stop();
         this.game.state.start('levelSelection');
     }
 };
