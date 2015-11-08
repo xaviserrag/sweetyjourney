@@ -385,8 +385,9 @@ var Grid = function Grid(params) {
         } else if (gameData.levelSelection[gameData.currentLevel].stars < 1) {
             gameData.levelSelection[gameData.currentLevel].stars = '1';
         }
-        gameData.levelSelection[gameData.currentLevel + 1].blocked = false;
-
+        if (gameData.levelSelection[gameData.currentLevel + 1]) {
+            gameData.levelSelection[gameData.currentLevel + 1].blocked = false;
+        }
         //Save in local storage
 
         if (typeof(Storage) !== "undefined") {
@@ -404,8 +405,14 @@ var Grid = function Grid(params) {
         if (!haveBeenFail) {
             checkCurrentStars();//Check current game stars
             checkStars();
-            gameData.currentLevel++;
+            if (gameData.currentLevel <= config.level.length) {
+                console.log('?', config.level)
+                gameData.currentLevel++;
+            }
+            console.log('?', config.level)
+
             self.game.state.start('gameSucces');
+
         }
     };
 

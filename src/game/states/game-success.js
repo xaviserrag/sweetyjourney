@@ -10,10 +10,18 @@ GameSuccess.prototype = {
 
     },
     create: function () {
-        this.initBackground();
-        this.initStars();
-        this.initHappyFlan();
-        this.initButtons();
+        if (gameData.comingSoon) {
+            this.initBackground();
+            this.initComingSoon();
+            this.initHappyFlan();
+            this.initComingSoonButtons();
+            gameData.comingSoon = false;
+        } else {
+            this.initBackground();
+            this.initStars();
+            this.initHappyFlan();
+            this.initButtons();
+        }
     },
 
     initButtons: function initButtons() {
@@ -26,11 +34,40 @@ GameSuccess.prototype = {
             this.game.state.start('play');
         }, this, 'replay_off', 'replay_off', 'replay_on');
 
+
         var nextButton = this.game.add.button(705, 1400, 'endButtons', function () {
-            this.game.state.start('play');
+            console.log('NEXT')
+                if (gameData.currentLevel < config.level.length) {
+                    this.game.state.start('play');
+                } else {
+                    console.log('NEXT is correct')
+
+                    gameData.comingSoon = true;
+                    this.game.state.start('gameSucces');
+
+                }
         }, this, 'next_off', 'next_off', 'next_on');
 
 
+    },
+
+    initComingSoonButtons: function initComingSoonButtons() {
+        var levelButton = this.game.add.button(this.game.width/2 - 150, 1400, 'endButtons', function () {
+            this.game.state.start('levelSelection');
+        }, this, 'levels_off', 'levels_off', 'levels_on');
+        levelButton.anchor.x = 0.5;
+        var replayButton = this.game.add.button(this.game.width/2 + 150, 1400, 'endButtons', function () {
+            gameData.currentLevel--;
+            this.game.state.start('play');
+        }, this, 'replay_off', 'replay_off', 'replay_on');
+        replayButton.anchor.x = 0.5;
+
+    },
+
+    initComingSoon: function initComingSoon() {
+        var style = {font: "bold 80px creamreg", fill: "#ff6ba0"};
+        this.comingSoon = this.game.add.text(this.game.width/2, 400, 'More levels COMING SOON!', style);
+        this.comingSoon.anchor.x = 0.5;
     },
 
     initBackground: function initBackground() {
