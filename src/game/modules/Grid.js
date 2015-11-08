@@ -242,6 +242,8 @@ var Grid = function Grid(params) {
                 }
             } else if (i > block.col) {
                 if (self.theoreticalGrid[block.row][i] === null) {
+                    console.log('NULL')
+
                     if (!rightWin) {
                         isDeathDirection(i, 'right');
                     }
@@ -250,7 +252,13 @@ var Grid = function Grid(params) {
                     rightWin = true;
                     rightDeath = false;
                     block.hasWinHorizontal = true;
+                    rightMovement++;
+                    break;
+                    console.log('win')
+
                 } else {
+                    console.log('another')
+
                     rightDeath = false;
                     break;
                 }
