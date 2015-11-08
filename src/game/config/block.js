@@ -1,6 +1,7 @@
 module.exports = {
     aspects: [
         'blocked',
-        'blocked2'
+        'blocked2',
+        'blocked3'
     ]
 }

@@ -33,6 +33,7 @@ Preload.prototype = {
         this.load.image('win', 'assets/images/exitdoor.png');
         this.load.image('blocked', 'assets/images/block.png');
         this.load.image('blocked2', 'assets/images/block2.png');
+        this.load.image('blocked3', 'assets/images/block3.png');
         this.load.image('playButton', 'assets/images/play_button.png');
         this.load.image('muteButton', 'assets/images/mute_button.png');
         this.load.image('levelSelection', 'assets/images/level_selection.png');
