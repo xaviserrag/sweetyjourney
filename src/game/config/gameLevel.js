@@ -166,7 +166,7 @@ module.exports = [
         ],
         stars: '0',
         proportionalStepsTo1: 80,
-        minStepsTo3: 8,
+        minStepsTo3: 9,
         blocked: true
     },
     {
