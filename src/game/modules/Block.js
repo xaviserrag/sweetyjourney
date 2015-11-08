@@ -1,5 +1,6 @@
 'use strict';
 var gameData = require('../gameData/gameData');
+var config = require('../config/main');
 var Block = function Block(params) {
     //VARS
     var self = this,
@@ -19,7 +20,6 @@ var Block = function Block(params) {
     var HORIZONTAL_BLOCK = 'horizontal';
     var VERTICAL_BLOCK = 'vertical';
 
-
     var intervalCustom;
 
     var angrySound = params.game.add.audio('angrySound', 0.6);
@@ -30,7 +30,19 @@ var Block = function Block(params) {
 
 
     var createBlock = function createBlock() {
-        Phaser.Sprite.call(self, params.game, params.x, params.y - yOffset, type);
+        if (type === BLOCKED) {
+            var randomNum = params.game.rnd.integerInRange(0, 100);
+            if (randomNum < 80) {
+                Phaser.Sprite.call(self, params.game, params.x, params.y - yOffset, config.block.aspects[0]);
+            } else {
+                var spriteIndex = params.game.rnd.integerInRange(1, (config.block.aspects.length - 1));
+                Phaser.Sprite.call(self, params.game, params.x, params.y - yOffset, config.block.aspects[spriteIndex]);
+            }
+
+        } else {
+            Phaser.Sprite.call(self, params.game, params.x, params.y - yOffset, type);
+
+        }
         params.parent.addChild(self);
     };
 
@@ -40,7 +52,7 @@ var Block = function Block(params) {
         animationMove = self.animations.add('moveHorizontal', Phaser.Animation.generateFrameNames('enemy_move', 1, 65, '', 4), 24);
 
         animationIdle.play();
-        intervalCustom = setInterval(function(){
+        intervalCustom = setInterval(function () {
             animationIdle.play()
         }, 3900);
     };
@@ -50,7 +62,7 @@ var Block = function Block(params) {
             self.inputEnabled = true;
             self.input.allowVerticalDrag = false;
             self.events.onDragStop.add(onDragStop, this);
-            self.events.onDragStart.add(function() {
+            self.events.onDragStart.add(function () {
                 angrySound.play();
                 animationMove.play();
             }, this);
@@ -58,7 +70,7 @@ var Block = function Block(params) {
             self.inputEnabled = true;
             self.input.allowHorizontalDrag = false;
             self.events.onDragStop.add(onDragStop, this);
-            self.events.onDragStart.add(function() {
+            self.events.onDragStart.add(function () {
                 animationMove.play();
                 angrySound.play();
             }, this);
@@ -68,7 +80,7 @@ var Block = function Block(params) {
 
     var init = function init() {
         createBlock();
-        if(self.orientation === HORIZONTAL_BLOCK || self.orientation === VERTICAL_BLOCK){
+        if (self.orientation === HORIZONTAL_BLOCK || self.orientation === VERTICAL_BLOCK) {
             initAnimations();
         }
         initBlockMovement();
@@ -105,7 +117,7 @@ var Block = function Block(params) {
             currentX = fixedPos;
             box.x = fixedPos;
             callback(self, distance);
-            intervalCustom = setInterval(function(){
+            intervalCustom = setInterval(function () {
                 animationIdle.play()
             }, 3900);
         } else if (type === VERTICAL_BLOCK) {
@@ -114,7 +126,7 @@ var Block = function Block(params) {
             currentY = fixedPos;
             box.y = fixedPos - yOffset;
             callback(self, distance);
-            intervalCustom = setInterval(function(){
+            intervalCustom = setInterval(function () {
                 animationIdle.play()
             }, 3900);
         }
@@ -135,7 +147,7 @@ var Block = function Block(params) {
         if (type === HORIZONTAL_BLOCK) {
             var floor = new Phaser.Rectangle(currentX - bounds.initPos, currentY - yOffset, bounds.range, height);
             self.input.enableDrag(false, false, false, 255, floor);
-            self.events.onDragStart.add(function() {
+            self.events.onDragStart.add(function () {
                 clearInterval(intervalCustom);
             });
             self.input.allowVerticalDrag = false;
@@ -143,7 +155,7 @@ var Block = function Block(params) {
         } else if (type === VERTICAL_BLOCK) {
             var floor = new Phaser.Rectangle(currentX, currentY - bounds.initPos, width, bounds.range);
             self.input.enableDrag(false, false, false, 255, floor);
-            self.events.onDragStart.add(function() {
+            self.events.onDragStart.add(function () {
                 clearInterval(intervalCustom);
             });
             self.input.allowVerticalDrag = true;
