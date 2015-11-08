@@ -1,0 +1,108 @@
+{"frames": {
+
+"exitdoor01":
+{
+	"frame": {"x":487,"y":1,"w":160,"h":154},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":10,"y":72,"w":160,"h":154},
+	"sourceSize": {"w":180,"h":240}
+},
+"exitdoor10":
+{
+	"frame": {"x":325,"y":1,"w":160,"h":157},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":10,"y":55,"w":160,"h":157},
+	"sourceSize": {"w":180,"h":240}
+},
+"exitdoor11":
+{
+	"frame": {"x":1459,"y":1,"w":160,"h":110},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":10,"y":102,"w":160,"h":110},
+	"sourceSize": {"w":180,"h":240}
+},
+"exitdoor12":
+{
+	"frame": {"x":487,"y":157,"w":160,"h":76},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":10,"y":136,"w":160,"h":76},
+	"sourceSize": {"w":180,"h":240}
+},
+"exitdoor02":
+{
+	"frame": {"x":649,"y":1,"w":160,"h":154},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":10,"y":72,"w":160,"h":154},
+	"sourceSize": {"w":180,"h":240}
+},
+"exitdoor03":
+{
+	"frame": {"x":811,"y":1,"w":160,"h":154},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":10,"y":72,"w":160,"h":154},
+	"sourceSize": {"w":180,"h":240}
+},
+"exitdoor04":
+{
+	"frame": {"x":973,"y":1,"w":160,"h":154},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":10,"y":72,"w":160,"h":154},
+	"sourceSize": {"w":180,"h":240}
+},
+"exitdoor05":
+{
+	"frame": {"x":1135,"y":1,"w":160,"h":154},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":10,"y":72,"w":160,"h":154},
+	"sourceSize": {"w":180,"h":240}
+},
+"exitdoor06":
+{
+	"frame": {"x":1297,"y":1,"w":160,"h":154},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":10,"y":72,"w":160,"h":154},
+	"sourceSize": {"w":180,"h":240}
+},
+"exitdoor07":
+{
+	"frame": {"x":1459,"y":113,"w":160,"h":110},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":10,"y":102,"w":160,"h":110},
+	"sourceSize": {"w":180,"h":240}
+},
+"exitdoor08":
+{
+	"frame": {"x":163,"y":1,"w":160,"h":197},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":10,"y":15,"w":160,"h":197},
+	"sourceSize": {"w":180,"h":240}
+},
+"exitdoor09":
+{
+	"frame": {"x":1,"y":1,"w":160,"h":211},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":10,"y":1,"w":160,"h":211},
+	"sourceSize": {"w":180,"h":240}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "exitdoor_anim",
+	"format": "RGBA8888",
+	"size": {"w":1620,"h":234},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:8b8e17c89c9e6650a6c022600d467672:6c8b1e4b8d6acb55a5ff373240c75ea4:17a9b649835096b9b68425fb887ca1c4$"
+}
+}

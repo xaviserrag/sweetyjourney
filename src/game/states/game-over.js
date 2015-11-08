@@ -31,6 +31,9 @@ GameOver.prototype = {
     },
 
     initAngryFlan: function initAngryFlan(){
+        var looser = this.game.add.audio('gameOverSound', 0.6);
+        looser.play();
+
         var angryFlan = this.game.add.sprite(300,550, 'loseAnim', 0);
         var anim =  angryFlan.animations.add();
         anim.play(24, true);
