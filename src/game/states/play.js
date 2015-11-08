@@ -2,6 +2,8 @@
 var Block = require('../modules/Block');
 var Grid = require('../modules/Grid');
 var Menu = require('../modules/Menu');
+var Tutorial = require('../modules/Tutorial');
+var gameData = require('../gameData/gameData');
 
 function Play() {
 }
@@ -62,7 +64,33 @@ Play.prototype = {
         }, this, 'replay_off', 'replay_off', 'replay_on');//'replay_off'
         generalGameGroup.add(self.replayButton);
 
+        if (gameData.currentLevel === 0 || gameData.currentLevel === 1 ||gameData.currentLevel === 2 ||gameData.currentLevel === 5) {
+            var page = 'tutorial_01';
 
+            if (gameData.currentLevel === 0) {
+                page = 'tutorial_01';
+            }
+            else if (gameData.currentLevel === 1) {
+                page = 'tutorial_04';
+            }
+            else if (gameData.currentLevel === 2) {
+                page = 'tutorial_02';
+            }
+            else if (gameData.currentLevel === 5) {
+                page = 'tutorial_03';
+            }
+
+            this.tutorial = new Tutorial({
+                x: 0,
+                y: 0,
+                game: this.game,
+                name: 'Tutorial',
+                havePagination: false,
+                firstPage: page
+            });
+
+            this.tutorial.visible = true;
+        }
     },
     shutdown: function () {
         this.grid.destroy();

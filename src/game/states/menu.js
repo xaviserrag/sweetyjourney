@@ -109,7 +109,8 @@ Menu.prototype = {
             x: 0,
             y: 0,
             game: this.game,
-            name: 'Tutorial'
+            name: 'Tutorial',
+            havePagination: true
         });
     },
 

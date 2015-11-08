@@ -11,7 +11,9 @@ var Tutorial = function Tutorial(params) {
         self.menuBg.inputEnabled = true;
         self.add(self.menuBg);
 
-        self.tutoImg = self.game.add.sprite(self.game.width/2,900,'tutorial', 'tutorial_01');
+        var firstPage = params.firstPage ? params.firstPage : 'tutorial_01';
+
+        self.tutoImg = self.game.add.sprite(self.game.width/2,900,'tutorial', firstPage);
         self.tutoImg.inputEnabled = true;
         self.tutoImg.anchor.set(0.5);
         self.add(self.tutoImg);
@@ -23,22 +25,25 @@ var Tutorial = function Tutorial(params) {
 
         self.add(self.closeButton);
 
-        self.previousButton = self.game.add.button(300, 1500, 'tutorial', function () {
-            currentPage = currentPage <= 1 ? 4 : currentPage - 1;
+        var initPagination = function initPagination() {
+            self.previousButton = self.game.add.button(300, 1500, 'tutorial', function () {
+                currentPage = currentPage <= 1 ? 4 : currentPage - 1;
 
-            self.tutoImg.frameName = 'tutorial_0' + currentPage;
-        }, self, 'left_off', 'left_off', 'left_on', 'left_off');
-        self.previousButton.anchor.set(0.5);
+                self.tutoImg.frameName = 'tutorial_0' + currentPage;
+            }, self, 'left_off', 'left_off', 'left_on', 'left_off');
+            self.previousButton.anchor.set(0.5);
 
-        self.add(self.previousButton);
+            self.add(self.previousButton);
 
-        self.nextButton = self.game.add.button(800, 1500, 'tutorial', function () {
-            currentPage = currentPage >= 4 ? 1 : currentPage + 1;
-            self.tutoImg.frameName = 'tutorial_0' + currentPage;
-        }, self, 'right_off', 'right_off', 'right_on', 'right_off');
-        self.nextButton.anchor.set(0.5);
-        self.add(self.nextButton);
+            self.nextButton = self.game.add.button(800, 1500, 'tutorial', function () {
+                currentPage = currentPage >= 4 ? 1 : currentPage + 1;
+                self.tutoImg.frameName = 'tutorial_0' + currentPage;
+            }, self, 'right_off', 'right_off', 'right_on', 'right_off');
+            self.nextButton.anchor.set(0.5);
+            self.add(self.nextButton);
+        };
 
+        params.havePagination && initPagination();
         self.visible = false;
     };
 
