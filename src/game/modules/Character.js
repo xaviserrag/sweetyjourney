@@ -15,16 +15,28 @@ var Character = function Character(params) {
 
     var sounds = [happySound2, happySound3];
 
-    var animationIdle, animationHorizontal, animationVertical;
+    var animationIdle, animationHorizontal, animationDown, animationUp;
 
     Phaser.Sprite.call(this, params.game, params.x, params.y - yOffset, params.name, 0);
 
 
     var initAnimations = function initAnimations() {
-        console.log(Phaser.Animation.generateFrameNames('', 0, 10, '', 0));
-        //animationHorizontal = self.animations.add('horizontal', Phaser.Animation.generateFrameNames('', 93, 118, '', 1), 12, true);
-        //animationVertical = self.animations.add('idle', Phaser.Animation.generateFrameNames('', 119, 134, '', 1), 12, true);
+        animationIdle = self.animations.add('idle', Phaser.Animation.generateFrameNames('pj_idle', 1, 92, '', 4), 24, true);
 
+        animationHorizontal = self.animations.add('moveHorizontal', Phaser.Animation.generateFrameNames('pj_right', 1, 92, '', 4));
+        animationHorizontal.onComplete.add(function() {
+           animationIdle.play();
+        });
+        animationDown = self.animations.add('moveDown', Phaser.Animation.generateFrameNames('pj_front', 1, 25, '', 4));
+        animationDown.onComplete.add(function() {
+           animationIdle.play();
+        });
+        animationUp = self.animations.add('moveUp', Phaser.Animation.generateFrameNames('pj_up', 1, 25, '', 4));
+        animationUp.onComplete.add(function() {
+           animationIdle.play();
+        });
+
+        animationIdle.play('idle');
     };
 
     var init = function init() {
@@ -36,9 +48,9 @@ var Character = function Character(params) {
 
     var move = function move(direction) {
         var tween;
-        var speed = 2,
-            deathSpeed = 3,
-            deathOffset = 10,
+        var speed = 1.5,
+            deathSpeed = 1.5,
+            deathOffset = 200,
             posTo = 0,
             distance = 0;
 
@@ -48,6 +60,9 @@ var Character = function Character(params) {
         if (direction === 'up') {
             posTo = self.y - (possibleMovements.up * 180);
             distance = posTo - self.y;
+
+            animationUp.play(30);
+
             if (possibleMovements.upDeath) {
                 tween = self.game.add.tween(self).to({y: posTo - deathOffset}, Math.abs(distance / deathSpeed), Phaser.Easing.Linear.None);
                 tween.onComplete.add(params.resetGame);
@@ -59,6 +74,8 @@ var Character = function Character(params) {
         } else if (direction === 'down') {
             posTo = self.y + possibleMovements.down * 180;
             distance = posTo - self.y;
+            animationDown.play(30);
+
             if (possibleMovements.downDeath) {
                 tween = self.game.add.tween(self).to({y: posTo + deathOffset}, Math.abs(distance / deathSpeed), Phaser.Easing.Linear.None);
                 tween.onComplete.add(params.resetGame);
@@ -69,6 +86,7 @@ var Character = function Character(params) {
         } else if (direction === 'left') {
             posTo = self.x - (possibleMovements.left * 180);
             distance = posTo - self.x;
+            animationHorizontal.play(30);
             if (possibleMovements.leftDeath) {
                 tween = self.game.add.tween(self).to({x: posTo - deathOffset}, Math.abs(distance / deathSpeed), Phaser.Easing.Linear.None);
                 tween.onComplete.add(params.resetGame);
@@ -79,6 +97,7 @@ var Character = function Character(params) {
         } else if (direction === 'right') {
             posTo = self.x + possibleMovements.right * 180;
             distance = posTo - self.x;
+            animationHorizontal.play(30);
             if (possibleMovements.rightDeath) {
                 tween = self.game.add.tween(self).to({x: posTo + deathOffset}, Math.abs(distance / deathSpeed), Phaser.Easing.Linear.None);
                 tween.onComplete.add(params.resetGame);
