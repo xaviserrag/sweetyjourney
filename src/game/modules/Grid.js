@@ -430,6 +430,8 @@ var Grid = function Grid(params) {
 
     var winGame = function winGame() {
         if (!haveBeenFail) {
+            var win = self.game.add.audio('win', 0.6);
+            win.play();
             self.game.winGameSignal.dispatch(function() {
                 checkCurrentStars();//Check current game stars
                 checkStars();
