@@ -14,8 +14,13 @@ Play.prototype = {
 
         var self = this;
 
+        var setBackground = function setBackground() {
+            var interval = 9;
+            self.bgBase = self.game.add.sprite(0, 0, 'bgBase' + Math.round((gameData.currentLevel + 1)/interval + 1));
+        };
+
         this.game.world.setBounds(0, 0, 2000, 2000);
-        this.bgBase = this.game.add.sprite(0, 0, 'bgBase');
+        setBackground();
         this.game.events.onShutdown = new Phaser.Signal();
         this.grid = new Grid({
             game: this.game,

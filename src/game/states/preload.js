@@ -27,7 +27,10 @@ Preload.prototype = {
         tween.start();
 
         this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
-        this.load.image('bgBase', 'assets/images/bg_base.jpg');
+        this.load.image('bgBase1', 'assets/images/bg_base.jpg');
+        this.load.image('bgBase2', 'assets/images/bg_base2.jpg');
+        this.load.image('bgBase3', 'assets/images/bg_base3.jpg');
+        this.load.image('bgBase4', 'assets/images/bg_base4.jpg');
         this.load.image('bgLevelsSelector', 'assets/images/bg_levels_selector.jpg');
         this.load.image('tiles', 'assets/tiles/tiles.png');
         this.load.image('blocked', 'assets/images/block.png');
@@ -47,7 +50,7 @@ Preload.prototype = {
         this.load.audio('gameOverSound', 'assets/sound/looser.mp3');
         this.load.audio('win', 'assets/sound/win.mp3');
         this.load.audio('starSound', 'assets/sound/starsound.mp3');
-        this.load.audio('historySound', 'assets/sound/history.wav');
+        this.load.audio('historySound', 'assets/sound/history.mp3');
         this.load.image('backgroundGameOver', 'assets/images/bg_lose.jpg');
         this.load.image('backgroundWin', 'assets/images/bg_win.jpg');
         this.load.image('bgHome', 'assets/images/bg_home_game.jpg');

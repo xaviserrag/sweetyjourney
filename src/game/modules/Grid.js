@@ -171,7 +171,15 @@ var Grid = function Grid(params) {
 
 
         for (var j = 0; j < config.rows; j++) {
+            if (block.row === 0) {
+                upDeath = true;
+                upMovement = 1;
 
+            }
+            if (block.row === config.rows - 1) {
+                downDeath = true;
+                downMovement = 1;
+            }
             //SI LA J ES MENOR ES QUE PUEDE DESPLAZARSE ARRIBA
             if (j < block.row) {
                 //SI NO ES UN BLOQUE....
@@ -198,20 +206,17 @@ var Grid = function Grid(params) {
                 }
             } else if (j > block.row) {
                 if (self.theoreticalGrid[j][block.col] === null) {
-                    console.log('null')
                     if (!downWin) {
                         isDeathDirection(j, 'down');
                     }
                     downMovement++;
                 } else if (self.theoreticalGrid[j][block.col].orientation === 'win') {
-                    console.log('win')
                     downDeath = false;
                     downWin = true;
                     block.hasWinVertical = true;
                     downMovement++;
                     break;
                 } else {
-                    console.log('another')
                     downDeath = false;
                     break;
                 }
@@ -220,6 +225,16 @@ var Grid = function Grid(params) {
 
 
         for (var i = 0; i < config.cols; i++) {
+            if (block.col === 0) {
+                leftDeath = true;
+                leftMovement = 1;
+            }
+
+            if (block.col === config.cols - 1) {
+                rightDeath = true;
+                rightMovement = 1;
+            }
+
             if (i < block.col) {
                 if (self.theoreticalGrid[block.row][i] === null) {
                     if (!leftWin) {
@@ -242,8 +257,6 @@ var Grid = function Grid(params) {
                 }
             } else if (i > block.col) {
                 if (self.theoreticalGrid[block.row][i] === null) {
-                    console.log('NULL')
-
                     if (!rightWin) {
                         isDeathDirection(i, 'right');
                     }
@@ -254,11 +267,7 @@ var Grid = function Grid(params) {
                     block.hasWinHorizontal = true;
                     rightMovement++;
                     break;
-                    console.log('win')
-
                 } else {
-                    console.log('another')
-
                     rightDeath = false;
                     break;
                 }
@@ -366,7 +375,7 @@ var Grid = function Grid(params) {
                 }
 
                 newPosition = block.col + Math.floor(distance / 180);
-                if (newPosition >= 0) {
+                if (newPosition >= 0 && newPosition <= 4) {
                     block.col = newPosition;
                     self.theoreticalGrid[block.row][newPosition] = block;
                 }
@@ -388,7 +397,7 @@ var Grid = function Grid(params) {
                 }
 
                 newPosition = block.row + Math.floor(distance / 180);
-                if (newPosition >= 0) {
+                if (newPosition >= 0  && newPosition <= 8) {
                     block.row = newPosition;
                     self.theoreticalGrid[newPosition][block.col] = block;
                 }

@@ -20,6 +20,22 @@ var Character = function Character(params) {
 
     Phaser.Sprite.call(this, params.game, params.x, params.y - yOffset, params.name, 0);
 
+    var winTween = this.game.add.tween(this)
+        .to({alpha: 0}, 10, Phaser.Easing.Linear.None);
+
+
+
+    var win = function win () {
+        setTimeout(function() {
+            winTween.start();
+
+        }, 500);
+    };
+
+    this.game.winGameSignal.add(win);
+
+
+
     var initAnimations = function initAnimations() {
         animationIdle = self.animations.add('idle', Phaser.Animation.generateFrameNames('pj_idle', 1, 92, '', 4), 24, true);
 
@@ -97,8 +113,6 @@ var Character = function Character(params) {
             }
 
         } else if (direction === 'right') {
-            console.log('posTo', possibleMovements.right)
-
             posTo = self.x + possibleMovements.right * 180;
             distance = posTo - self.x;
             animationHorizontal.play(30);
