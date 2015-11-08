@@ -322,7 +322,6 @@ var Grid = function Grid(params) {
             if (direction === 'left' || direction === 'right') {
                 for (var i = 0; i < 5; i++) {
                     if (block.hasWinHorizontal && self.theoreticalGrid[block.row][i] && self.theoreticalGrid[block.row][i].orientation === 'win') {
-
                         if (direction === 'left' && !block.leftDeath) {
                             winGame();
                         } else if(direction === 'up' && !block.upDeath) {
