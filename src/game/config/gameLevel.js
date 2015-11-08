@@ -32,7 +32,7 @@ module.exports = [
         stars: '0',
         minStepsTo2: 3,
         minStepsTo3: 5,
-        blocked: false,
+        blocked: true,
         level: '2'
     },
     {
@@ -50,7 +50,7 @@ module.exports = [
         stars: '0',
         minStepsTo2: 3,
         minStepsTo3: 5,
-        blocked: false,
+        blocked: true,
         level: '3'
     },
     {
@@ -68,7 +68,7 @@ module.exports = [
         stars: '0',
         minStepsTo2: 3,
         minStepsTo3: 5,
-        blocked: false,
+        blocked: true,
         level: '4'
     },
     {
@@ -86,7 +86,7 @@ module.exports = [
         stars: '0',
         minStepsTo2: 3,
         minStepsTo3: 5,
-        blocked: false,
+        blocked: true,
         level: '5'
     },
     {
@@ -104,7 +104,7 @@ module.exports = [
         stars: '0',
         minStepsTo2: 3,
         minStepsTo3: 5,
-        blocked: false,
+        blocked: true,
         level: '6'
     },
     {
@@ -122,7 +122,7 @@ module.exports = [
         stars: '0',
         minStepsTo2: 3,
         minStepsTo3: 5,
-        blocked: false,
+        blocked: true,
         level: '7'
     },
     {
@@ -140,7 +140,7 @@ module.exports = [
         stars: '0',
         minStepsTo2: 3,
         minStepsTo3: 5,
-        blocked: false,
+        blocked: true,
         level: '8'
     },
     {
@@ -158,7 +158,7 @@ module.exports = [
         stars: '0',
         minStepsTo2: 3,
         minStepsTo3: 5,
-        blocked: false,
+        blocked: true,
         level: '9'
     }
 ];

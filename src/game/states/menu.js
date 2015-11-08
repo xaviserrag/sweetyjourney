@@ -1,6 +1,7 @@
 'use strict';
 
 var config = require('../config/main');
+var Tutorial = require('../modules/Tutorial');
 function Menu() {
 }
 
@@ -12,16 +13,29 @@ Menu.prototype = {
         var self = this;
 
         var openInfo = function openInfo() {
-            console.log('openInfo');
+            self.tutorial.visible = true;
         };
 
-        var initPlay = function initPlay() {
+        var initButtonInfo = function initButtonInfo() {
             self.buttonInfo = self.game.add.button(120, 1800, 'homeButtons', function(){
                 openInfo();
             }, this, 'info_off', 'info_off', 'info_on');//'pause_off'
             self.buttonInfo.anchor.set(0.5);
 
-            self.playButton = self.game.add.button(self.game.width /2, self.game.height / 2, 'homeButtons', self.start, self, 'big_play_off', 'big_play_off', 'big_play_on');
+            self.buttonInfo.anchor.set(config.menu.buttons.play.anchorX, config.menu.buttons.play.anchorY);
+            self.buttonInfo.scale.set(0.5);
+            self.buttonInfo.alpha = 0;
+            self.game.add.tween(self.buttonInfo.scale)
+                .to({x: 1}, 800, Phaser.Easing.Cubic.InOut, true);
+            self.game.add.tween(self.buttonInfo.scale)
+                .to({y: 1}, 800, Phaser.Easing.Cubic.InOut, true);
+            self.game.add.tween(self.buttonInfo)
+                .to({alpha: 1}, 800, Phaser.Easing.Cubic.InOut, true);
+
+        };
+
+        var initPlay = function initPlay() {
+            self.playButton = self.game.add.button(self.game.width /2, self.game.height / 2 - 200, 'homeButtons', self.start, self, 'big_play_off', 'big_play_off', 'big_play_on');
             self.playButton.anchor.set(0.5);
             self.playButton.scale.set(0.5);
             self.playButton.alpha = 0;
@@ -73,9 +87,10 @@ Menu.prototype = {
 
         this.initBackground();
         setTimeout(initPlay, 500);
-        setTimeout(initSound, 1000);
+        setTimeout(initButtonInfo, 1000);
+        setTimeout(initSound, 1500);
 
-        this.title = this.game.add.sprite(this.game.width/2, 400, 'titleGame');
+        this.title = this.game.add.sprite(this.game.width/2, 300, 'titleGame');
         this.title.anchor.set(0.5);
         this.title.scale.set(0.2);
         this.title.alpha = 0;
@@ -89,6 +104,13 @@ Menu.prototype = {
         var tween = this.game.add.tween(this.title)
             .to({rotation: 0.1}, 1000, Phaser.Easing.Cubic.InOut, true, 0, -1, true);
         tween.start();
+
+        this.tutorial = new Tutorial({
+            x: 0,
+            y: 0,
+            game: this.game,
+            name: 'Tutorial',
+        });
     },
 
     initBackground: function initBackground(){

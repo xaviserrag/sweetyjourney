@@ -348,6 +348,16 @@ var Grid = function Grid(params) {
         updateGrid();
     };
 
+    var checkOldStars = function checkOldStars() {
+        if (gameData.steps <= gameData.levelSelection[gameData.currentLevel].minStepsTo3) {
+            gameData.levelSelection[gameData.currentLevel].currentStars = '3';
+        } else if (gameData.steps <= gameData.levelSelection[gameData.currentLevel].minStepsTo2) {
+            gameData.levelSelection[gameData.currentLevel].currentStars = '2';
+        } else {
+            gameData.levelSelection[gameData.currentLevel].currentStars = '1';
+        }
+    };
+
     var checkStars = function checkStars() {
         if (gameData.steps <= gameData.levelSelection[gameData.currentLevel].minStepsTo3 && gameData.levelSelection[gameData.currentLevel].stars < 3) {
             gameData.levelSelection[gameData.currentLevel].stars = '3';
@@ -357,15 +367,29 @@ var Grid = function Grid(params) {
             gameData.levelSelection[gameData.currentLevel].stars = '1';
         }
         gameData.levelSelection[gameData.currentLevel + 1].blocked = false;
+
+        //Save in local storage
+        if(typeof(Storage) !== "undefined") {
+            localStorage.setItem('level' + (gameData.currentLevel + 1), {blocked:false});
+            //localStorage['level' + gameData.currentLevel + 1].blocked = false;
+            // Code for localStorage/sessionStorage.
+        } else {
+            // Sorry! No Web Storage support..
+        }
+
+
+        //End save in local storage
+
         gameData.steps = 0;
     };
 
     var winGame = function winGame() {
 
         if (!haveBeenFail) {
+            checkOldStars();
             checkStars();
             gameData.currentLevel++;
-            self.game.state.start('play');
+            self.game.state.start('gameSucces');
         }
     };
 

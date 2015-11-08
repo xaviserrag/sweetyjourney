@@ -87,6 +87,7 @@ var Character = function Character(params) {
             posTo = self.x - (possibleMovements.left * 180);
             distance = posTo - self.x;
             animationHorizontal.play(30);
+
             if (possibleMovements.leftDeath) {
                 tween = self.game.add.tween(self).to({x: posTo - deathOffset}, Math.abs(distance / deathSpeed), Phaser.Easing.Linear.None);
                 tween.onComplete.add(params.resetGame);
