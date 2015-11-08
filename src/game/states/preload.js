@@ -38,6 +38,7 @@ Preload.prototype = {
         this.load.image('levelSelection', 'assets/images/level_selection.png');
         this.load.image('bgPopup', 'assets/images/bg_popup.png');
         this.load.image('backgroundMenu', 'assets/images/menu_background.jpg');
+        this.load.audio('openSound', 'assets/sound/open-sound-loop.mp3');
         this.load.audio('mainSound', 'assets/sound/gameloop.mp3');
         this.load.audio('angrySound', 'assets/sound/angrysound.mp3');
         this.load.audio('happySound2', 'assets/sound/happysound2.mp3');
