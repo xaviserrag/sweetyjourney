@@ -1,4 +1,5 @@
 var menuConfig = require('./menu');
+var blockConfig = require('./block');
 var levelSelectionConfig = require('./levelSelection');
 var gameLevel = require('./gameLevel');
 module.exports = {
@@ -7,5 +8,6 @@ module.exports = {
     cols: 5,
     level: gameLevel,
     menu: menuConfig,
-    levelSelection: levelSelectionConfig
+    levelSelection: levelSelectionConfig,
+    block: blockConfig
 };

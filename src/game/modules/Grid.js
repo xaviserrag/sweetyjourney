@@ -182,6 +182,8 @@ var Grid = function Grid(params) {
                 } else if (self.theoreticalGrid[j][block.col].orientation === 'win') {
                     upDeath = false;
                     upWin = true;
+                    upMovement = 1;
+
                     block.hasWinVertical = true;
                     //SI NO ES UN WIN, OSEA ES UN BLOQUE
                 } else {
@@ -189,6 +191,10 @@ var Grid = function Grid(params) {
                     upDeath = false;
                     if (!leftWin) {
                         block.hasWinVertical = false;
+<<<<<<< HEAD
+=======
+
+>>>>>>> acf8c885642679d5171d4a024763c505ff8b7813
                     }
                     upMovement = 0;
                 }
@@ -202,7 +208,6 @@ var Grid = function Grid(params) {
                     downDeath = false;
                     downWin = true;
                     block.hasWinVertical = true;
-
                 } else {
                     downDeath = false;
                     break;
@@ -222,6 +227,8 @@ var Grid = function Grid(params) {
                     leftDeath = false;
                     block.hasWinHorizontal = true;
                     leftWin = true;
+                    leftMovement = 1;
+
                 } else {
                     if (!upWin) {
                         block.hasWin = false;
@@ -399,8 +406,9 @@ var Grid = function Grid(params) {
         } else if (gameData.levelSelection[gameData.currentLevel].stars < 1) {
             gameData.levelSelection[gameData.currentLevel].stars = '1';
         }
-        gameData.levelSelection[gameData.currentLevel + 1].blocked = false;
-
+        if (gameData.levelSelection[gameData.currentLevel + 1]) {
+            gameData.levelSelection[gameData.currentLevel + 1].blocked = false;
+        }
         //Save in local storage
 
         if (typeof(Storage) !== "undefined") {
@@ -417,8 +425,11 @@ var Grid = function Grid(params) {
         if (!haveBeenFail) {
             checkCurrentStars();//Check current game stars
             checkStars();
-            gameData.currentLevel++;
+            if (gameData.currentLevel <= config.level.length) {
+                gameData.currentLevel++;
+            }
             self.game.state.start('gameSucces');
+
         }
     };
 
