@@ -16,7 +16,7 @@ GameSuccess.prototype = {
         this.initButtons();
     },
 
-    initButtons:  function initButtons(){
+    initButtons: function initButtons() {
         var levelButton = this.game.add.button(155, 1400, 'endButtons', function () {
             this.game.state.start('levelSelection');
         }, this, 'levels_off', 'levels_off', 'levels_on');
@@ -33,23 +33,43 @@ GameSuccess.prototype = {
 
     },
 
-    initBackground: function initBackground(){
-        var background = this.game.add.sprite(0,0, 'backgroundWin');
+    initBackground: function initBackground() {
+        var background = this.game.add.sprite(0, 0, 'backgroundWin');
     },
 
-    initHappyFlan: function initHappyFlan(){
-        var happyFlan = this.game.add.sprite(300,600, 'winAnim', 0);
-        var anim =  happyFlan.animations.add();
+    initHappyFlan: function initHappyFlan() {
+        var happyFlan = this.game.add.sprite(300, 600, 'winAnim', 0);
+        var anim = happyFlan.animations.add();
         anim.play(24, true);
     },
 
-    initStars: function initStars(){
+    initStars: function initStars() {
         var starFrame = gameData.levelSelection[gameData.currentLevel - 1].currentStars;
-        console.log('starFrame', starFrame);
-        var starts = this.game.add.sprite(100,240, 'endStarts', 'stars'+starFrame);
+        var stars = this.game.add.sprite(100, 240, 'endStarts', 'stars0');
+        var starSound = this.game.add.audio('starSound', 0.6);
+
+        if (starFrame > 0) {
+            setTimeout(function () {
+                stars.frameName = 'stars1';
+                starSound.play();
+            }, 500);
+        }
+        if (starFrame > 1) {
+            setTimeout(function () {
+                stars.frameName = 'stars2';
+                starSound.play();
+            }, 1000);
+        }
+        if (starFrame > 2) {
+            setTimeout(function () {
+                stars.frameName = 'stars3';
+                starSound.play();
+            }, 1500);
+        }
+
     },
 
-    initLoseText: function initAngryFlan(){
+    initLoseText: function initAngryFlan() {
         var style = {font: "bold 120px creamreg", fill: "#ff6ba0"};
         this.stars = this.game.add.text(240, 1170, 'YOU LOSE!', style);
     }
