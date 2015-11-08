@@ -13,6 +13,8 @@ Menu.prototype = {
     create: function () {
         var self = this;
         gameData.steps = 0;
+        this.loopSound = this.game.add.audio('openSound', 0.1, true);
+        this.loopSound.play();
         var openInfo = function openInfo() {
             self.tutorial.visible = true;
         };
@@ -121,6 +123,7 @@ Menu.prototype = {
     },
 
     start: function () {
+        this.loopSound.stop()
         this.game.state.start('levelSelection');
     }
 };
