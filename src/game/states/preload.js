@@ -26,7 +26,7 @@ Preload.prototype = {
             .to({rotation: 0.1}, 1000, Phaser.Easing.Cubic.InOut, true, 0, -1, true);
         tween.start();
 
-        this.game.load.onLoadComplete.addOnce(this.onLoadComplete, this);
+        this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
         this.load.image('bgBase', 'assets/images/bg_base.jpg');
         this.load.image('bgLevelsSelector', 'assets/images/bg_levels_selector.jpg');
         this.load.image('tiles', 'assets/tiles/tiles.png');
@@ -57,6 +57,7 @@ Preload.prototype = {
         this.load.atlasJSONHash('homeButton', 'assets/images/home_button.png', 'assets/images/home_button.json');
         this.load.atlasJSONHash('endButtons', 'assets/images/end_buttons.png', 'assets/images/end_buttons.json');
         this.load.atlasJSONHash('endStarts', 'assets/images/stars.png', 'assets/images/stars.json');
+        this.load.atlasJSONHash('tutorial', 'assets/images/tutorial.png', 'assets/images/tutorial.json');
     },
     create: function () {
 
@@ -67,7 +68,7 @@ Preload.prototype = {
 
         setTimeout(function() {
             self.game.state.start('menu');
-        }, 1000);
+        }, 500);
     }
 };
 

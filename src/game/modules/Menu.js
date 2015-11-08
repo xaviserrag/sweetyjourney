@@ -13,16 +13,16 @@ var Menu = function Menu(params) {
             self.game.sound.mute = false;
             self.soundButton.visible = false;
             self.muteButton.visible = true;
-        }, this, 'sound_enabled_off', 'sound_enabled_off', 'sound_enabled_on', 'sound_enabled_off');//'sound_enabled_off')
+        }, this, 'sound_enabled_off', 'sound_enabled_off', 'sound_enabled_on', 'sound_enabled_off');
         self.add(self.soundButton);
 
         self.buttonInfo = self.game.add.button(30, 1650, 'gameButtons', function(){
             self.visible = false;
-            self.buttonInfo.visible = false
-            self.buttonInfo.inputEnabled = false
+            self.buttonInfo.visible = false;
+            self.buttonInfo.inputEnabled = false;
             self.buttonStarter.visible = true;
             self.buttonStarter.inputEnabled = true;
-        }, this, 'pause_off', 'pause_off', 'pause_on')//'pause_off'
+        }, this, 'pause_off', 'pause_off', 'pause_on');
         self.add(self.buttonInfo);
 
         self.levelButton = self.game.add.button(30, 1400, 'gameButtons', function () {
@@ -42,7 +42,6 @@ var Menu = function Menu(params) {
             self.muteButton.visible = false;
         } else {
             self.soundButton.visible = false;
-
         }
 
         self.button1animationOut = self.game.add.tween(self.levelButton);
