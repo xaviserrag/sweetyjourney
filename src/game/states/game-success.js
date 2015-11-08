@@ -1,45 +1,51 @@
 'use strict';
 
 var config = require('../config/main');
-function GameSucces() {
+var gameData = require('../gameData/gameData');
+function GameSuccess() {
 }
 
-GameSucces.prototype = {
+GameSuccess.prototype = {
     preload: function () {
 
     },
     create: function () {
-        /*this.initBackground();
-         this.initPlay();
-         this.initSound();*/
+        this.initBackground();
+        this.initStars();
+        this.initHappyFlan();
+        //this.initLoseText();
+        //this.initButtons();
+
     },
 
-    /*initBackground: function initBackground(){
-     var background = this.game.add.sprite(0,0, 'backgroundMenu');
-     background.scale.set(5, 5);
-     },
+    initButtons:  function initButtons(){
+        var replayButton = this.game.add.button(570, 1400, 'endButtons', function () {
+            this.game.state.start('play');
+        }, this, 'replay_off', 'replay_off', 'replay_on');
 
-     initPlay: function initPlay() {
-     this.playButton = this.game.add.button(this.game.width /2, this.game.height / 2, config.menu.buttons.play.spriteSheet, this.start, this);
-     this.playButton.anchor.set(config.menu.buttons.play.anchorX, config.menu.buttons.play.anchorY);
-     this.playButton.scale.x = 1.5;
-     this.playButton.scale.y = 1.5;
-     },
+        var levelButton = this.game.add.button(295, 1400, 'endButtons', function () {
+            this.game.state.start('levelSelection');
+        }, this, 'levels_off', 'levels_off', 'levels_on');
+    },
 
-     initSound: function initSound() {
-     this.muteButton = this.game.add.button(config.menu.buttons.mute.x, config.menu.buttons.mute.y, config.menu.buttons.mute.spriteSheet, this.switchSound, this);
-     this.muteButton.scale.x = 0.1;
-     this.muteButton.scale.y = 0.1;
-     },
+    initBackground: function initBackground(){
+        var background = this.game.add.sprite(0,0, 'backgroundWin');
+    },
 
-     switchSound: function initSound() {
-     this.game.sound.mute = !this.game.sound.mute;
-     this.muteButton.frameName = this.game.sound.mute ? config.menu.buttons.mute.muteOff : config.menu.buttons.mute.muteOn;
-     },
+    initHappyFlan: function initHappyFlan(){
+        var happyFlan = this.game.add.sprite(300,560, 'happyFlan');
+    },
 
-     start: function () {
-     this.game.state.start('levelSelection');
-     }*/
+    initStars: function initStars(){
+        var starFrame = gameData.levelSelection[gameData.currentLevel].stars;
+        console.log('starFrame', starFrame);
+        var starts = this.game.add.sprite(100,240, 'endStarts', 'stars'+starFrame);
+    },
+
+    initLoseText: function initAngryFlan(){
+        var style = {font: "bold 120px creamreg", fill: "#ff6ba0"};
+        this.stars = this.game.add.text(240, 1170, 'YOU LOSE!', style);
+    }
 };
 
-module.exports = GameSucces;
+module.exports = GameSuccess;

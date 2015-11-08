@@ -26,7 +26,9 @@ Preload.prototype = {
         this.load.audio('happySound2', 'assets/sound/happysound2.mp3');
         this.load.audio('happySound3', 'assets/sound/happysound3.mp3');
         this.load.image('backgroundGameOver', 'assets/images/bg_lose.jpg');
+        this.load.image('backgroundWin', 'assets/images/bg_win.jpg');
         this.load.image('angryFlan', 'assets/images/flan_lose.png');
+        this.load.image('happyFlan', 'assets/images/flan_win.png');
         this.load.image('bgHome', 'assets/images/bg_home_game.jpg');
         this.load.image('titleGame', 'assets/images/game_title.png');
         this.load.atlasJSONHash('pageButtons', 'assets/images/selector_pages.png', 'assets/images/selector_pages.json');
@@ -35,6 +37,8 @@ Preload.prototype = {
         this.load.atlasJSONHash('homeButtons', 'assets/images/home_buttons.png', 'assets/images/home_buttons.json');
         this.load.atlasJSONHash('homeButton', 'assets/images/home_button.png', 'assets/images/home_button.json');
         this.load.atlasJSONHash('endButtons', 'assets/images/end_buttons.png', 'assets/images/end_buttons.json');
+
+        this.load.atlasJSONHash('endStarts', 'assets/images/stars.png', 'assets/images/stars.json');
 
         gameData.levelSelection = config.level;
     },

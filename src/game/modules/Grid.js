@@ -354,7 +354,7 @@ var Grid = function Grid(params) {
         if (!haveBeenFail) {
             checkStars();
             gameData.currentLevel++;
-            self.game.state.start('play');
+            self.game.state.start('gameSucces');
         }
     };
 
