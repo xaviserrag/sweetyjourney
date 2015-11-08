@@ -206,6 +206,8 @@ var Grid = function Grid(params) {
                     downDeath = false;
                     downWin = true;
                     block.hasWinVertical = true;
+                    downMovement++;
+                    break;
                 } else {
                     downDeath = false;
                     break;
@@ -245,6 +247,7 @@ var Grid = function Grid(params) {
                     rightWin = true;
                     rightDeath = false;
                     block.hasWinHorizontal = true;
+                    rightMovement++
                 } else {
                     rightDeath = false;
                     break;
