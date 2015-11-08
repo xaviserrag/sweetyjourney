@@ -31,7 +31,9 @@ GameOver.prototype = {
     },
 
     initAngryFlan: function initAngryFlan(){
-        var angryFlan = this.game.add.sprite(300,550, 'angryFlan');
+        var angryFlan = this.game.add.sprite(300,550, 'loseAnim', 0);
+        var anim =  angryFlan.animations.add();
+        anim.play(24, true);
     },
 
     initLoseText: function initAngryFlan(){
