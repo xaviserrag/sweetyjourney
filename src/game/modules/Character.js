@@ -3,7 +3,7 @@ var gameData = require('../gameData/gameData');
 var Character = function Character(params) {
 
     var self = this,
-        yOffset = 50;
+        yOffset = 70;
 
     this.col = params.col;
     this.row = params.row;
