@@ -28,9 +28,13 @@ var Block = function Block(params) {
     this.col = params.col;
     this.row = params.row;
 
-    var win = function win() {
+    var win = function win(callback) {
         setTimeout(function() {
-            self.animations.play('win');
+            self.exitDoorAnimSprite = self.game.add.sprite(self.x, self.y + 30, 'win');
+            //self.exitDoorAnimSprite.anchor.set(0.5);
+            self.exitDoorWinAnim = self.exitDoorAnimSprite.animations.add('win', Phaser.Animation.generateFrameNames('exitdoor', 7, 12, '', 2),6, false);
+            self.exitDoorWinAnim.onComplete.add(callback);
+            self.exitDoorWinAnim.play();
         }, 300);
     };
 
@@ -51,9 +55,10 @@ var Block = function Block(params) {
         params.parent.addChild(self);
 
 
-        if (self.orientation = 'win') {
-            self.animations.add('win', [0,1,2,3,4,5,6], 24, false);
-            self.animations.add('idle', [0,1,2,3,4,5,6], 24, true);
+        if (self.orientation === 'win') {
+            self.exitDoorIdleAnim = self.animations.add('idle', Phaser.Animation.generateFrameNames('exitdoor', 1, 6, '', 2), 24, true);
+            console.log(Phaser.Animation.generateFrameNames('exitDoor', 1, 6, '', 2));
+            self.exitDoorIdleAnim.play();
             self.game.winGameSignal.add(win);
         }
     };

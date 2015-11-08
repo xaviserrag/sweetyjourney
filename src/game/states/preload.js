@@ -30,7 +30,6 @@ Preload.prototype = {
         this.load.image('bgBase', 'assets/images/bg_base.jpg');
         this.load.image('bgLevelsSelector', 'assets/images/bg_levels_selector.jpg');
         this.load.image('tiles', 'assets/tiles/tiles.png');
-        this.load.image('win', 'assets/images/exitdoor.png');
         this.load.image('blocked', 'assets/images/block.png');
         this.load.image('blocked2', 'assets/images/block2.png');
         this.load.image('blocked3', 'assets/images/block3.png');
@@ -49,6 +48,7 @@ Preload.prototype = {
         this.load.image('backgroundWin', 'assets/images/bg_win.jpg');
         this.load.image('bgHome', 'assets/images/bg_home_game.jpg');
         this.load.image('titleGame', 'assets/images/game_title.png');
+        this.load.atlasJSONHash('win', 'assets/images/exitdoor_anim.png', 'assets/images/exitdoor_anim.json');
         this.load.atlasJSONHash('character', 'assets/images/pj_anim.png', 'assets/images/pj_anim.json');
         this.load.atlasJSONHash('vertical', 'assets/images/block_ver.png', 'assets/images/block_ver.json');
         this.load.atlasJSONHash('horizontal', 'assets/images/block_hor.png', 'assets/images/block_hor.json');

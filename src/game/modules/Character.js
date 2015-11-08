@@ -20,19 +20,6 @@ var Character = function Character(params) {
 
     Phaser.Sprite.call(this, params.game, params.x, params.y - yOffset, params.name, 0);
 
-    var winTween = this.game.add.tween(this)
-        .to({alpha: 0}, 1000, Phaser.Easing.Linear.None, 300);
-
-
-    var win = function win (callback) {
-        winTween.onComplete.add(callback);
-        winTween.start();
-    };
-
-    this.game.winGameSignal.add(win);
-
-
-
     var initAnimations = function initAnimations() {
         animationIdle = self.animations.add('idle', Phaser.Animation.generateFrameNames('pj_idle', 1, 92, '', 4), 24, true);
 
