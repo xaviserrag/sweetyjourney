@@ -44,25 +44,29 @@ Play.prototype = {
             self.buttonInfo.inputEnabled = false;
             self.menu.buttonInfo.visible = true;
             self.menu.buttonInfo.inputEnabled = true;
+            self.replayButton.inputEnabled = false;
             self.menu.visible = true;
         }, this, 'pause_off', 'pause_off', 'pause_on')//'pause_off'
 
         generalGameGroup.add(self.buttonInfo);
 
-        this.menu = new Menu({
-            x: 0,
-            y: 0,
-            game: this.game,
-            name: 'Menu',
-            buttonStarter: self.buttonInfo
-        });
-        this.menu.visible = false;
+
 
 
         self.replayButton = self.game.add.button(250, 1650, 'gameButtons', function () {
             self.game.state.start('play');
         }, this, 'replay_off', 'replay_off', 'replay_on');//'replay_off'
         generalGameGroup.add(self.replayButton);
+
+        this.menu = new Menu({
+            x: 0,
+            y: 0,
+            game: this.game,
+            name: 'Menu',
+            buttonStarter: self.buttonInfo,
+            replayButton: self.replayButton
+        });
+        this.menu.visible = false;
 
         if (gameData.currentLevel === 0 || gameData.currentLevel === 1 ||gameData.currentLevel === 2 ||gameData.currentLevel === 5) {
             var page = 'tutorial_01';

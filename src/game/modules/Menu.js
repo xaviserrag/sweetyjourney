@@ -22,6 +22,8 @@ var Menu = function Menu(params) {
             self.buttonInfo.inputEnabled = false;
             self.buttonStarter.visible = true;
             self.buttonStarter.inputEnabled = true;
+            params.replayButton.inputEnabled = true;
+
         }, this, 'pause_off', 'pause_off', 'pause_on');
         self.add(self.buttonInfo);
 
