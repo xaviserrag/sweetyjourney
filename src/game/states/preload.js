@@ -8,7 +8,25 @@ function Preload() {
 
 Preload.prototype = {
     preload: function () {
-        this.load.tilemap('map', 'assets/tiles/tiles.json', null, Phaser.Tilemap.TILED_JSON);
+
+        this.bg = this.game.add.sprite(0,0, 'loadBg');
+
+        this.title = this.game.add.sprite(this.game.width/2, this.game.height/2, 'loadTitle');
+        this.title.anchor.set(0.5);
+        this.title.scale.set(0.2);
+        this.title.alpha = 0;
+
+        this.game.add.tween(this.title.scale)
+            .to({x: 1}, 800, Phaser.Easing.Cubic.InOut, true);
+        this.game.add.tween(this.title.scale)
+            .to({y: 1}, 800, Phaser.Easing.Cubic.InOut, true);
+        this.game.add.tween(this.title)
+            .to({alpha: 1}, 800, Phaser.Easing.Cubic.InOut, true);
+        var tween = this.game.add.tween(this.title)
+            .to({rotation: 0.1}, 1000, Phaser.Easing.Cubic.InOut, true, 0, -1, true);
+        tween.start();
+
+        this.game.load.onLoadComplete.addOnce(this.onLoadComplete, this);
         this.load.image('bgBase', 'assets/images/bg_base.jpg');
         this.load.image('bgLevelsSelector', 'assets/images/bg_levels_selector.jpg');
         this.load.image('tiles', 'assets/tiles/tiles.png');
@@ -36,11 +54,17 @@ Preload.prototype = {
         this.load.atlasJSONHash('homeButtons', 'assets/images/home_buttons.png', 'assets/images/home_buttons.json');
         this.load.atlasJSONHash('homeButton', 'assets/images/home_button.png', 'assets/images/home_button.json');
         this.load.atlasJSONHash('endButtons', 'assets/images/end_buttons.png', 'assets/images/end_buttons.json');
-
-        gameData.levelSelection = config.level;
     },
     create: function () {
-        this.game.state.start('menu');
+
+    },
+    onLoadComplete: function () {
+        var self = this;
+        gameData.levelSelection = config.level;
+
+        setTimeout(function() {
+            self.game.state.start('menu');
+        }, 1000);
     }
 };
 
