@@ -27,7 +27,9 @@ Preload.prototype = {
         tween.start();
 
         this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
-        this.load.image('bgBase', 'assets/images/bg_base.jpg');
+        this.load.image('bgBase1', 'assets/images/bg_base.jpg');
+        this.load.image('bgBase2', 'assets/images/bg_base2.jpg');
+        this.load.image('bgBase3', 'assets/images/bg_base3.jpg');
         this.load.image('bgLevelsSelector', 'assets/images/bg_levels_selector.jpg');
         this.load.image('tiles', 'assets/tiles/tiles.png');
         this.load.image('blocked', 'assets/images/block.png');
