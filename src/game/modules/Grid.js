@@ -176,17 +176,17 @@ var Grid = function Grid(params) {
                         isDeathDirection(j, 'up');
                     }
                     upMovement++;
-                //SI ES UN WIN
+                    //SI ES UN WIN
                 } else if (self.theoreticalGrid[j][block.col].orientation === 'win') {
                     upDeath = false;
                     upWin = true;
                     block.hasWinVertical = true;
                     console.log('hasWin to true VERTICAL');
-                //SI NO ES UN WIN, OSEA ES UN BLOQUE
+                    //SI NO ES UN WIN, OSEA ES UN BLOQUE
                 } else {
 
                     upDeath = false;
-                    if (!leftWin){
+                    if (!leftWin) {
                         block.hasWinVertical = false;
                         console.log('hasWin to false');
 
@@ -225,7 +225,7 @@ var Grid = function Grid(params) {
                     block.hasWinHorizontal = true;
                     leftWin = true;
                 } else {
-                    if (!upWin){
+                    if (!upWin) {
                         block.hasWin = false;
                     }
 
@@ -320,7 +320,7 @@ var Grid = function Grid(params) {
             self.theoreticalGrid[block.row][newPosition] = block;
         } else if (block.orientation === 'character') {
             if (direction === 'left' || direction === 'right') {
-                for(var i = 0; i < 5; i++) {
+                for (var i = 0; i < 5; i++) {
                     if (block.hasWinHorizontal && self.theoreticalGrid[block.row][i] && self.theoreticalGrid[block.row][i].orientation === 'win') {
 
                         if (direction === 'left' && !block.leftDeath) {
@@ -341,7 +341,7 @@ var Grid = function Grid(params) {
             }
             if (direction === 'up' || direction === 'down') {
 
-                for(var j = 0; j < 9; j++) {
+                for (var j = 0; j < 9; j++) {
                     if (block.hasWinVertical && self.theoreticalGrid[j][block.col] && self.theoreticalGrid[j][block.col].orientation === 'win') {
                         if (direction === 'left' && !block.leftDeath) {
                             winGame();
@@ -386,15 +386,13 @@ var Grid = function Grid(params) {
         gameData.levelSelection[gameData.currentLevel + 1].blocked = false;
 
         //Save in local storage
-        if(typeof(Storage) !== "undefined") {
-            localStorage.setItem('level' + (gameData.currentLevel + 1), {blocked:false});
-            //localStorage['level' + gameData.currentLevel + 1].blocked = false;
-            // Code for localStorage/sessionStorage.
-        } else {
-            // Sorry! No Web Storage support..
+
+        if (typeof(Storage) !== "undefined") {
+            localStorage.setItem('level' + (gameData.currentLevel + 1), {blocked: false});
+            localStorage.setItem('level' + (gameData.currentLevel) + '-stars', gameData.levelSelection[gameData.currentLevel].stars);
+
+
         }
-
-
         //End save in local storage
 
         gameData.steps = 0;
