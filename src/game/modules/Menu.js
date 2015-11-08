@@ -44,9 +44,6 @@ var Menu = function Menu(params) {
             self.soundButton.visible = false;
 
         }
-
-        self.button1animationOut = self.game.add.tween(self.levelButton);
-        self.button2animationOut = self.game.add.tween(self.soundButton);
     };
 
     init();
