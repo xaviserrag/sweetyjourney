@@ -42,7 +42,7 @@ GameSuccess.prototype = {
     },
 
     initStars: function initStars(){
-        var starFrame = gameData.levelSelection[gameData.currentLevel - 1].stars;
+        var starFrame = gameData.levelSelection[gameData.currentLevel - 1].currentStars;
         console.log('starFrame', starFrame);
         var starts = this.game.add.sprite(100,240, 'endStarts', 'stars'+starFrame);
     },

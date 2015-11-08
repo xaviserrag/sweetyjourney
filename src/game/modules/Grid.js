@@ -348,6 +348,16 @@ var Grid = function Grid(params) {
         updateGrid();
     };
 
+    var checkOldStars = function checkOldStars() {
+        if (gameData.steps <= gameData.levelSelection[gameData.currentLevel].minStepsTo3) {
+            gameData.levelSelection[gameData.currentLevel].currentStars = '3';
+        } else if (gameData.steps <= gameData.levelSelection[gameData.currentLevel].minStepsTo2) {
+            gameData.levelSelection[gameData.currentLevel].currentStars = '2';
+        } else {
+            gameData.levelSelection[gameData.currentLevel].currentStars = '1';
+        }
+    };
+
     var checkStars = function checkStars() {
         if (gameData.steps <= gameData.levelSelection[gameData.currentLevel].minStepsTo3 && gameData.levelSelection[gameData.currentLevel].stars < 3) {
             gameData.levelSelection[gameData.currentLevel].stars = '3';
@@ -356,7 +366,6 @@ var Grid = function Grid(params) {
         } else if (gameData.levelSelection[gameData.currentLevel].stars < 1) {
             gameData.levelSelection[gameData.currentLevel].stars = '1';
         }
-        console.log('test', gameData.levelSelection[gameData.currentLevel]);
         gameData.levelSelection[gameData.currentLevel + 1].blocked = false;
         gameData.steps = 0;
     };
@@ -364,6 +373,7 @@ var Grid = function Grid(params) {
     var winGame = function winGame() {
 
         if (!haveBeenFail) {
+            checkOldStars();
             checkStars();
             gameData.currentLevel++;
             self.game.state.start('gameSucces');
