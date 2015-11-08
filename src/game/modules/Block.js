@@ -57,7 +57,6 @@ var Block = function Block(params) {
 
         if (self.orientation === 'win') {
             self.exitDoorIdleAnim = self.animations.add('idle', Phaser.Animation.generateFrameNames('exitdoor', 1, 6, '', 2), 24, true);
-            console.log(Phaser.Animation.generateFrameNames('exitDoor', 1, 6, '', 2));
             self.exitDoorIdleAnim.play();
             self.game.winGameSignal.add(win);
         }

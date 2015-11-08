@@ -79,7 +79,6 @@ var Character = function Character(params) {
             distance = posTo - self.y;
 
             animationUp.play(30);
-            console.log('posTo', possibleMovements.up)
             if (possibleMovements.upDeath) {
                 distance = posTo - deathOffset - self.y;
                 tween = self.game.add.tween(self).to({y: posTo - deathOffset}, Math.abs(distance - deathOffset / deathSpeed), Phaser.Easing.Linear.None);
@@ -114,8 +113,6 @@ var Character = function Character(params) {
             }
 
         } else if (direction === 'right') {
-            console.log('posTo', possibleMovements.right)
-
             posTo = self.x + possibleMovements.right * 180;
             distance = posTo - self.x;
             animationHorizontal.play(30);
