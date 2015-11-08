@@ -80,9 +80,15 @@ SelectLevel.prototype = {
     },
     getLevelInfoFromLocalStorage: function () {
         for (var i = 0; i < gameData.levelSelection.length; i++) {
-            if (localStorage['level'+i]){
-                gameData.levelSelection[i].blocked = localStorage['level'+i].blocked;
-                console.log('eyyy', localStorage['level'+i], gameData.levelSelection[i]);
+
+            if (typeof(Storage) !== "undefined") {
+                if (localStorage['level' + i + '-stars']){
+                    gameData.levelSelection[i].stars = localStorage['level' + i + '-stars'];
+
+                }
+                if (localStorage['level' + i]) {
+                    gameData.levelSelection[i].blocked = localStorage['level' + i].blocked;
+                }
             }
         }
 
