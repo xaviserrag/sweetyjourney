@@ -28,6 +28,11 @@ var Block = function Block(params) {
     this.col = params.col;
     this.row = params.row;
 
+    var win = function win() {
+        setTimeout(function() {
+            self.animations.play('win');
+        }, 300);
+    };
 
     var createBlock = function createBlock() {
         if (type === BLOCKED) {
@@ -44,6 +49,13 @@ var Block = function Block(params) {
 
         }
         params.parent.addChild(self);
+
+
+        if (self.orientation = 'win') {
+            self.animations.add('win', [0,1,2,3,4,5,6], 24, false);
+            self.animations.add('idle', [0,1,2,3,4,5,6], 24, true);
+            self.game.winGameSignal.add(win);
+        }
     };
 
     var initAnimations = function initAnimations() {

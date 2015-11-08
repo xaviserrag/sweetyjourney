@@ -29,6 +29,8 @@ var Grid = function Grid(params) {
         5: 'win'
     };
 
+    this.game.winGameSignal = new Phaser.Signal();
+
     this.theoreticalGrid = [];
 
     var createBlock = function createBlock(col, row, cellPosition) {
@@ -402,12 +404,15 @@ var Grid = function Grid(params) {
     var winGame = function winGame() {
 
         if (!haveBeenFail) {
-            checkCurrentStars();//Check current game stars
-            checkStars();
-            if (gameData.currentLevel <= config.level.length) {
-                gameData.currentLevel++;
-            }
-            self.game.state.start('gameSucces');
+            self.game.winGameSignal.dispatch(function() {
+                checkCurrentStars();//Check current game stars
+                checkStars();
+                if (gameData.currentLevel <= config.level.length) {
+                    gameData.currentLevel++;
+                }
+                self.game.state.start('gameSucces');
+            });
+
 
         }
     };
