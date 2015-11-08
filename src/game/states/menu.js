@@ -1,6 +1,7 @@
 'use strict';
 
 var config = require('../config/main');
+var gameData = require('../gameData/gameData');
 var Tutorial = require('../modules/Tutorial');
 function Menu() {
 }
@@ -11,7 +12,7 @@ Menu.prototype = {
     },
     create: function () {
         var self = this;
-
+        gameData.steps = 0;
         var openInfo = function openInfo() {
             self.tutorial.visible = true;
         };

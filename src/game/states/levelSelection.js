@@ -15,6 +15,7 @@ SelectLevel.prototype = {
         this.initPageManager();
         this.initHeader();
         this.currentPage = 0;
+        gameData.steps = 0;
     },
     initBackgroud: function initBackgroun() {
         this.background = this.game.add.sprite(0, 0, 'bgLevelsSelector');
