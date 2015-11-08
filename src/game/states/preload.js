@@ -30,7 +30,7 @@ Preload.prototype = {
         this.load.image('bgBase', 'assets/images/bg_base.jpg');
         this.load.image('bgLevelsSelector', 'assets/images/bg_levels_selector.jpg');
         this.load.image('tiles', 'assets/tiles/tiles.png');
-        this.load.image('win', 'assets/images/win.png');
+        this.load.image('win', 'assets/images/exitdoor.png');
         this.load.image('blocked', 'assets/images/block.png');
         this.load.image('playButton', 'assets/images/play_button.png');
         this.load.image('muteButton', 'assets/images/mute_button.png');
