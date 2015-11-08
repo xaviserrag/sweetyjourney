@@ -35,7 +35,7 @@ var HistoryBoard = function HistoryBoard(params) {
                 self.menuBg.frameName = 'intro_0' + index
                 index++
             }
-        }, 5000);
+        }, 4000);
         self.closeButton.anchor.set(0.5);
         self.add(self.closeButton);
     };
