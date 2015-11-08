@@ -21,10 +21,11 @@ var Character = function Character(params) {
 
 
     var initAnimations = function initAnimations() {
-        console.log(Phaser.Animation.generateFrameNames('', 0, 10, '', 0));
-        //animationHorizontal = self.animations.add('horizontal', Phaser.Animation.generateFrameNames('', 93, 118, '', 1), 12, true);
-        //animationVertical = self.animations.add('idle', Phaser.Animation.generateFrameNames('', 119, 134, '', 1), 12, true);
+        animationIdle = self.animations.add('idle', Phaser.Animation.generateFrameNames('pj_idle', 1, 92, '', 4), 24, true);
+        animationHorizontal = self.animations.add('moveH', Phaser.Animation.generateFrameNames('pj_idle', 1, 92, '', 4), 24, true);
+        animationVertical = self.animations.add('moveV', Phaser.Animation.generateFrameNames('pj_front', 1, 25, '', 4), 24, true);
 
+        animationIdle.play('idle');
     };
 
     var init = function init() {
@@ -46,6 +47,7 @@ var Character = function Character(params) {
         sounds[random].play();
 
         if (direction === 'up') {
+            animationVertical.play();
             posTo = self.y - (possibleMovements.up * 180);
             distance = posTo - self.y;
             if (possibleMovements.upDeath) {
@@ -57,6 +59,8 @@ var Character = function Character(params) {
 
 
         } else if (direction === 'down') {
+            animationVertical.play();
+
             posTo = self.y + possibleMovements.down * 180;
             distance = posTo - self.y;
             if (possibleMovements.downDeath) {
