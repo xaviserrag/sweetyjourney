@@ -20,8 +20,14 @@ Play.prototype = {
             name: 'Grid'
         });
 
+        var generalGameGroup = self.game.add.group();
+
+        generalGameGroup.add(this.grid);
+
+        var gameMusic = this.game.add.sound('mainSound', 0.1, true);
+        gameMusic.play();
+
         self.buttonInfo = self.game.add.button(30, 1650, 'gameButtons', function () {
-            console.log('lol');
             self.menu.button1animation = this.game.add.tween(self.menu.levelButton);
             self.menu.button2animation = this.game.add.tween(self.menu.muteButton);
             self.menu.button1animation.from({ x: 30, y: 1650 }, 300, Phaser.Easing.Linear.None);
@@ -35,6 +41,8 @@ Play.prototype = {
             self.menu.visible = true;
         }, this, 'pause_off', 'pause_off', 'pause_on')//'pause_off'
 
+        generalGameGroup.add(self.buttonInfo);
+
         this.menu = new Menu({
             x: 0,
             y: 0,
@@ -44,12 +52,18 @@ Play.prototype = {
         });
         this.menu.visible = false;
 
+
         self.replayButton = self.game.add.button(250, 1650, 'gameButtons', function () {
             self.game.state.start('play');
         }, this, 'replay_off', 'replay_off', 'replay_on');//'replay_off'
+        generalGameGroup.add(self.replayButton);
+
+
     },
     shutdown: function () {
         this.grid.destroy();
+        gameMusic.stop();
+
     }
 };
 

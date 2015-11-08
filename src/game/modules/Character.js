@@ -15,9 +15,20 @@ var Character = function Character(params) {
 
     var sounds = [happySound2, happySound3];
 
-    Phaser.Sprite.call(this, params.game, params.x, params.y - yOffset, params.name);
+    var animationIdle, animationHorizontal, animationVertical;
+
+    Phaser.Sprite.call(this, params.game, params.x, params.y - yOffset, params.name, 0);
+
+
+    var initAnimations = function initAnimations() {
+        console.log(Phaser.Animation.generateFrameNames('', 0, 10, '', 0));
+        //animationHorizontal = self.animations.add('horizontal', Phaser.Animation.generateFrameNames('', 93, 118, '', 1), 12, true);
+        //animationVertical = self.animations.add('idle', Phaser.Animation.generateFrameNames('', 119, 134, '', 1), 12, true);
+
+    };
 
     var init = function init() {
+        initAnimations();
         self.orientation = 'character';
         params.parent.addChild(self);
         self.inputEnabled = true;
