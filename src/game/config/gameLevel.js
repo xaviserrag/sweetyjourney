@@ -256,6 +256,23 @@ module.exports = [
     },
     {
         grid: [
+            [1,1,1,0,0],
+            [1,1,0,0,0],
+            [1,0,0,0,0],
+            [0,0,0,5,3],
+            [0,0,0,0,0],
+            [0,0,0,1,0],
+            [0,2,0,0,0],
+            [1,1,3,0,0],
+            [4,0,0,0,0]
+        ],
+        stars: '0',
+        proportionalStepsTo1: 80,
+        minStepsTo3: 7,
+        blocked: true
+    },
+    {
+        grid: [
             [0,0,1,0,0],
             [0,4,2,0,0],
             [0,0,1,0,0],
@@ -354,7 +371,7 @@ module.exports = [
         stars: '0',
         proportionalStepsTo1: 80,
         minStepsTo3: 12,
-        blocked: false
+        blocked: true
     },
     {
         grid: [
@@ -371,7 +388,7 @@ module.exports = [
         stars: '0',
         proportionalStepsTo1: 80,
         minStepsTo3: 5,
-        blocked: false
+        blocked: true
     },
     {
         grid: [
@@ -388,7 +405,7 @@ module.exports = [
         stars: '0',
         proportionalStepsTo1: 80,
         minStepsTo3: 7,
-        blocked: false
+        blocked: true
     },
     {
         grid: [
@@ -405,6 +422,40 @@ module.exports = [
         stars: '0',
         proportionalStepsTo1: 80,
         minStepsTo3: 7,
-        blocked: false
+        blocked: true
+    },
+    {
+        grid: [
+            [4,0,0,0,0],
+            [0,0,5,0,0],
+            [0,0,0,0,1],
+            [0,1,0,0,0],
+            [0,0,0,0,0],
+            [1,0,0,1,0],
+            [2,0,0,1,1],
+            [1,1,3,2,1],
+            [1,1,3,1,1]
+        ],
+        stars: '0',
+        proportionalStepsTo1: 80,
+        minStepsTo3: 8,
+        blocked: true
+    },
+    {
+        grid: [
+            [4,3,0,0,0],
+            [0,0,0,0,1],
+            [0,0,0,0,3],
+            [0,0,5,0,0],
+            [0,0,0,1,0],
+            [0,0,0,0,0],
+            [0,0,2,0,0],
+            [0,0,0,0,0],
+            [1,0,0,0,1]
+        ],
+        stars: '0',
+        proportionalStepsTo1: 80,
+        minStepsTo3: 7,
+        blocked: true
     }
 ];
