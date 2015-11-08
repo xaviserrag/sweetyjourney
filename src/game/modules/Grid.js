@@ -335,8 +335,10 @@ var Grid = function Grid(params) {
                 }
 
                 newPosition = block.col + Math.floor(distance / 180);
-                block.col = newPosition;
-                self.theoreticalGrid[block.row][newPosition] = block;
+                if(newPosition >= 0) {
+                    block.col = newPosition;
+                    self.theoreticalGrid[block.row][newPosition] = block;
+                }
             }
             if (direction === 'up' || direction === 'down') {
 
@@ -354,11 +356,11 @@ var Grid = function Grid(params) {
                     }
                 }
 
-
                 newPosition = block.row + Math.floor(distance / 180);
-
-                block.row = newPosition;
-                self.theoreticalGrid[newPosition][block.col] = block;
+                if(newPosition >= 0) {
+                    block.row = newPosition;
+                    self.theoreticalGrid[newPosition][block.col] = block;
+                }
             }
         }
         updateGrid();
