@@ -29,7 +29,6 @@ Play.prototype = {
         generalGameGroup.add(this.grid);
 
         this.gameMusic = this.game.add.sound('mainSound', 0.1, true);
-        this.gameMusic.play();
 
         self.buttonInfo = self.game.add.button(30, 1650, 'gameButtons', function () {
             self.menu.button1animation = this.game.add.tween(self.menu.levelButton);
@@ -101,9 +100,14 @@ Play.prototype = {
                     name: 'storyBoard',
                     callback: function(){
                         self.tutorial.visible = true;
+                        self.gameMusic.fadeOut(1);
+                        self.gameMusic.play();
+                        self.gameMusic.fadeTo(1000, 0.1);
                     }
                 });
+
             }else{
+                this.gameMusic.play();
                 this.tutorial.visible = true;
             }
 

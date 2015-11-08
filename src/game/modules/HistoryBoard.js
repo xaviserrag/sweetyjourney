@@ -13,17 +13,22 @@ var HistoryBoard = function HistoryBoard(params) {
         self.closeButton = self.game.add.button(940, 1750, 'intro', function(){
             self.visible = false;
             clearInterval(changer);
+            self.historyMusic.fadeOut(500);
             params.callback();
 
         }, self, 'next_off', 'next_off', 'next_on');
 
         self.game.add.tween(self.closeButton.scale)
             .to({x: 0.8, y: 0.8}, 1450, Phaser.Easing.Cubic.InOut, true, 0, -1, true);
+        self.historyMusic = self.game.add.sound('historySound', 0.1, true);
+        self.historyMusic.fadeIn(1000);
         var index = 2
         var changer = setInterval(function(){
+
             if(index === 5){
                 self.visible = false;
                 self.menuBg.inputEnabled = false;
+                self.historyMusic.stop();
                 params.callback();
                 clearInterval(changer);
             } else {
