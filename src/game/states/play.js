@@ -15,8 +15,8 @@ Play.prototype = {
         var self = this;
 
         var setBackground = function setBackground() {
-            var interval = 9;
-            self.bgBase = self.game.add.sprite(0, 0, 'bgBase' + Math.round((gameData.currentLevel + 1)/interval + 1));
+            var interval = 10;
+            self.bgBase = self.game.add.sprite(0, 0, 'bgBase' + Math.floor((gameData.currentLevel + 1)/interval + 1));
         };
 
         this.game.world.setBounds(0, 0, 2000, 2000);
