@@ -34,7 +34,7 @@ var Grid = function Grid(params) {
 
     this.theoreticalGrid = [];
 
-    var createBlock = function createBlock(col, row, cellPosition) {
+    var createBlock = function createBlock(col, row) {
         var type = types[config.level[gameData.currentLevel].grid[row][col]];
 
         if (type === 'empty') {
@@ -249,7 +249,7 @@ var Grid = function Grid(params) {
 
                 } else {
                     if (!upWin) {
-                        block.hasWin = false;
+                        block.hasWinHorizontal = false;
                     }
 
                     leftDeath = false;
