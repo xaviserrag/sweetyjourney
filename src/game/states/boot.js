@@ -11,9 +11,11 @@ Boot.prototype = {
         this.load.image('loadTitle', 'assets/images/loading_title.png');
     },
     create: function () {
-        this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         this.game.scale.pageAlignVertically = true;
         this.game.scale.pageAlignHorizontally = true;
+
+
         this.game.state.start('preload');
     }
 };

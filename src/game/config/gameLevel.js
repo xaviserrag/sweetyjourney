@@ -1,4 +1,5 @@
 module.exports = [
+//1
     {
         grid: [
             [0,0,0,0,0],
@@ -16,6 +17,7 @@ module.exports = [
         minStepsTo3: 1,
         blocked: false
     },
+    //2
     {
         grid: [
             [0,0,0,0,0],
@@ -33,6 +35,25 @@ module.exports = [
         minStepsTo3: 2,
         blocked: true
     },
+    //3
+    {
+        grid: [
+            [0,4,0,0,0],
+            [0,0,0,0,0],
+            [0,0,0,0,0],
+            [0,0,0,1,1],
+            [0,0,0,0,5],
+            [0,0,0,0,0],
+            [0,0,0,0,1],
+            [0,1,0,0,0],
+            [0,0,0,0,0]
+        ],
+        stars: '0',
+        proportionalStepsTo1: 80,
+        minStepsTo3: 3,
+        blocked: true
+    },
+    //4
     {
         grid: [
             [0,0,0,0,0],
@@ -50,6 +71,7 @@ module.exports = [
         minStepsTo3: 3,
         blocked: true
     },
+    //5
     {
         grid: [
             [0,0,0,0,0],
@@ -67,6 +89,25 @@ module.exports = [
         minStepsTo3: 2,
         blocked: true
     },
+    //6
+    {
+        grid: [
+            [1,0,0,0,0],
+            [0,0,0,0,0],
+            [0,0,0,0,0],
+            [0,0,5,0,0],
+            [0,1,1,1,0],
+            [0,0,0,0,0],
+            [0,0,0,0,0],
+            [0,0,0,0,0],
+            [4,0,0,0,3]
+        ],
+        stars: '0',
+        proportionalStepsTo1: 80,
+        minStepsTo3: 5,
+        blocked: true
+    },
+    //7
     {
         grid: [
             [0,0,0,5,0],
@@ -84,6 +125,7 @@ module.exports = [
         minStepsTo3: 8,
         blocked: true
     },
+    //8
     {
         grid: [
             [1,0,0,0,3],

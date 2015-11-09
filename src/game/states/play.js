@@ -73,7 +73,7 @@ Play.prototype = {
         });
         this.menu.visible = false;
 
-        if (gameData.currentLevel === 0 || gameData.currentLevel === 1 ||gameData.currentLevel === 2 ||gameData.currentLevel === 5) {
+        if (gameData.currentLevel === 0 || gameData.currentLevel === 1 ||gameData.currentLevel === 3 ||gameData.currentLevel === 5) {
             var page = 'tutorial_01';
 
             if (gameData.currentLevel === 0) {
@@ -82,7 +82,7 @@ Play.prototype = {
             else if (gameData.currentLevel === 1) {
                 page = 'tutorial_04';
             }
-            else if (gameData.currentLevel === 2) {
+            else if (gameData.currentLevel === 3) {
                 page = 'tutorial_02';
             }
             else if (gameData.currentLevel === 5) {
