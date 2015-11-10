@@ -1,0 +1,52 @@
+{"frames": {
+
+"level_buttons_0":
+{
+	"frame": {"x":1,"y":1,"w":280,"h":280},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":280,"h":280},
+	"sourceSize": {"w":280,"h":280}
+},
+"level_buttons_1":
+{
+	"frame": {"x":283,"y":1,"w":280,"h":280},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":280,"h":280},
+	"sourceSize": {"w":280,"h":280}
+},
+"level_buttons_2":
+{
+	"frame": {"x":565,"y":1,"w":280,"h":280},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":280,"h":280},
+	"sourceSize": {"w":280,"h":280}
+},
+"level_buttons_3":
+{
+	"frame": {"x":1,"y":283,"w":280,"h":280},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":280,"h":280},
+	"sourceSize": {"w":280,"h":280}
+},
+"level_buttons_blocked":
+{
+	"frame": {"x":283,"y":283,"w":280,"h":280},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":280,"h":280},
+	"sourceSize": {"w":280,"h":280}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "level_buttons",
+	"format": "RGBA8888",
+	"size": {"w":846,"h":564},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:66afe4bce9bb77be0ef74430fa7ffc88:d77f7bf131a8e63ca83cb399a12e307b:ada3459455a76e183f6f392e739b5ca8$"
+}
+}
