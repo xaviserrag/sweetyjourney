@@ -18,6 +18,8 @@ var Character = function Character(params) {
     var currentHappySound;
     var animationIdle, animationHorizontal, animationDown, animationUp;
 
+    this.canMove = true;
+
     Phaser.Sprite.call(this, params.game, params.x, params.y - yOffset, params.name, 0);
 
     var winTween = this.game.add.tween(this)
@@ -70,6 +72,8 @@ var Character = function Character(params) {
             posTo = 0,
             distance = 0,
             hasDeadTween = false;
+
+        self.canMove = false;
 
         var random = self.game.rnd.integerInRange(0, 1);
         sounds[random].play();
@@ -146,6 +150,7 @@ var Character = function Character(params) {
 
         if (Math.abs(distance) > 0) {
             tween.onComplete.add(function () {
+                self.canMove = true;
                 params.callback(self, distance, direction);
             });
             tween.start();
@@ -210,7 +215,7 @@ var Character = function Character(params) {
     };
 
     listenSwipe(function (direction) {
-        move(direction);
+        self.canMove && move(direction);
     });
 
     init();
