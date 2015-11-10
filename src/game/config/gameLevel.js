@@ -532,6 +532,40 @@ module.exports = [
         stars: '0',
         proportionalStepsTo1: 80,
         minStepsTo3: 8,
-        blocked: false
+        blocked: true
+    },
+    {
+        grid: [
+            [0,0,0,0,2],
+            [0,0,0,0,0],
+            [0,0,0,0,0],
+            [0,1,0,0,0],
+            [0,0,5,0,0],
+            [0,0,0,0,0],
+            [0,0,1,0,2],
+            [2,0,0,0,2],
+            [4,1,1,1,3]
+        ],
+        stars: '0',
+        proportionalStepsTo1: 80,
+        minStepsTo3: 14,
+        blocked: true
+    },
+    {
+        grid: [
+            [3,0,0,0,2],
+            [0,0,0,0,2],
+            [0,0,0,0,1],
+            [0,0,0,0,0],
+            [0,0,0,0,0],
+            [0,0,0,0,0],
+            [0,0,0,0,0],
+            [0,0,5,0,0],
+            [0,0,0,0,4]
+        ],
+        stars: '0',
+        proportionalStepsTo1: 80,
+        minStepsTo3: 13,
+        blocked: true
     }
 ];
