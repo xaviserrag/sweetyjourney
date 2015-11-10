@@ -154,6 +154,8 @@ var Character = function Character(params) {
                 params.callback(self, distance, direction);
             });
             tween.start();
+        } else {
+            self.canMove = true;
         }
         gameData.steps++;
     };
