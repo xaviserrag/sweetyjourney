@@ -13,7 +13,7 @@ Play.prototype = {
     create: function () {
 
         var self = this;
-
+        gameData.steps = 0;
         var setBackground = function setBackground() {
             var interval = 10;
             self.bgBase = self.game.add.sprite(0, 0, 'bgBase' + Math.floor((gameData.currentLevel + 1)/interval + 1));
