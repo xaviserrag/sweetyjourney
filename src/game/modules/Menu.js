@@ -2,7 +2,7 @@
 var config = require('../config/main');
 
 var Menu = function Menu(params) {
-    Phaser.Group.call(this, params.game, params.x, params.y, params.name);
+    Phaser.Group.call(this, params.game, params.game.world, params.name);
     var self = this;
     var init = function init() {
         self.buttonStarter = params.buttonStarter;
