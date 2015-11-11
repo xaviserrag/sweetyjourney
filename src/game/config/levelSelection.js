@@ -11,8 +11,8 @@ module.exports = {
         width: 280,
         height: 280,
         text: {
-            x: 165,
-            y: 115,
+            x: 145,
+            y: 110,
             anchorX: 0.5,
             anchorY: 0.5
 

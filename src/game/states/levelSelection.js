@@ -36,7 +36,7 @@ SelectLevel.prototype = {
         this.homeButton = this.game.add.button(10, 4, 'homeButton', this.goHome, this, 'home_off', 'home_off', 'home_on', 'home_off');
         var style = {font: "120px creamreg", fill: "#ffffff", wordWrap: true};
         var myPuntuationData = this.calculatePuntuation();
-        this.stars = this.game.add.text(880, 30, myPuntuationData.puntuation + '/' + myPuntuationData.global, style);
+        this.stars = this.game.add.text(850, 30, myPuntuationData.puntuation + '/' + myPuntuationData.global, style);
         this.stars.setShadow(3, 3, 'rgba(0,0,0,1)', 5);
         this.stars.anchor.x = 1;
     },
