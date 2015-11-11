@@ -19,6 +19,10 @@ Play.prototype = {
             self.bgBase = self.game.add.sprite(0, 0, 'bgBase' + Math.floor((gameData.currentLevel + 1)/interval + 1));
         };
 
+        var isLevelWithTutorial = function isLevelWithTutorial(){
+            return gameData.currentLevel === 0 || gameData.currentLevel === 1 || gameData.currentLevel === 3 || gameData.currentLevel === 5;
+        }
+
         this.game.world.setBounds(0, 0, 2000, 2000);
         setBackground();
         this.game.events.onShutdown = new Phaser.Signal();
@@ -49,6 +53,7 @@ Play.prototype = {
             self.buttonInfo.inputEnabled = false;
             self.menu.buttonInfo.visible = true;
             self.menu.buttonInfo.inputEnabled = true;
+            self.game.world.bringToTop(self.menu);
             self.replayButton.inputEnabled = false;
             self.menu.visible = true;
         }, this, 'pause_off', 'pause_off', 'pause_on')//'pause_off'
@@ -68,12 +73,14 @@ Play.prototype = {
             y: 0,
             game: this.game,
             name: 'Menu',
+            parent: this,
             buttonStarter: self.buttonInfo,
             replayButton: self.replayButton
         });
         this.menu.visible = false;
+        this.menu.inputEnabled = false;
 
-        if (gameData.currentLevel === 0 || gameData.currentLevel === 1 ||gameData.currentLevel === 3 ||gameData.currentLevel === 5) {
+        if (isLevelWithTutorial()) {
             var page = 'tutorial_01';
 
             if (gameData.currentLevel === 0) {
@@ -120,6 +127,8 @@ Play.prototype = {
                 this.tutorial.visible = true;
             }
 
+        } else {
+            this.gameMusic.play();
         }
     },
     shutdown: function () {
