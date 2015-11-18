@@ -6,11 +6,24 @@ var HistoryBoard = function HistoryBoard(params) {
     var self = this;
 
     var init = function init() {
-        self.menuBg = self.game.add.sprite(0,0,'intro', 'intro_01');
-        self.menuBg.inputEnabled = true;
-        self.add(self.menuBg);
+        self.menuBg = [
+            self.game.add.sprite(0,0,'intro1'),
+            self.game.add.sprite(0,0,'intro2'),
+            self.game.add.sprite(0,0,'intro3'),
+            self.game.add.sprite(0,0,'intro4')
+        ];
 
-        self.closeButton = self.game.add.button(940, 1750, 'intro', function(){
+
+        self.menuBg.forEach(function(item) {
+            item.visible = false;
+            item.inputEnabled = true;
+            self.add(item);
+        });
+
+        self.menuBg[0].visible = true;
+
+
+        self.closeButton = self.game.add.button(940, 1750, 'endButtons', function(){
             self.visible = false;
             clearInterval(changer);
             self.historyMusic.fadeOut(500);
@@ -22,19 +35,24 @@ var HistoryBoard = function HistoryBoard(params) {
             .to({x: 0.8, y: 0.8}, 1450, Phaser.Easing.Cubic.InOut, true, 0, -1, true);
         self.historyMusic = self.game.add.sound('historySound', 0.1, true);
         self.historyMusic.fadeIn(1000);
-        var index = 2
+        var index = 1;
         var changer = setInterval(function(){
-
-            if(index === 5){
+            if(index === 4){
                 self.visible = false;
+                self.menuBg.forEach(function(item) {
+                    item.inputEnabled = false;
+                });
                 self.menuBg.inputEnabled = false;
                 self.historyMusic.stop();
                 params.callback();
                 clearInterval(changer);
             } else {
-                self.menuBg.frameName = 'intro_0' + index
-                index++
+                self.menuBg.forEach(function(item, frame) {
+                    item.visible = index === frame;
+                });
             }
+            index++;
+
         }, 4000);
         self.closeButton.anchor.set(0.5);
         self.add(self.closeButton);

@@ -55,6 +55,10 @@ Preload.prototype = {
         this.load.image('backgroundWin', 'assets/images/bg_win.jpg');
         this.load.image('bgHome', 'assets/images/bg_home_game.jpg');
         this.load.image('titleGame', 'assets/images/game_title.png');
+        this.load.image('intro1', 'assets/images/intro01.jpg');
+        this.load.image('intro2', 'assets/images/intro02.jpg');
+        this.load.image('intro3', 'assets/images/intro03.jpg');
+        this.load.image('intro4', 'assets/images/intro04.jpg');
         this.load.atlasJSONHash('win', 'assets/images/exitdoor_anim.png', 'assets/images/exitdoor_anim.json');
         this.load.atlasJSONHash('character', 'assets/images/pj_anim.png', 'assets/images/pj_anim.json');
         this.load.atlasJSONHash('vertical', 'assets/images/block_ver.png', 'assets/images/block_ver.json');
@@ -69,7 +73,6 @@ Preload.prototype = {
         this.load.atlasJSONArray('loseAnim', 'assets/images/lose_anim.png', 'assets/images/lose_anim.json');
         this.load.atlasJSONArray('winAnim', 'assets/images/win_anim.png', 'assets/images/win_anim.json');
         this.load.atlasJSONHash('tutorial', 'assets/images/tutorial.png', 'assets/images/tutorial.json');
-        this.load.atlasJSONHash('intro', 'assets/images/intro.png', 'assets/images/intro.json');
 
     },
     create: function () {
