@@ -1,0 +1,120 @@
+{"frames": [
+
+{
+	"filename": "exitdoor01",
+	"frame": {"x":487,"y":1,"w":160,"h":154},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":10,"y":92,"w":160,"h":154},
+	"sourceSize": {"w":180,"h":260},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "exitdoor02",
+	"frame": {"x":649,"y":1,"w":160,"h":154},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":10,"y":92,"w":160,"h":154},
+	"sourceSize": {"w":180,"h":260},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "exitdoor03",
+	"frame": {"x":811,"y":1,"w":160,"h":154},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":10,"y":92,"w":160,"h":154},
+	"sourceSize": {"w":180,"h":260},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "exitdoor04",
+	"frame": {"x":973,"y":1,"w":160,"h":154},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":10,"y":92,"w":160,"h":154},
+	"sourceSize": {"w":180,"h":260},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "exitdoor05",
+	"frame": {"x":1135,"y":1,"w":160,"h":154},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":10,"y":92,"w":160,"h":154},
+	"sourceSize": {"w":180,"h":260},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "exitdoor06",
+	"frame": {"x":1297,"y":1,"w":160,"h":154},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":10,"y":92,"w":160,"h":154},
+	"sourceSize": {"w":180,"h":260},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "exitdoor07",
+	"frame": {"x":1459,"y":1,"w":160,"h":110},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":10,"y":102,"w":160,"h":110},
+	"sourceSize": {"w":180,"h":240},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "exitdoor08",
+	"frame": {"x":163,"y":1,"w":160,"h":197},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":10,"y":15,"w":160,"h":197},
+	"sourceSize": {"w":180,"h":240},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "exitdoor09",
+	"frame": {"x":1,"y":1,"w":160,"h":211},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":10,"y":1,"w":160,"h":211},
+	"sourceSize": {"w":180,"h":240},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "exitdoor10",
+	"frame": {"x":325,"y":1,"w":160,"h":157},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":10,"y":55,"w":160,"h":157},
+	"sourceSize": {"w":180,"h":240},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "exitdoor11",
+	"frame": {"x":1459,"y":113,"w":160,"h":110},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":10,"y":102,"w":160,"h":110},
+	"sourceSize": {"w":180,"h":240},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "exitdoor12",
+	"frame": {"x":487,"y":157,"w":160,"h":76},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":10,"y":136,"w":160,"h":76},
+	"sourceSize": {"w":180,"h":240},
+	"pivot": {"x":0.5,"y":0.5}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "exitdoor_anim",
+	"format": "RGBA8888",
+	"size": {"w":1620,"h":234},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:fe09e71182877caf6a2a2faeaf3529e3:314f7de163fe2ae894b64e4b285dc3b0:17a9b649835096b9b68425fb887ca1c4$"
+}
+}

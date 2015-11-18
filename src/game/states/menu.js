@@ -19,6 +19,7 @@ Menu.prototype = {
             self.tutorial.visible = true;
         };
 
+
         var initButtonInfo = function initButtonInfo() {
             self.buttonInfo = self.game.add.button(120, 1800, 'homeButtons', function(){
                 openInfo();
@@ -38,7 +39,6 @@ Menu.prototype = {
         };
 
         var initPlay = function initPlay() {
-            self.playButton = self.game.add.button(self.game.width /2, self.game.height / 2 - 140, 'homeButtons', self.start, self, 'big_play_off', 'big_play_off', 'big_play_on');
             self.playButton.anchor.set(0.5);
             self.playButton.scale.set(0.5);
             self.playButton.alpha = 0;
@@ -89,6 +89,11 @@ Menu.prototype = {
         };
 
         this.initBackground();
+
+
+        self.playButton = self.game.add.button(self.game.width /2, self.game.height / 2 - 140, 'homeButtons', self.start, self, 'big_play_off', 'big_play_off', 'big_play_on');
+        self.playButton.alpha = 0;
+
         setTimeout(initPlay, 450);
         setTimeout(initButtonInfo, 500);
         setTimeout(initSound, 750);
