@@ -2231,7 +2231,7 @@ Menu.prototype = {
         };
 
         var initPlay = function initPlay() {
-            self.playButton = self.game.add.button(self.game.width /2, self.game.height / 2 - 200, 'homeButtons', self.start, self, 'big_play_off', 'big_play_off', 'big_play_on');
+            self.playButton = self.game.add.button(self.game.width /2, self.game.height / 2 - 140, 'homeButtons', self.start, self, 'big_play_off', 'big_play_off', 'big_play_on');
             self.playButton.anchor.set(0.5);
             self.playButton.scale.set(0.5);
             self.playButton.alpha = 0;
@@ -2286,7 +2286,7 @@ Menu.prototype = {
         setTimeout(initButtonInfo, 500);
         setTimeout(initSound, 750);
         this.initHappyFlan();
-        this.title = this.game.add.sprite(this.game.width/2, 300, 'titleGame');
+        this.title = this.game.add.sprite(this.game.width/2, 360, 'titleGame');
         this.title.anchor.set(0.5);
         this.title.scale.set(0.2);
         this.title.alpha = 0;
