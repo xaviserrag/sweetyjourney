@@ -1,3 +1,4 @@
+var sounds = require('./sounds');
 var menuConfig = require('./menu');
 var blockConfig = require('./block');
 var levelSelectionConfig = require('./levelSelection');
@@ -9,5 +10,6 @@ module.exports = {
     level: gameLevel,
     menu: menuConfig,
     levelSelection: levelSelectionConfig,
-    block: blockConfig
+    block: blockConfig,
+    sounds: sounds
 };
