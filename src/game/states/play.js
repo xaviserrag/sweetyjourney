@@ -5,6 +5,8 @@ var Menu = require('../modules/Menu');
 var Tutorial = require('../modules/Tutorial');
 var HistoryBoard = require('../modules/HistoryBoard');
 var gameData = require('../gameData/gameData');
+//TODO: Use Alias
+var SoundManager = require('../device/web/soundmanager/SoundManager');
 
 function Play() {
 }
@@ -37,7 +39,8 @@ Play.prototype = {
 
         generalGameGroup.add(this.grid);
 
-        this.gameMusic = this.game.add.sound('mainSound', 0.1, true);
+        //this.gameMusic = this.game.add.sound('mainSound', 0.1, true);
+        SoundManager.addSound(this.game, 'mainSound', 0.1, true);
 
         self.buttonInfo = self.game.add.button(30, 1650, 'gameButtons', function () {
             self.menu.button1animation = this.game.add.tween(self.menu.levelButton);
@@ -116,24 +119,30 @@ Play.prototype = {
                     name: 'storyBoard',
                     callback: function(){
                         self.tutorial.visible = true;
-                        self.gameMusic.fadeOut(1);
+                        SoundManager.fadeOut('mainSound', 1);
+                        SoundManager.play('mainSound');
+                        SoundManager.fadeTo('mainSound', 1000, 0.1);
+                        /*self.gameMusic.fadeOut(1);
                         self.gameMusic.play();
-                        self.gameMusic.fadeTo(1000, 0.1);
+                        self.gameMusic.fadeTo(1000, 0.1);*/
                     }
                 });
 
             }else{
-                this.gameMusic.play();
+                SoundManager.play('mainSound');
+                //this.gameMusic.play();
                 this.tutorial.visible = true;
             }
 
         } else {
-            this.gameMusic.play();
+            SoundManager.play('mainSound');
+            //this.gameMusic.play();
         }
     },
     shutdown: function () {
         this.grid.destroy();
-        this.gameMusic.stop();
+        SoundManager.stop('mainSound');
+        //this.gameMusic.stop();
         this.game.events.onShutdown.dispatch();
 
     }

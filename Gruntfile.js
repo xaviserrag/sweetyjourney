@@ -21,7 +21,8 @@ module.exports = function (grunt) {
                     {expand: true, cwd: 'src', src: ['assets/**', '!assets/styles/**'], dest: 'build'},
                     {expand: true, flatten: true, src: ['src/assets/styles/*.css'], dest: 'build/css'},
                     {expand: true, cwd: 'src', src: ['plugins/**'], dest: 'build/js'},
-                    {expand: true, cwd: 'src', src: ['game/device/web/html/index.html'], dest: 'build'},
+                    //TODO:Add alias
+                    {expand: true, cwd: 'src/game/device/web/html', src: ['index.html'], dest: 'build'},
                     {expand: true, flatten: true, src: ['node_modules/phaser/build/phaser.js'], dest: 'build/js'}
                 ]
             }
