@@ -1,5 +1,6 @@
 'use strict';
 var config = require('../config/main');
+var SoundManager = require('../device/web/soundmanager/SoundManager');
 
 var Menu = function Menu(params) {
     Phaser.Group.call(this, params.game, params.game.world, params.name);
@@ -10,7 +11,8 @@ var Menu = function Menu(params) {
         self.menuBg.inputEnabled = true;
         self.add(self.menuBg);
         self.soundButton = self.game.add.button(30, 1150, 'gameButtons', function () {
-            self.game.sound.mute = true;
+            SoundManager.mute(self.game , true);
+            //self.game.sound.mute = true;
             self.soundButton.visible = false;
             self.muteButton.visible = true;
         }, this, 'sound_enabled_off', 'sound_enabled_off', 'sound_enabled_on', 'sound_enabled_off');
@@ -34,7 +36,8 @@ var Menu = function Menu(params) {
         self.add(self.levelButton);
 
         self.muteButton = self.game.add.button(30, 1150, 'gameButtons', function () {
-            self.game.sound.mute = false;
+            SoundManager.mute(self.game , false);
+            //self.game.sound.mute = false;
             self.soundButton.visible = true;
             self.muteButton.visible = false;
         }, this, 'sound_disabled_off', 'sound_disabled_off', 'sound_disabled_on', 'sound_disabled_off');//'gameButtons', 'sound_disabled_off'

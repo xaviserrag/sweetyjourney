@@ -3,9 +3,16 @@
 function SoundManager() {
     var sounds = {};
 
+    this.mute = function mute(game, mute) {
+        console.log('Mute', mute);
+        game.sound.mute = mute;
+    };
+
     this.addSound = function addSound(game, soundName, volume, isLoop) {
-        console.log('Adding Sound', soundName);
-        sounds[soundName] = game.add.audio(soundName, volume, isLoop);
+        if (!soundName[soundName]) {
+            console.log('Adding Sound', soundName);
+            sounds[soundName] = game.add.audio(soundName, volume, isLoop);
+        }
     };
 
     this.play = function play(soundName) {

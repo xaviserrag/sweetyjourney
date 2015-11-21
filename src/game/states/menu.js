@@ -3,6 +3,7 @@
 var config = require('../config/main');
 var gameData = require('../gameData/gameData');
 var Tutorial = require('../modules/Tutorial');
+var SoundManager = require('../device/web/soundmanager/SoundManager');
 function Menu() {
 }
 
@@ -13,8 +14,10 @@ Menu.prototype = {
     create: function () {
         var self = this;
         gameData.steps = 0;
-        this.loopSound = this.game.add.audio('openSound', 0.1, true);
-        this.loopSound.play();
+        //this.loopSound = this.game.add.audio('openSound', 0.1, true);
+        //this.loopSound.play();
+        SoundManager.addSound(this.game, 'openSound', 0.1, true);
+        SoundManager.play('openSound');
         var openInfo = function openInfo() {
             self.tutorial.visible = true;
         };
@@ -52,7 +55,8 @@ Menu.prototype = {
 
         var initSound = function initSound() {
             self.soundButton = self.game.add.button(self.game.width - 120, 1800, 'gameButtons', function () {
-                self.game.sound.mute = true;
+                SoundManager.mute(self.game , true);
+                //self.game.sound.mute = true;
                 self.soundButton.visible = false;
                 self.muteButton.visible = true;
 
@@ -69,7 +73,8 @@ Menu.prototype = {
                 .to({alpha: 1}, 800, Phaser.Easing.Cubic.InOut, true);
 
             self.muteButton = self.game.add.button(self.game.width - 120, 1800, 'gameButtons', function () {
-                self.game.sound.mute = false;
+                //self.game.sound.mute = false;
+                SoundManager.mute(self.game , false);
                 self.soundButton.visible = true;
                 self.muteButton.visible = false;
             }, self, 'sound_disabled_off', 'sound_disabled_off', 'sound_disabled_on', 'sound_disabled_off');//'gameButtons', 'sound_disabled_off'
@@ -135,7 +140,8 @@ Menu.prototype = {
     },
 
     start: function () {
-        this.loopSound.stop();
+        SoundManager.stop('openSound')
+        //this.loopSound.stop();
         this.game.state.start('levelSelection');
     }
 };

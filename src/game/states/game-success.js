@@ -2,6 +2,7 @@
 
 var config = require('../config/main');
 var gameData = require('../gameData/gameData');
+var SoundManager = require('../device/web/soundmanager/SoundManager');
 function GameSuccess() {
 }
 
@@ -83,24 +84,27 @@ GameSuccess.prototype = {
     initStars: function initStars() {
         var starFrame = gameData.levelSelection[gameData.currentLevel - 1].currentStars;
         var stars = this.game.add.sprite(100, 240, 'endStarts', 'stars0');
-        var starSound = this.game.add.audio('starSound', 0.6);
+        //var starSound = this.game.add.audio('starSound', 0.6);
+
+        SoundManager.addSound(this.game, 'starSound', 0.6);
 
         if (starFrame > 0) {
             setTimeout(function () {
                 stars.frameName = 'stars1';
-                starSound.play();
+                SoundManager.play('starSound');
+                //starSound.play();
             }, 500);
         }
         if (starFrame > 1) {
             setTimeout(function () {
                 stars.frameName = 'stars2';
-                starSound.play();
+                SoundManager.play('starSound');
             }, 1000);
         }
         if (starFrame > 2) {
             setTimeout(function () {
                 stars.frameName = 'stars3';
-                starSound.play();
+                SoundManager.play('starSound');
             }, 1500);
         }
 
