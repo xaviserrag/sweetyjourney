@@ -1,6 +1,7 @@
 'use strict';
 var gameData = require('../gameData/gameData');
 var config = require('../config/main');
+var SoundManager = require('../device/web/soundmanager/SoundManager');
 var Block = function Block(params) {
     //VARS
     var self = this,
@@ -22,7 +23,8 @@ var Block = function Block(params) {
 
     var intervalCustom;
 
-    var angrySound = params.game.add.audio('angrySound', 0.6);
+    SoundManager.addSound(params.game, 'angrySound', 0.6);
+    //var angrySound = params.game.add.audio('angrySound', 0.6);
     //public
     this.orientation = type;
     this.col = params.col;
@@ -79,7 +81,8 @@ var Block = function Block(params) {
             self.input.allowVerticalDrag = false;
             self.events.onDragStop.add(onDragStop, this);
             self.events.onDragStart.add(function () {
-                angrySound.play();
+                SoundManager.play('angrySound');
+                //angrySound.play();
                 animationMove.play();
             }, this);
         } else if (type === VERTICAL_BLOCK) {
@@ -88,7 +91,8 @@ var Block = function Block(params) {
             self.events.onDragStop.add(onDragStop, this);
             self.events.onDragStart.add(function () {
                 animationMove.play();
-                angrySound.play();
+                SoundManager.play('angrySound');
+                //angrySound.play();
             }, this);
 
         }

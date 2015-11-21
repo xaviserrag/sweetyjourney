@@ -4,6 +4,7 @@ var config = require('../config/main');
 var gameData = require('../gameData/gameData');
 var Block = require('./Block');
 var Character = require('./Character');
+var SoundManager = require('../device/web/soundmanager/SoundManager');
 
 
 var Grid = function Grid(params) {
@@ -439,8 +440,11 @@ var Grid = function Grid(params) {
 
     var winGame = function winGame() {
         if (!haveBeenFail) {
-            var win = self.game.add.audio('win', 0.6);
-            win.play();
+            //var win = self.game.add.audio('win', 0.6);
+            SoundManager.addSound(self.game, 'win', 0.6);
+            SoundManager.play('win');
+
+            //win.play();
             self.game.winGameSignal.dispatch(function() {
                 checkCurrentStars();//Check current game stars
                 checkStars();

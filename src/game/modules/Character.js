@@ -1,5 +1,6 @@
 'use strict';
 var gameData = require('../gameData/gameData');
+var SoundManager = require('../device/web/soundmanager/SoundManager');
 var Character = function Character(params) {
 
     var self = this,
@@ -10,11 +11,15 @@ var Character = function Character(params) {
 
     var possibleMovements;
 
-    var happySound2 = params.game.add.audio('happySound2', 0.6);
-    var happySound3 = params.game.add.audio('happySound3', 0.6);
+    //var happySound2 = params.game.add.audio('happySound2', 0.6);
+    //var happySound3 = params.game.add.audio('happySound3', 0.6);
 
-    var sounds = [happySound2, happySound3];
-    var dieSound = params.game.add.audio('dieSound', 0.6);
+    SoundManager.addSound(params.game, 'happySound2', 0.6);
+    SoundManager.addSound(params.game, 'happySound3', 0.6);
+
+    //var sounds = [happySound2, happySound3];
+    SoundManager.addSound(params.game, 'dieSound', 0.6);
+    //var dieSound = params.game.add.audio('dieSound', 0.6);
     var currentHappySound;
     var animationIdle, animationHorizontal, animationDown, animationUp;
 
@@ -76,8 +81,15 @@ var Character = function Character(params) {
         self.canMove = false;
 
         var random = self.game.rnd.integerInRange(0, 1);
-        sounds[random].play();
-        currentHappySound = sounds[random];
+        if (random == 0){
+            SoundManager.play('happySound2');
+            currentHappySound = 'happySound2';
+        }else{
+            SoundManager.play('happySound3');
+            currentHappySound = 'happySound2';
+        }
+        //sounds[random].play();
+        //currentHappySound = sounds[random];
         if (direction === 'up') {
             posTo = self.y - (possibleMovements.up * 180);
             distance = posTo - self.y;
@@ -141,8 +153,10 @@ var Character = function Character(params) {
                         .to({x: 15,y: 5}, 20);
 
                     cameraTween.start();
-                    currentHappySound.stop();
-                    dieSound.play();
+                    SoundManager.stop(currentHappySound);
+                    //currentHappySound.stop();
+                    //dieSound.play();
+                    SoundManager.play('dieSound');
                     setTimeout(params.resetGame, 500);
                 }, 200);
             });
