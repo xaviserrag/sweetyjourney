@@ -1,0 +1,92 @@
+{"frames": {
+
+"close_off":
+{
+	"frame": {"x":1,"y":1657,"w":210,"h":216},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":216},
+	"sourceSize": {"w":210,"h":216}
+},
+"close_on":
+{
+	"frame": {"x":213,"y":1657,"w":210,"h":216},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":216},
+	"sourceSize": {"w":210,"h":216}
+},
+"left_off":
+{
+	"frame": {"x":425,"y":1657,"w":210,"h":216},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":216},
+	"sourceSize": {"w":210,"h":216}
+},
+"left_on":
+{
+	"frame": {"x":637,"y":1657,"w":210,"h":216},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":216},
+	"sourceSize": {"w":210,"h":216}
+},
+"right_off":
+{
+	"frame": {"x":849,"y":1657,"w":210,"h":216},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":216},
+	"sourceSize": {"w":210,"h":216}
+},
+"right_on":
+{
+	"frame": {"x":1061,"y":1657,"w":210,"h":216},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":210,"h":216},
+	"sourceSize": {"w":210,"h":216}
+},
+"tutorial_01":
+{
+	"frame": {"x":1,"y":1,"w":932,"h":826},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":932,"h":826},
+	"sourceSize": {"w":932,"h":826}
+},
+"tutorial_02":
+{
+	"frame": {"x":935,"y":1,"w":932,"h":826},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":932,"h":826},
+	"sourceSize": {"w":932,"h":826}
+},
+"tutorial_03":
+{
+	"frame": {"x":1,"y":829,"w":932,"h":826},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":932,"h":826},
+	"sourceSize": {"w":932,"h":826}
+},
+"tutorial_04":
+{
+	"frame": {"x":935,"y":829,"w":932,"h":826},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":932,"h":826},
+	"sourceSize": {"w":932,"h":826}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "tutorial.png",
+	"format": "RGBA8888",
+	"size": {"w":1868,"h":1874},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:f9ccb3dda6f96a20d438b0d7807520b4:7706a3a18b60d59a6b4ff0ec03fe3b9c:79be00c7babd4ee577009a58f6978baa$"
+}
+}
